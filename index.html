@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oceans Forward Dominica Data Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page: #F6FAF9;
+    --surface: #FFFFFF;
+    --ink: #14302D;
+    --muted: #5A6E6A;
+    --line: #D3E0DC;
+    --sea: #0A6E86;
+    --canopy: #2E6B3A;
+    --public: #2E6B3A;
+    --request: #8A5E0F;
+    --embargo: #A2432F;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    --mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--sea); }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--sea); outline-offset: 2px; }
+
+  header { border-bottom: 1px solid var(--line); background: var(--surface); }
+  header .wrap { padding-top: 48px; padding-bottom: 36px; }
+  .org { font-weight: 600; color: var(--canopy); margin: 0 0 12px; font-size: 15px; }
+  h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 16px; max-width: 18ch; }
+  .lede { color: var(--muted); max-width: 62ch; margin: 0; font-size: 17px; }
+
+  .tally { display: flex; gap: 2px; height: 10px; margin-top: 28px; max-width: 520px; border-radius: 5px; overflow: hidden; background: var(--line); }
+  .tally span { display: block; height: 100%; }
+  .tally-key { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 10px; font-size: 14px; color: var(--muted); }
+  .tally-key i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+
+  .controls { position: sticky; top: 0; z-index: 5; background: var(--page); border-bottom: 1px solid var(--line); }
+  .controls .wrap { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding-top: 14px; padding-bottom: 14px; }
+  .search { flex: 1 1 260px; }
+  input[type=search], select { width: 100%; font: inherit; font-size: 15px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 9px 12px; }
+  select { width: auto; }
+  .programs { display: flex; flex-wrap: wrap; gap: 6px; }
+  .programs button { font: inherit; font-size: 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 7px 12px; border-radius: 999px; cursor: pointer; }
+  .programs button[aria-pressed=true] { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  main .wrap { padding-top: 12px; padding-bottom: 64px; }
+  .result-count { color: var(--muted); font-size: 14px; margin: 16px 0 0; }
+  section.group { margin-top: 36px; }
+  section.group h2 { font-size: 20px; margin: 0 0 4px; padding-bottom: 10px; border-bottom: 2px solid var(--ink); display: flex; justify-content: space-between; align-items: baseline; }
+  section.group h2 small { font-weight: 400; font-size: 14px; color: var(--muted); }
+
+  .row { display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .row h3 { margin: 0; font-size: 17px; font-weight: 600; }
+  .row h3 a { text-decoration: none; }
+  .row h3 a:hover { text-decoration: underline; }
+  .row p { margin: 4px 0 0; color: var(--muted); max-width: 70ch; font-size: 15px; }
+  .meta { margin-top: 8px; font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 18px; }
+  .meta .id { font-family: var(--mono); font-size: 13px; color: var(--ink); }
+  .side { text-align: right; white-space: nowrap; }
+  .access { display: inline-block; font-size: 13px; font-weight: 600; padding: 3px 10px; border-radius: 4px; border: 1px solid currentColor; }
+  .access.public { color: var(--public); }
+  .access.request { color: var(--request); }
+  .access.embargo { color: var(--embargo); }
+  .status { display: block; margin-top: 6px; font-size: 13px; color: var(--muted); }
+  .action { display: inline-block; margin-top: 8px; font-size: 14px; font-weight: 500; }
+
+  .empty, .error { margin-top: 40px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; max-width: 62ch; }
+  footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+  footer .wrap { padding-top: 24px; padding-bottom: 40px; }
+
+  @media (max-width: 640px) {
+    .row { grid-template-columns: 1fr; }
+    .side { text-align: left; }
+    select { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="org">Oceans Forward</p>
+    <h1>Dominica data, all in one directory</h1>
+    <p class="lede" id="lede">Every dataset from our turtle, coral, telemetry, agriculture and education programs, with where to find it and who to ask.</p>
+    <div class="tally" id="tally" aria-hidden="true"></div>
+    <div class="tally-key" id="tally-key"></div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="search"><input type="search" id="q" placeholder="Search datasets, places, formats" aria-label="Search datasets"></div>
+    <select id="access" aria-label="Filter by access">
+      <option value="">Any access</option>
+      <option>Public</option>
+      <option>On request</option>
+      <option>Embargoed</option>
+    </select>
+    <div class="programs" id="programs" role="group" aria-label="Filter by program"></div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <p class="result-count" id="count" aria-live="polite"></p>
+    <div id="list"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Data is CC BY 4.0 unless noted. To add a dataset, add a row to
+    <a href="https://github.com/Jlevenson/Dominica-Data/blob/main/catalog.csv">catalog.csv</a>.
+    <a href="https://github.com/Jlevenson/Dominica-Data">View the repository</a>.
+  </div>
+</footer>
+
+<script>
+  // Address people write to for "On request" data. Edit this one line.
+  const CONTACT_EMAIL = "data@oceansforward.org";
+
+  const ACCESS_CLASS = { "Public": "public", "On request": "request", "Embargoed": "embargo" };
+  const ACCESS_COLOR = { "Public": "var(--public)", "On request": "var(--request)", "Embargoed": "var(--embargo)" };
+
+  function parseCSV(text) {
+    const rows = []; let row = []; let field = ""; let quoted = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (quoted) {
+        if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+        else if (c === '"') quoted = false;
+        else field += c;
+      } else if (c === '"') quoted = true;
+      else if (c === ",") { row.push(field); field = ""; }
+      else if (c === "\n" || c === "\r") {
+        if (c === "\r" && text[i + 1] === "\n") i++;
+        row.push(field); field = "";
+        if (row.some(v => v.trim() !== "")) rows.push(row);
+        row = [];
+      } else field += c;
+    }
+    if (field !== "" || row.length) { row.push(field); if (row.some(v => v.trim() !== "")) rows.push(row); }
+    const head = rows.shift().map(h => h.trim());
+    return rows.map(r => Object.fromEntries(head.map((h, i) => [h, (r[i] || "").trim()])));
+  }
+
+  const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  let data = [];
+  let program = "";
+
+  function render() {
+    const q = document.getElementById("q").value.toLowerCase().trim();
+    const acc = document.getElementById("access").value;
+    const shown = data.filter(d =>
+      (!program || d.program === program) &&
+      (!acc || d.access === acc) &&
+      (!q || Object.values(d).join(" ").toLowerCase().includes(q))
+    );
+
+    document.getElementById("count").textContent =
+      shown.length === data.length ? `Showing all ${data.length} datasets` : `Showing ${shown.length} of ${data.length} datasets`;
+
+    const list = document.getElementById("list");
+    if (!shown.length) {
+      list.innerHTML = `<div class="empty">No datasets match these filters. Clear the search or choose a different program.</div>`;
+      return;
+    }
+
+    const groups = {};
+    shown.forEach(d => (groups[d.program] ||= []).push(d));
+    list.innerHTML = Object.entries(groups).map(([name, items]) => `
+      <section class="group">
+        <h2>${esc(name)} <small>${items.length} dataset${items.length === 1 ? "" : "s"}</small></h2>
+        ${items.map(rowHTML).join("")}
+      </section>`).join("");
+  }
+
+  function rowHTML(d) {
+    const available = d.status === "Available" && d.link;
+    const title = available ? `<a href="${esc(d.link)}">${esc(d.title)}</a>` : esc(d.title);
+    let action = "";
+    if (available) action = `<a class="action" href="${esc(d.link)}">Open data</a>`;
+    else if (d.access === "On request") action = `<a class="action" href="mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Data request: " + d.id + " " + d.title)}">Request access</a>`;
+    const meta = [
+      `<span class="id">${esc(d.id)}</span>`,
+      d.format && `<span>${esc(d.format)}</span>`,
+      d.coverage_place && `<span>${esc(d.coverage_place)}</span>`,
+      d.coverage_time && `<span>${esc(d.coverage_time)}</span>`,
+      d.contact && `<span>Contact: ${esc(d.contact)}</span>`,
+      d.updated && `<span>Updated ${esc(d.updated)}</span>`
+    ].filter(Boolean).join("");
+    return `
+      <article class="row">
+        <div>
+          <h3>${title}</h3>
+          <p>${esc(d.description)}</p>
+          <div class="meta">${meta}</div>
+        </div>
+        <div class="side">
+          <span class="access ${ACCESS_CLASS[d.access] || ""}">${esc(d.access || "Unknown")}</span>
+          <span class="status">${d.status === "Available" ? "Available" : "Not yet uploaded"}</span>
+          ${action}
+        </div>
+      </article>`;
+  }
+
+  function buildTally() {
+    const counts = {};
+    data.forEach(d => counts[d.access] = (counts[d.access] || 0) + 1);
+    const order = ["Public", "On request", "Embargoed"];
+    document.getElementById("tally").innerHTML = order.filter(a => counts[a])
+      .map(a => `<span style="flex:${counts[a]};background:${ACCESS_COLOR[a]}"></span>`).join("");
+    document.getElementById("tally-key").innerHTML = order.filter(a => counts[a])
+      .map(a => `<span><i style="background:${ACCESS_COLOR[a]}"></i>${counts[a]} ${a.toLowerCase()}</span>`).join("");
+  }
+
+  function buildPrograms() {
+    const names = [...new Set(data.map(d => d.program))];
+    const box = document.getElementById("programs");
+    box.innerHTML = ["All programs", ...names].map((n, i) =>
+      `<button type="button" data-p="${i ? esc(n) : ""}" aria-pressed="${i === 0}">${esc(n)}</button>`).join("");
+    box.addEventListener("click", e => {
+      const b = e.target.closest("button"); if (!b) return;
+      program = b.dataset.p;
+      box.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+      render();
+    });
+  }
+
+  fetch("catalog.csv", { cache: "no-store" })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(t => {
+      data = parseCSV(t);
+      buildTally(); buildPrograms(); render();
+      document.getElementById("q").addEventListener("input", render);
+      document.getElementById("access").addEventListener("change", render);
+    })
+    .catch(() => {
+      document.getElementById("list").innerHTML =
+        `<div class="error">The catalog could not be loaded. Check that catalog.csv sits next to index.html in the repository. If you opened this file directly from your computer, the browser blocks it; view it on GitHub Pages or run a local server instead.</div>`;
+    });
+</script>
+</body>
+</html>

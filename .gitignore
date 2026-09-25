@@ -1,0 +1,13 @@
+# Keep large and raw files out of the repository; store them externally and link from catalog.csv
+*.mp4
+*.mov
+*.MP4
+*.MOV
+*.avi
+*.raw
+*.zip
+*.7z
+raw/
+private/
+.DS_Store
+~$*
