@@ -25,5 +25,3 @@
 | ENV-BRV | BRUV |
 | ENV-GIS | GIS and land planning |
 | AGR-CAN | Cane farming |
-| RBD-ENE / RBD-SAL | Distillery energy / sales |
-| EDU-WHL | Education, whale model |
