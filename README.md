@@ -1,6 +1,6 @@
 # Oceans Forward Dominica Data Hub
 
-One directory for every dataset Oceans Forward collects or manages in Dominica: sea turtles, telemetry, coral, BRUV, GIS and agriculture.
+One directory for every dataset Oceans Forward collects or manages in Dominica: sea turtles, telemetry, coral, BRUV, acoustics, turbidity and agriculture.
 
 **Browse it:** https://jlevenson.github.io/Dominica-Data/
 
@@ -21,7 +21,8 @@ The repository is a catalog, not a warehouse.
 | `environment/leatherback-telemetry/` | Satellite tracking of post-nesting leatherbacks |
 | `environment/coral-thermal/` | Restoration site temperature loggers, DHW, SST comparison |
 | `environment/bruv/` | Baited remote underwater video deployments |
-| `environment/gis/` | Land planning, soils, landslide hazard |
+| `environment/acoustics/` | Marine (WHOI, long-term ecosystem) and terrestrial acoustic recordings |
+| `environment/turbidity/` | Water clarity / turbidity monitoring |
 | `agriculture/cane-farming/` | Cane farming program |
 | `templates/` | README template for new datasets |
 

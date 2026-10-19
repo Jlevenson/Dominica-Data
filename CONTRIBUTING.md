@@ -23,5 +23,6 @@
 | ENV-TEL | Telemetry |
 | ENV-COR | Coral |
 | ENV-BRV | BRUV |
-| ENV-GIS | GIS and land planning |
+| ENV-ACO | Acoustics |
+| ENV-TRB | Turbidity |
 | AGR-CAN | Cane farming |
