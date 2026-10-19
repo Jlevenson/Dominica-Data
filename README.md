@@ -21,7 +21,7 @@ The repository is a catalog, not a warehouse.
 | `environment/leatherback-telemetry/` | Satellite tracking of post-nesting leatherbacks |
 | `environment/coral-thermal/` | Restoration site temperature loggers, DHW, SST comparison |
 | `environment/bruv/` | Baited remote underwater video deployments |
-| `environment/acoustics/` | WHOI acoustic recordings and long-term ecosystem soundscapes |
+| `environment/acoustics/` | Marine (WHOI, long-term ecosystem) and terrestrial acoustic recordings |
 | `environment/turbidity/` | Water clarity / turbidity monitoring |
 | `agriculture/cane-farming/` | Cane farming program |
 | `templates/` | README template for new datasets |
