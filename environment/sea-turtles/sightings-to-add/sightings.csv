@@ -1,0 +1,225 @@
+row,date,year,month,species,beach,beach_name,result,hour,crawl_width_cm,ccl_cm,ccw_cm,yolked_eggs,duplicate_check
+1,2014-03-19,2014,3,Green,Other,Grand Bay,False Crawl,12.22,110.0,,,,Possible duplicate
+2,2014-03-21,2014,3,Leatherback,Boute Sable,Boute Sable,False Crawl,23.0,,150.0,147.0,,Likely duplicate
+3,2014-04-03,2014,4,Leatherback,Net Rosalie,Net Rosalie,False Crawl,3.5,,157.0,112.0,,Likely duplicate
+4,2014-04-03,2014,4,Leatherback,Net Rosalie,Net Rosalie,False Crawl,3.5,183.0,,,,Likely duplicate
+5,2014-04-09,2014,4,Leatherback,Net Rosalie,Net Rosalie,False Crawl,0.0,171.0,157.0,117.0,,Likely duplicate
+6,2014-04-09,2014,4,Leatherback,Net Rosalie,Net Rosalie,False Crawl,0.0,181.0,,,,Likely duplicate
+7,2014-04-13,2014,4,Leatherback,Boute Sable,Boute Sable,False Crawl,22.95,183.0,,,0.0,Likely duplicate
+8,2014-05-06,2014,5,Leatherback,Net Rosalie,Net Rosalie,Nest,21.48,,150.0,111.0,78.0,Likely duplicate
+9,2014-05-06,2014,5,Green,Net Rosalie,Net Rosalie,Nest,0.25,,,,140.0,Likely duplicate
+10,2014-05-10,2014,5,Leatherback,Net Rosalie,Net Rosalie,Nest,1.5,176.0,157.0,116.0,102.0,Likely duplicate
+11,2014-05-13,2014,5,Leatherback,Londonderry,Londonderry,False Crawl,21.75,,,,,No match
+12,2014-05-29,2014,5,Leatherback,Other,St Joseph,Nest,2.0,,,,,Likely duplicate
+13,2014-06-02,2014,6,Green,Other,SSMR,Suspected Nest,,,,,,No match
+14,2014-06-03,2014,6,Leatherback,Net Rosalie,Net Rosalie,False Crawl,3.67,140.0,,,,Likely duplicate
+15,2014-06-03,2014,6,Hawksbill,Net Rosalie,Net Rosalie,False Crawl,3.5,65.0,,,,Likely duplicate
+16,2014-06-08,2014,6,Leatherback,Other,Layou,Nest,7.0,,,,,Possible duplicate
+17,2014-06-12,2014,6,Leatherback,Boute Sable,Boute Sable,Nest,0.25,,130.0,109.0,84.0,Possible duplicate
+18,2014-06-13,2014,6,Leatherback,Other,"Grand Anse Beach, Trois-Rivieres, Guadeloupe",Nest,,,,,,Possible duplicate
+19,2014-06-24,2014,6,Leatherback,Net Rosalie,Net Rosalie,False Crawl,0.0,,,,,Likely duplicate
+20,2014-06-24,2014,6,Unknown,Other,SSMR Champagne,Suspected Nest,,,,,,Possible duplicate
+21,2014-06-25,2014,6,Hawksbill,Other,Dangleben's Reef (nr Pt Guignard / Champagne),Not recorded,10.67,,85.5,73.5,,No match
+22,2014-07-10,2014,7,Hawksbill,Other,Layou,Suspected Nest,22.5,,,,,Likely duplicate
+23,2014-07-20,2014,7,Hawksbill,Net Rosalie,Net Rosalie,Suspected Nest,2.25,,,,,Likely duplicate
+24,2014-07-20,2014,7,Hawksbill,Net Rosalie,Net Rosalie,Nest,22.58,68.0,85.0,76.0,,Likely duplicate
+25,2014-07-23,2014,7,Leatherback,Other,St Joseph,False Crawl,,,,,,Possible duplicate
+26,2014-08-11,2014,8,Hawksbill,Other,Rockaway Beach,Suspected Nest,8.27,82.0,,,,Possible duplicate
+27,2014-08-12,2014,8,Hawksbill,Other,Les Point,Not recorded,,,,,,Possible duplicate
+28,2014-08-12,2014,8,Hawksbill,Other,Macoucherie Beach (Tamarind Tree),Nest,,,,,,Possible duplicate
+29,2014-08-16,2014,8,Green,Net Rosalie,Net Rosalie,False Crawl,22.5,99.0,,,,Likely duplicate
+30,2014-08-16,2014,8,Green,Net Rosalie,Net Rosalie,False Crawl,20.83,,,,,Likely duplicate
+31,2014-08-17,2014,8,Green,Net Rosalie,Net Rosalie,False Crawl,12.0,99.0,,,,Possible duplicate
+32,2014-08-21,2014,8,Green,Net Rosalie,Net Rosalie,False Crawl,18.5,89.0,,,,Possible duplicate
+33,2014-08-22,2014,8,Green,Net Rosalie,Net Rosalie,Nest,20.5,,104.0,93.0,136.0,Possible duplicate
+34,2014-08-22,2014,8,Green,Net Rosalie,Net Rosalie,False Crawl,22.5,115.0,,,,Likely duplicate
+35,2014-08-28,2014,8,Green,Net Rosalie,Net Rosalie,Nest,23.42,83.0,,,,Same-night form only
+36,2014-08-28,2014,8,Green,Net Rosalie,Net Rosalie,Nest,21.0,103.0,113.0,99.0,103.0,Same-night form only
+37,2014-08-28,2014,8,Hawksbill,Net Rosalie,Net Rosalie,False Crawl,5.5,61.0,,,,No match
+38,2014-08-29,2014,8,Green,Net Rosalie,Net Rosalie,Suspected Nest,21.5,97.0,,,,No match
+39,2014-09-02,2014,9,Green,Net Rosalie,Net Rosalie,False Crawl,5.0,92.0,,,,No match
+40,2014-09-10,2014,9,Hawksbill,Net Rosalie,Net Rosalie,False Crawl,9.0,81.0,,,,Same-night form only
+41,2014-09-10,2014,9,Green,Net Rosalie,Net Rosalie,Suspected Nest,5.67,97.0,,,,Same-night form only
+42,2014-09-10,2014,9,Hawksbill,Net Rosalie,Net Rosalie,False Crawl,,61.0,,,,Same-night form only
+43,2014-09-10,2014,9,Hawksbill,Net Rosalie,Net Rosalie,False Crawl,8.83,88.0,,,,Same-night form only
+44,2014-09-10,2014,9,Hawksbill,Net Rosalie,Net Rosalie,False Crawl,9.25,79.0,,,,Same-night form only
+45,2014-09-10,2014,9,Green,Net Rosalie,Net Rosalie,False Crawl,9.25,,,,,Same-night form only
+46,2014-09-10,2014,9,Green,Net Rosalie,Net Rosalie,Suspected Nest,8.5,93.0,,,,Same-night form only
+47,2014-09-10,2014,9,Green,Net Rosalie,Net Rosalie,False Crawl,8.9,,,,,Same-night form only
+48,2014-09-10,2014,9,Green,Net Rosalie,Net Rosalie,Suspected Nest,,92.0,,,,Same-night form only
+49,2014-09-13,2014,9,Green,Net Rosalie,Net Rosalie,False Crawl,15.25,96.0,,,,No match
+50,2014-09-18,2014,9,Green,Net Rosalie,Net Rosalie,Suspected Nest,15.5,91.0,,,,No match
+51,2014-10-07,2014,10,Green,Net Rosalie,Net Rosalie,Suspected Nest,9.5,103.0,,,,No match
+52,2014-10-13,2014,10,Green,Net Rosalie,Net Rosalie,False Crawl,6.5,103.0,,,,No match
+53,2015-03-01,2015,3,Leatherback,Net Rosalie,Net Rosalie,False Crawl,12.0,185.0,,,,Likely duplicate
+54,2015-03-10,2015,3,Green,Net Rosalie,Net Rosalie,Suspected Nest,17.5,113.0,,,,Likely duplicate
+55,2015-03-17,2015,3,Green,Net Rosalie,Net Rosalie,False Crawl,8.58,112.0,,,,Likely duplicate
+56,2015-03-17,2015,3,Green,Net Rosalie,Net Rosalie,Suspected Nest,8.5,112.0,,,,Likely duplicate
+57,2015-03-17,2015,3,Green,Net Rosalie,Net Rosalie,False Crawl,8.67,109.0,,,,Likely duplicate
+58,2015-03-21,2015,3,Green,Boute Sable,Boute Sable,Not recorded,,51.0,,,,Possible duplicate
+59,2015-03-28,2015,3,Green,Net Rosalie,Net Rosalie,False Crawl,5.0,111.0,,,,Likely duplicate
+60,2015-04-05,2015,4,Leatherback,Boute Sable,Boute Sable,Not recorded,,170.0,,,,Possible duplicate
+61,2015-04-14,2015,4,Leatherback,Net Rosalie,Net Rosalie,False Crawl,2.5,168.0,,,,Likely duplicate
+62,2015-04-20,2015,4,Leatherback,Londonderry,Londonderry,False Crawl,22.0,203.0,,,,Likely duplicate
+63,2015-04-22,2015,4,Unknown,Boute Sable,Boute Sable,Not recorded,,187.0,,,,Possible duplicate
+64,2015-04-27,2015,4,Leatherback,Net Rosalie,Net Rosalie,Suspected Nest,21.83,,,,,Possible duplicate
+65,2015-05-01,2015,5,Leatherback,Net Rosalie,Net Rosalie,False Crawl,3.33,,,,,Likely duplicate
+66,2015-05-04,2015,5,Leatherback,Boute Sable,Boute Sable,Not recorded,,,180.0,128.0,,Possible duplicate
+67,2015-05-05,2015,5,Leatherback,Boute Sable,Boute Sable,Not recorded,11.0,,159.0,167.0,,Likely duplicate
+68,2015-07-10,2015,7,Hawksbill,Net Rosalie,Net Rosalie,Suspected Nest,21.0,77.0,,,,Likely duplicate
+69,2015-07-11,2015,7,Hawksbill,Net Rosalie,Net Rosalie,Suspected Nest,23.0,66.0,,,,Likely duplicate
+70,2015-07-11,2015,7,Hawksbill,Net Rosalie,Net Rosalie,False Crawl,4.5,68.0,,,,Likely duplicate
+71,2016-03-04,2016,3,Leatherback,Londonderry,Londonderry,False Crawl,20.0,173.0,,,,Possible duplicate
+72,2016-03-20,2016,3,Unknown,Londonderry,Londonderry,False Crawl,20.0,,,,,Possible duplicate
+73,2016-03-22,2016,3,Unknown,Londonderry,Londonderry,False Crawl,0.0,,,,,Possible duplicate
+74,2016-03-31,2016,3,Leatherback,Net Rosalie,Net Rosalie,False Crawl,20.75,187.0,,,,Likely duplicate
+75,2016-04-03,2016,4,Unknown,Londonderry,Londonderry,False Crawl,20.25,173.0,,,,Possible duplicate
+76,2016-04-05,2016,4,Unknown,Boute Sable,Boute Sable,Not recorded,10.25,199.0,,,,Likely duplicate
+77,2016-04-13,2016,4,Leatherback,Net Rosalie,Net Rosalie,False Crawl,5.0,,,,,Likely duplicate
+78,2016-04-21,2016,4,Leatherback,Boute Sable,Boute Sable,Not recorded,10.0,215.0,,,,Possible duplicate
+79,2016-04-21,2016,4,Leatherback,Boute Sable,Boute Sable,Not recorded,21.5,225.0,,,,Likely duplicate
+80,2016-04-21,2016,4,Leatherback,Boute Sable,Boute Sable,False Crawl,1.0,,197.0,168.0,,Likely duplicate
+81,2016-04-21,2016,4,Leatherback,Boute Sable,Boute Sable,Not recorded,3.0,215.0,,,,Likely duplicate
+82,2016-04-21,2016,4,Leatherback,Net Rosalie,Net Rosalie,Nest,23.75,170.0,191.0,121.0,,Likely duplicate
+83,2016-04-21,2016,4,Leatherback,Net Rosalie,Net Rosalie,False Crawl,4.75,169.0,,,,Likely duplicate
+84,2016-04-21,2016,4,Leatherback,Net Rosalie,Net Rosalie,False Crawl,4.83,157.0,,,,Likely duplicate
+85,2016-04-22,2016,4,Unknown,Londonderry,Londonderry,False Crawl,22.0,189.0,,,,Likely duplicate
+86,2016-04-22,2016,4,Leatherback,Net Rosalie,Net Rosalie,False Crawl,23.25,176.0,,,,Likely duplicate
+87,2016-04-24,2016,4,Leatherback,Net Rosalie,Net Rosalie,Suspected Nest,20.17,153.0,,,,Likely duplicate
+88,2016-04-25,2016,4,Unknown,Londonderry,Londonderry,False Crawl,22.0,185.0,,,,Likely duplicate
+89,2016-04-25,2016,4,Leatherback,Net Rosalie,Net Rosalie,False Crawl,5.0,178.0,,,,Likely duplicate
+90,2016-04-25,2016,4,Leatherback,Net Rosalie,Net Rosalie,Suspected Nest,5.0,187.0,,,,Likely duplicate
+91,2016-04-26,2016,4,Leatherback,Boute Sable,Boute Sable,Not recorded,23.0,230.0,,,,Likely duplicate
+92,2016-04-26,2016,4,Leatherback,Net Rosalie,Net Rosalie,Suspected Nest,8.5,167.0,,,,Likely duplicate
+93,2016-04-29,2016,4,Leatherback,Boute Sable,Boute Sable,Not recorded,13.35,225.0,,,,Likely duplicate
+94,2016-04-30,2016,4,Leatherback,Net Rosalie,Net Rosalie,False Crawl,20.0,,,,,Likely duplicate
+95,2016-04-30,2016,4,Leatherback,Net Rosalie,Net Rosalie,False Crawl,5.0,157.0,,,,Likely duplicate
+96,2016-05-01,2016,5,Unknown,Boute Sable,Boute Sable,Not recorded,,233.0,,,,Possible duplicate
+97,2016-05-01,2016,5,Leatherback,Net Rosalie,Net Rosalie,False Crawl,1.33,,,,,Likely duplicate
+98,2016-05-02,2016,5,Leatherback,Net Rosalie,Net Rosalie,False Crawl,4.5,201.0,,,,Likely duplicate
+99,2016-05-03,2016,5,Leatherback,Net Rosalie,Net Rosalie,Suspected Nest,5.0,167.0,,,,Likely duplicate
+100,2016-05-07,2016,5,Leatherback,Londonderry,Londonderry,False Crawl,,182.0,,,,Possible duplicate
+101,2016-05-08,2016,5,Leatherback,Londonderry,Londonderry,False Crawl,0.0,192.0,,,,Possible duplicate
+102,2016-05-10,2016,5,Unknown,Londonderry,Londonderry,False Crawl,,216.0,,,,Possible duplicate
+103,2016-05-10,2016,5,Leatherback,Londonderry,Londonderry,False Crawl,23.0,182.0,,,,Likely duplicate
+104,2016-05-11,2016,5,Leatherback,Londonderry,Londonderry,False Crawl,1.0,202.0,,,,Likely duplicate
+105,2016-05-11,2016,5,Leatherback,Net Rosalie,Net Rosalie,False Crawl,22.67,158.0,,,,Likely duplicate
+106,2016-05-11,2016,5,Leatherback,Net Rosalie,Net Rosalie,False Crawl,0.0,150.0,,,,Likely duplicate
+107,2016-05-11,2016,5,Leatherback,Net Rosalie,Net Rosalie,False Crawl,0.08,141.0,,,,Likely duplicate
+108,2016-05-11,2016,5,Leatherback,Net Rosalie,Net Rosalie,False Crawl,22.58,183.0,,,,Likely duplicate
+109,2016-05-14,2016,5,Leatherback,Boute Sable,Boute Sable,Not recorded,22.0,242.0,,,,Likely duplicate
+110,2016-05-14,2016,5,Leatherback,Londonderry,Londonderry,False Crawl,23.0,155.0,,,,Likely duplicate
+111,2016-05-14,2016,5,Leatherback,Net Rosalie,Net Rosalie,False Crawl,20.25,188.0,,,,Likely duplicate
+112,2016-05-15,2016,5,Leatherback,Boute Sable,Boute Sable,Not recorded,3.0,227.0,,,,Likely duplicate
+113,2016-05-15,2016,5,Leatherback,Boute Sable,Boute Sable,Not recorded,2.17,,,,,Likely duplicate
+114,2016-05-15,2016,5,Leatherback,Boute Sable,Boute Sable,Not recorded,2.5,,,,,Likely duplicate
+115,2016-05-15,2016,5,Leatherback,Boute Sable,Boute Sable,Not recorded,3.75,,,,,Likely duplicate
+116,2016-05-15,2016,5,Leatherback,Net Rosalie,Net Rosalie,False Crawl,2.0,190.0,,,,Likely duplicate
+117,2016-05-15,2016,5,Leatherback,Net Rosalie,Net Rosalie,False Crawl,21.25,184.0,,,,Likely duplicate
+118,2016-05-16,2016,5,Leatherback,Boute Sable,Boute Sable,Not recorded,3.0,,,,,Likely duplicate
+119,2016-05-16,2016,5,Leatherback,Net Rosalie,Net Rosalie,False Crawl,0.0,164.0,,,,Likely duplicate
+120,2016-05-20,2016,5,Leatherback,Boute Sable,Boute Sable,Not recorded,20.0,,,,,Likely duplicate
+121,2016-05-20,2016,5,Leatherback,Net Rosalie,Net Rosalie,False Crawl,22.5,,,,,Likely duplicate
+122,2016-05-24,2016,5,Leatherback,Boute Sable,Boute Sable,Not recorded,12.0,,,,,Likely duplicate
+123,2016-05-24,2016,5,Leatherback,Boute Sable,Boute Sable,Not recorded,2.0,,,,,Likely duplicate
+124,2016-05-24,2016,5,Leatherback,Net Rosalie,Net Rosalie,False Crawl,23.5,181.0,,,,Likely duplicate
+125,2016-05-25,2016,5,Leatherback,Boute Sable,Boute Sable,Not recorded,3.0,,,,,Likely duplicate
+126,2016-05-27,2016,5,Leatherback,Net Rosalie,Net Rosalie,Suspected Nest,,172.0,,,,Likely duplicate
+127,2016-05-29,2016,5,Leatherback,Net Rosalie,Net Rosalie,Suspected Nest,5.0,,,,,Likely duplicate
+128,2016-05-30,2016,5,Leatherback,Londonderry,Londonderry,False Crawl,21.92,264.0,,,,Possible duplicate
+129,2016-05-30,2016,5,Leatherback,Net Rosalie,Net Rosalie,False Crawl,23.83,,,,,Likely duplicate
+130,2016-06-01,2016,6,Leatherback,Net Rosalie,Net Rosalie,Nest,21.0,165.0,148.0,104.0,,Likely duplicate
+131,2016-06-06,2016,6,Green,Londonderry,Londonderry,Suspected Nest,,67.0,,,,Possible duplicate
+132,2016-06-06,2016,6,Leatherback,Net Rosalie,Net Rosalie,False Crawl,21.83,171.0,,,,Likely duplicate
+133,2016-06-08,2016,6,Leatherback,Net Rosalie,Net Rosalie,False Crawl,5.0,171.0,,,,Likely duplicate
+134,2016-06-08,2016,6,Hawksbill,Net Rosalie,Net Rosalie,Suspected Nest,2.08,75.0,,,,Likely duplicate
+135,2016-06-11,2016,6,Hawksbill,Londonderry,Londonderry,Nest,21.08,94.0,89.0,84.0,121.0,Likely duplicate
+136,2016-06-14,2016,6,Leatherback,Net Rosalie,Net Rosalie,Suspected Nest,1.83,140.0,,,,Likely duplicate
+137,2016-06-16,2016,6,Leatherback,Net Rosalie,Net Rosalie,Suspected Nest,5.0,162.0,,,,Likely duplicate
+138,2016-06-23,2016,6,Leatherback,Londonderry,Londonderry,False Crawl,23.5,206.0,,,,Possible duplicate
+139,2016-06-23,2016,6,Hawksbill,Net Rosalie,Net Rosalie,False Crawl,20.5,88.0,,,,Likely duplicate
+140,2016-06-28,2016,6,Leatherback,Londonderry,Londonderry,False Crawl,1.0,216.0,,,,Possible duplicate
+141,2016-07-06,2016,7,Leatherback,Net Rosalie,Net Rosalie,False Crawl,,,,,,Possible duplicate
+142,2016-07-07,2016,7,Hawksbill,Net Rosalie,Net Rosalie,False Crawl,20.75,85.0,,,,Likely duplicate
+143,2016-07-11,2016,7,Hawksbill,Net Rosalie,Net Rosalie,Suspected Nest,5.0,73.0,,,,Likely duplicate
+144,2016-07-13,2016,7,Green,Londonderry,Londonderry (on your way to Mougot),False Crawl,22.42,68.0,,,,No match
+145,2016-07-18,2016,7,Hawksbill,Londonderry,Londonderry,Suspected Nest,18.0,84.0,,,,Likely duplicate
+146,2016-07-22,2016,7,Hawksbill,Net Rosalie,Net Rosalie,Suspected Nest,23.75,93.0,,,,Likely duplicate
+147,2016-08-26,2016,8,Unknown,Net Rosalie,Net Rosalie,False Crawl,20.67,97.0,,,,Likely duplicate
+148,2016-08-26,2016,8,Unknown,Net Rosalie,Net Rosalie,False Crawl,20.75,101.0,,,,Likely duplicate
+149,2016-08-27,2016,8,Green,Net Rosalie,Net Rosalie,False Crawl,20.25,93.0,,,,Likely duplicate
+150,2016-08-31,2016,8,Green,Net Rosalie,Net Rosalie,Suspected Nest,5.0,111.0,,,,Likely duplicate
+151,2016-09-15,2016,9,Green,Net Rosalie,Net Rosalie,False Crawl,21.25,93.0,,,,Likely duplicate
+152,2016-09-17,2016,9,Green,Net Rosalie,Net Rosalie,False Crawl,4.0,98.0,,,,Likely duplicate
+153,2016-09-24,2016,9,Green,Net Rosalie,Net Rosalie,False Crawl,21.5,108.0,,,,Likely duplicate
+154,2016-10-03,2016,10,Hawksbill,Net Rosalie,Net Rosalie,Suspected Nest,11.0,64.0,,,,Likely duplicate
+155,2016-10-04,2016,10,Green,Net Rosalie,Net Rosalie,False Crawl,22.75,87.0,,,,Likely duplicate
+156,2016-10-04,2016,10,Green,Net Rosalie,Net Rosalie,False Crawl,20.5,96.0,,,,Likely duplicate
+157,2016-10-04,2016,10,Green,Net Rosalie,Net Rosalie,False Crawl,23.0,94.0,,,,Likely duplicate
+158,2016-10-05,2016,10,Green,Net Rosalie,Net Rosalie,False Crawl,22.67,94.0,,,,Likely duplicate
+159,2016-10-06,2016,10,Green,Net Rosalie,Net Rosalie,Suspected Nest,9.0,100.0,,,,Likely duplicate
+160,2016-10-06,2016,10,Green,Net Rosalie,Net Rosalie,False Crawl,9.25,94.0,,,,Likely duplicate
+161,2016-10-06,2016,10,Green,Net Rosalie,Net Rosalie,False Crawl,0.83,94.0,,,,Likely duplicate
+162,2016-10-06,2016,10,Green,Net Rosalie,Net Rosalie,False Crawl,9.08,97.0,,,,Likely duplicate
+163,2017-03-26,2017,3,Leatherback,Other,Melville Hall / Baby Rose,False Crawl,18.17,159.0,,,,Likely duplicate
+164,2017-03-30,2017,3,Leatherback,Londonderry,Londonderry,False Crawl,4.5,,,,,Likely duplicate
+165,2017-04-08,2017,4,Leatherback,Londonderry,Londonderry,Nest,21.75,170.0,,,,Likely duplicate
+166,2017-04-08,2017,4,Leatherback,Net Rosalie,Net Rosalie,Nest,22.17,206.0,159.0,120.0,62.0,No match
+167,2017-04-09,2017,4,Leatherback,Londonderry,Londonderry,False Crawl,20.2,135.0,,,,Likely duplicate
+168,2017-04-10,2017,4,Leatherback,Londonderry,Londonderry,Nest,1.43,224.0,171.0,122.0,106.0,Likely duplicate
+169,2017-04-10,2017,4,Leatherback,Londonderry,Londonderry,Nest,0.0,203.0,147.0,114.0,112.0,Likely duplicate
+170,2017-04-18,2017,4,Leatherback,Net Rosalie,Net Rosalie,Nest,20.25,,,,97.0,No match
+171,2017-04-19,2017,4,Leatherback,Londonderry,Londonderry,False Crawl,2.0,175.0,,,,Likely duplicate
+172,2017-04-20,2017,4,Leatherback,Londonderry,Londonderry,False Crawl,5.0,228.0,,,,Likely duplicate
+173,2017-04-21,2017,4,Unknown,Londonderry,Londonderry,False Crawl,23.0,142.0,,,,Likely duplicate
+174,2017-04-21,2017,4,Leatherback,Other,Melville Hall / Baby Rose,False Crawl,5.5,227.0,,,,No match
+175,2017-04-22,2017,4,Leatherback,Londonderry,Unknown (Londonderry?),False Crawl,0.0,185.0,,,,No match
+176,2017-04-26,2017,4,Leatherback,Londonderry,Londonderry,False Crawl,20.75,,,,,Likely duplicate
+177,2017-04-28,2017,4,Leatherback,Londonderry,Londonderry,Nest,19.83,183.0,142.0,112.0,87.0,Likely duplicate
+178,2017-04-29,2017,4,Leatherback,Net Rosalie,Net Rosalie,Nest,20.5,,,,80.0,No match
+179,2017-05-02,2017,5,Leatherback,Net Rosalie,Net Rosalie,Nest,21.75,,154.0,112.0,65.0,No match
+180,2017-05-03,2017,5,Leatherback,Londonderry,Londonderry,False Crawl,1.0,187.0,,,,Likely duplicate
+181,2017-05-04,2017,5,Leatherback,Londonderry,Londonderry,Suspected Nest,22.5,185.0,,,,Likely duplicate
+182,2017-05-08,2017,5,Leatherback,Londonderry,Londonderry,False Crawl,21.25,,,,,Possible duplicate
+183,2017-05-13,2017,5,Leatherback,Net Rosalie,Net Rosalie,Nest,21.5,158.0,150.0,109.0,62.0,No match
+184,2017-05-13,2017,5,Leatherback,Other,Woodford Hill Port (2),Not recorded,11.17,,145.0,124.0,,Likely duplicate
+185,2017-05-15,2017,5,Leatherback,Other,Castle Bruce,Not recorded,9.0,,,,,Likely duplicate
+186,2017-05-15,2017,5,Leatherback,Net Rosalie,Net Rosalie,Nest,2.83,,,,65.0,No match
+187,2017-05-16,2017,5,Leatherback,Net Rosalie,Net Rosalie,Nest,22.17,,156.0,117.0,83.0,No match
+188,2017-05-17,2017,5,Hawksbill,Net Rosalie,Net Rosalie,False Crawl,23.5,79.0,,,,No match
+189,2017-05-25,2017,5,Leatherback,Boute Sable,Boute Sable,Nest,1.67,,155.0,108.0,78.0,No match
+190,2017-05-28,2017,5,Leatherback,Boute Sable,Boute Sable,Suspected Nest,3.0,,,198.0,,No match
+191,2017-05-29,2017,5,Leatherback,Londonderry,Cabana (Londonderry),Nest,2.13,164.0,146.0,106.0,80.0,Likely duplicate
+192,2017-05-29,2017,5,Leatherback,Londonderry,Cabana (Londonderry),Nest,0.42,,172.0,122.0,120.0,Likely duplicate
+193,2017-06-05,2017,6,Hawksbill,Londonderry,Londonderry,Nest,2.0,68.0,,,,Likely duplicate
+194,2017-06-07,2017,6,Hawksbill,Other,Baby Rose,Suspected Nest,1.0,72.0,,,,No match
+195,2017-06-07,2017,6,Leatherback,Londonderry,Baby Rose (Londonderry?),False Crawl,4.0,189.0,,,,No match
+196,2017-06-08,2017,6,Leatherback,Net Rosalie,Net Rosalie,Nest,23.5,,,,96.0,No match
+197,2017-06-11,2017,6,Hawksbill,Londonderry,Londonderry,Nest,23.68,79.0,89.0,76.0,161.0,Likely duplicate
+198,2017-06-12,2017,6,Leatherback,Londonderry,Londonderry,Suspected Nest,22.47,187.0,,,,Likely duplicate
+199,2017-06-12,2017,6,Green,Londonderry,Londonderry,False Crawl,3.0,76.0,,,,Likely duplicate
+200,2017-06-17,2017,6,Unknown,Londonderry,Londonderry,False Crawl,2.0,206.0,,,,Likely duplicate
+201,2017-06-22,2017,6,Leatherback,Londonderry,Londonderry,False Crawl,23.0,202.0,,,,Likely duplicate
+202,2017-06-24,2017,6,Green,Londonderry,Londonderry,Suspected Nest,16.0,79.0,,,,Likely duplicate
+203,2017-07-14,2017,7,Leatherback,Londonderry,Londonderry,False Crawl,1.0,201.0,,,,Likely duplicate
+204,2017-07-19,2017,7,Green,Other,On your way to Marigot,Suspected Nest,21.35,69.0,,,,Likely duplicate
+205,2017-07-21,2017,7,Green,Other,Melville Hall,Nest,4.0,92.0,,,,No match
+206,2017-07-26,2017,7,Hawksbill,Boute Sable,Boute Sable,False Crawl,22.5,60.0,,,,Likely duplicate
+207,2017-07-26,2017,7,Hawksbill,Net Rosalie,Net Rosalie,False Crawl,21.5,60.0,,,,No match
+208,2017-07-26,2017,7,Green,Other,On your way to Marigot,Suspected Nest,20.28,79.0,,,,Possible duplicate
+209,2017-07-31,2017,7,Hawksbill,Boute Sable,Boute Sable,Nest,2.0,,82.0,60.0,97.0,Likely duplicate
+210,2017-08-06,2017,8,Green,Other,Melville Hall,Not recorded,22.0,,,,,No match
+211,2017-08-07,2017,8,Hawksbill,Londonderry,Londonderry,Suspected Nest,2.0,72.0,,,,Likely duplicate
+212,2017-08-12,2017,8,Green,Other,Melville Hall,Nest,0.0,102.0,85.0,73.0,120.0,No match
+213,2017-08-15,2017,8,Hawksbill,Londonderry,Londonderry,False Crawl,22.0,71.0,,,,Possible duplicate
+214,2017-08-19,2017,8,Green,Boute Sable,Boute Sable,Nest,0.0,,112.0,60.0,100.0,Likely duplicate
+215,2017-08-22,2017,8,Hawksbill,Londonderry,Londonderry,Suspected Nest,23.0,68.0,73.0,69.0,,Likely duplicate
+216,2017-08-27,2017,8,Hawksbill,Other,Woodford Hill,Not recorded,,68.0,,,,Possible duplicate
+217,2023-05-16,2023,5,Leatherback,Net Rosalie,Net Rosalie,Nest,22.0,,144.0,107.0,70.0,Possible duplicate
+218,2023-05-19,2023,5,Leatherback,Net Rosalie,Net Rosalie,Nest,23.75,,171.0,119.0,77.0,Possible duplicate
+219,2023-05-26,2023,5,Leatherback,Net Rosalie,Net Rosalie,Nest,23.0,,149.0,107.0,57.0,No match
+220,2023-05-30,2023,5,Leatherback,Net Rosalie,Net Rosalie,Nest,0.75,,153.0,106.0,73.0,Possible duplicate
+221,2023-07-05,2023,7,Hawksbill,Other,Champagne,Nest,,78.0,86.0,78.0,,No match
+222,2023-08-17,2023,8,Green,Net Rosalie,Net Rosalie,Nest,3.87,100.0,108.0,96.0,,Likely duplicate
+223,2023-08-29,2023,8,Green,Net Rosalie,Net Rosalie,Nest,22.13,116.0,116.0,101.0,,Likely duplicate
+224,,,,Green,Net Rosalie,Net Rosalie,False Crawl,9.35,101.0,,,,No match
