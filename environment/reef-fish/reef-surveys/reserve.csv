@@ -1,0 +1,20 @@
+species,sf_in,sf_out,OR_inside,robust,widened,records
+Bandtail Puffer,4.252,27.872,0.134,True,False,191
+Bar Jack,64.989,43.617,2.234,True,False,1122
+Black Margate,14.033,3.617,2.333,True,False,215
+Brown Garden Eel,15.45,36.809,0.26,True,False,391
+Coney,74.699,77.021,0.952,False,True,1416
+Fairy Basslet,65.84,18.298,12.445,True,True,1015
+French Grunt,86.322,86.17,0.982,False,False,1623
+Graysby,78.313,62.34,2.274,True,True,1398
+Great Barracuda,11.127,7.234,1.115,False,False,191
+Horse-eye Jack,11.977,4.043,2.889,True,True,188
+Mutton Snapper,15.663,11.915,0.901,False,False,277
+Princess Parrotfish,78.951,54.255,3.888,True,True,1369
+Queen Parrotfish,26.364,9.149,2.976,True,False,415
+Red Hind,12.757,22.979,0.503,True,True,288
+Sand Diver,39.476,63.83,0.441,True,False,857
+Schoolmaster,13.607,3.617,2.901,True,True,209
+Spotted Goatfish,35.507,73.191,0.262,True,False,845
+Stoplight Parrotfish,81.432,70.0,1.947,True,True,1478
+Yellowtail Snapper,73.707,57.447,1.334,True,False,1310
