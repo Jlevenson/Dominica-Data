@@ -71,7 +71,7 @@ Survey-level REEF data (date, site, depth, surveyor ID) is held by REEF and avai
 ## How to cite
 Data: REEF. 2026. Reef Environmental Education Foundation Volunteer Fish Survey Project Database. World Wide Web electronic publication. www.REEF.org, date of download 13 November 2026.
 
-Analysis: Oceans Forward (2026). Dominica reef fish trends from REEF volunteer surveys, 1994–2026. Oceans Forward Dominica Data Hub. https://github.com/Jlevenson/Dominica-Data
+Analysis: Oceans Forward (2026). Dominica reef fish trends from REEF volunteer surveys, 1994–2026. Oceans Forward Dominica Data Repository. https://github.com/Jlevenson/Dominica-Data
 
 The REEF summary data in this folder belong to REEF and are shared here with attribution; the CC BY 4.0 license of this repository covers Oceans Forward's analysis and derived files.
 
