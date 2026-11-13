@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sightings to Add: scanned DomSeTCO forms | Dominica Data Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="d3.v7.min.js"></script>
+<style>
+  :root {
+    --color-fg: #14302D; --color-fg-muted: #5A6E6A; --color-bg: #F6FAF9; --color-panel: #FFFFFF; --color-border-line: #D3E0DC;
+    --cds-text-secondary: #5A6E6A; --cds-chart-muted: #B7C6C2; --cds-chart-grid: #E4ECE9; --cds-chart-axis: #B7C6C2;
+    --cds-surface-popover: #FFFFFF; --cds-border: #D3E0DC; --cds-shadow-popover: 0 4px 14px rgba(20,48,45,.12);
+    --font-anthropic-sans: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif; --font-anthropic-serif: var(--font-anthropic-sans);
+    --cds-font-size-caption: 13px; --cds-font-size-body: 16px; --cds-font-size-heading: 18px; --cds-font-size-title: 34px; --cds-font-weight-medium: 600;
+    --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 12px; --cds-gap-lg: 24px; --cds-gap-xl: 36px;
+    --cds-pad-sm: 6px; --cds-pad-md: 10px; --cds-pad-lg: 18px; --cds-radius: 8px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--color-bg); color: var(--color-fg); font-family: var(--font-anthropic-sans); font-size: 16px; line-height: 1.5; }
+  #page { max-width: 1000px; margin: 0 auto; padding: 36px 24px 64px; }
+  a { color: #0A6E86; }
+  .sv-org { margin: 0 0 8px; font-weight: 600; font-size: 15px; }
+  .sv-org a { color: #2E6B3A; text-decoration: none; }
+  .sv h1 { font-weight: 700 !important; letter-spacing: -0.02em; }
+  .dash-select { font: inherit; font-size: 14px; color: var(--color-fg); background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: 6px; padding: 6px 10px; }
+  .sv-foot { color: var(--color-fg-muted); font-size: 14px; border-top: 1px solid var(--color-border-line); padding-top: 16px; }
+  .sv-foot p { margin: 0 0 8px; max-width: 75ch; }
+</style>
+<script>
+  // Minimal stand-in for the Claude dashboard runtime: loads sightings.csv and redraws on resize.
+  window.dash = (() => {
+    const sources = {}, calcs = {}, draws = {};
+    const run = (name) => document.querySelectorAll(`[data-draw="${name}"]`).forEach((el) => { try { draws[name](el); } catch (e) { console.error(name, e); } });
+    const api = {
+      colors: ['#0A6E86', '#2E6B3A', '#B7791F', '#7A5195'],
+      data: (id) => sources[id] || calcs[id] || { status: 'loading', data: [] },
+      calc: (id, def) => { calcs[id] = { status: 'loading', data: null, def }; },
+      draw: (name, fn) => { if (fn) draws[name] = fn; if (draws[name]) run(name); },
+      redrawAll: () => Object.keys(draws).forEach(run)
+    };
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const text = await (await fetch('sightings.csv')).text();
+        sources.sightings = { status: 'ok', data: d3.csvParse(text) };
+      } catch (e) { sources.sightings = { status: 'error', data: [] }; }
+      for (const c of Object.values(calcs)) {
+        const ins = c.def.inputs.map((i) => api.data(i));
+        if (ins.every((d) => d.status === 'ok')) { c.data = c.def.fn(...ins.map((d) => d.data)); c.status = 'ok'; } else c.status = 'error';
+      }
+      api.redrawAll();
+      let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(api.redrawAll, 150); });
+    });
+    return api;
+  })();
+</script>
+</head>
+<body>
+<div id="page">
+<style>
+  .sv { display: flex; flex-direction: column; gap: var(--cds-gap-lg); }
+  .sv h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; }
+  .sv h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+  .sv-lede { color: var(--color-fg); margin: var(--cds-gap-xs) 0 0; max-width: 60em; }
+  .sv-note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0 0 var(--cds-gap-sm); }
+  .sv-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: var(--cds-gap-md); }
+  .sv-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
+  .sv-kpi-v { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; display: block; }
+  .sv-kpi-l { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .sv-controls { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); align-items: center; }
+  .sv-controls label { display: flex; gap: var(--cds-gap-sm); align-items: center; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .sv-count { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .sv-grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--cds-gap-lg); }
+  .sv-chart { position: relative; min-height: 220px; }
+  .sv-chart svg { display: block; overflow: visible; }
+  .sv-chart text { fill: var(--cds-text-secondary); font-size: var(--cds-font-size-caption); font-family: var(--font-anthropic-sans); }
+  .sv-chart .domain { stroke: var(--cds-chart-axis); }
+  .sv-chart .tick line { stroke: var(--cds-chart-grid); }
+  .sv-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: var(--cds-gap-sm); }
+  .sv-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .sv-legend i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .sv-empty { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); padding: var(--cds-pad-lg) 0; }
+  .sv-tip { position: absolute; pointer-events: none; z-index: 5; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); box-shadow: var(--cds-shadow-popover); border-radius: var(--cds-radius); padding: var(--cds-pad-sm) var(--cds-pad-md); font-size: var(--cds-font-size-caption); color: var(--cds-text-secondary); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .sv-tip-h { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+  [data-dash-source-state=refreshing] { opacity: .5; }
+</style>
+
+<div class="sv">
+  <header id="top">
+    <p class="sv-org"><a href="../../../">Oceans Forward Dominica Data Hub</a> · Sea turtles</p>
+    <h1>Sightings to Add: scanned DomSeTCO forms</h1>
+    <p class="sv-lede">The <b data-draw="k-forms" data-source="kpis" data-field="forms" data-row="0">—</b> transcribed sighting forms are mostly <b data-draw="k-lead" data-source="kpis" data-field="lead_species" data-row="0">—</b> encounters, and the busiest month was <b data-draw="k-peak" data-source="kpis" data-field="peak_month" data-row="0">—</b>.</p>
+  </header>
+
+  <section class="sv-kpis" id="kpis" aria-label="Form counts">
+    <div class="sv-card"><span class="sv-kpi-v" data-draw="k-lb" data-source="kpis" data-field="leatherback" data-row="0">—</span><span class="sv-kpi-l">Leatherback forms</span></div>
+    <div class="sv-card"><span class="sv-kpi-v" data-draw="k-gr" data-source="kpis" data-field="green" data-row="0">—</span><span class="sv-kpi-l">Green forms</span></div>
+    <div class="sv-card"><span class="sv-kpi-v" data-draw="k-hb" data-source="kpis" data-field="hawksbill" data-row="0">—</span><span class="sv-kpi-l">Hawksbill forms</span></div>
+    <div class="sv-card"><span class="sv-kpi-v" data-draw="k-nm" data-source="kpis" data-field="no_match" data-row="0">—</span><span class="sv-kpi-l">No match in existing DB</span></div>
+  </section>
+
+  <div class="sv-controls" id="filters">
+    <label>Species
+      <select class="dash-select" id="f-species" aria-label="Species">
+        <option value="">All species</option>
+        <option>Leatherback</option>
+        <option>Green</option>
+        <option>Hawksbill</option>
+        <option>Unknown</option>
+      </select>
+    </label>
+    <label>Beach
+      <select class="dash-select" id="f-beach" aria-label="Beach">
+        <option value="">All beaches</option>
+        <option>Net Rosalie</option>
+        <option>Londonderry</option>
+        <option>Boute Sable</option>
+        <option>Other</option>
+        <option>Unknown</option>
+      </select>
+    </label>
+    <label>Duplicate check
+      <select class="dash-select" id="f-dup" aria-label="Duplicate check">
+        <option value="">All forms</option>
+        <option>No match</option>
+        <option>Same-night form only</option>
+        <option>Possible duplicate</option>
+        <option>Likely duplicate</option>
+      </select>
+    </label>
+    <span class="sv-count">Showing <span data-draw="count" data-source="sightings">—</span> forms</span>
+  </div>
+
+  <div class="sv-legend" id="legend" aria-label="Species colors">
+    <span><i data-sp="Leatherback"></i>Leatherback</span>
+    <span><i data-sp="Green"></i>Green</span>
+    <span><i data-sp="Hawksbill"></i>Hawksbill</span>
+    <span><i data-sp="Unknown"></i>Unknown</span>
+  </div>
+
+  <section id="times" class="sv-card">
+    <h2>Time of encounter</h2>
+    <p class="sv-note">Forms per hour, noon to noon. Night patrols catch nesting females; the morning cluster is mostly track surveys finding crawls after the fact.</p>
+    <div class="sv-chart" data-draw="hours" data-source="sightings"></div>
+  </section>
+
+  <div class="sv-grid2">
+    <section id="season" class="sv-card">
+      <h2>Season: forms by month</h2>
+      <p class="sv-note">All years combined.</p>
+      <div class="sv-chart" data-draw="months" data-source="sightings"></div>
+    </section>
+    <section id="years" class="sv-card">
+      <h2>Forms by year</h2>
+      <p class="sv-note">Year from the date written on the form.</p>
+      <div class="sv-chart" data-draw="years" data-source="sightings"></div>
+    </section>
+  </div>
+
+  <section id="sizes" class="sv-card">
+    <h2>Sizes by species</h2>
+    <p class="sv-note">Each dot is one form; the tick is the median. Only forms with a measurement appear. Some leatherback crawl widths over 200 cm are flagged for review in the sheet.</p>
+    <div class="sv-controls" style="margin-bottom: var(--cds-gap-sm)">
+      <label>Measurement
+        <select class="dash-select" id="f-metric" aria-label="Measurement">
+          <option value="crawl_width_cm">Crawl width (cm)</option>
+          <option value="ccl_cm">Curved carapace length, CCL (cm)</option>
+          <option value="ccw_cm">Curved carapace width, CCW (cm)</option>
+          <option value="yolked_eggs">Yolked egg count</option>
+        </select>
+      </label>
+    </div>
+    <div class="sv-chart" data-draw="sizes" data-source="sightings"></div>
+  </section>
+
+  <section id="results" class="sv-card">
+    <h2>Outcome by species</h2>
+    <p class="sv-note">Result box ticked on the form.</p>
+    <div class="sv-chart" data-draw="results" data-source="sightings" style="min-height:160px"></div>
+  </section>
+  <footer class="sv-foot">
+    <p>Transcribed by hand from scanned DomSeTCO sighting forms (2014–2017, 2023). "Duplicate check" compares each form with records already in the DomSeTCO masterdocs: <em>likely</em> means same date, beach and species plus a matching tag or time; <em>possible</em> means date, beach and species only. Beach sections, tags and observer names are left out of this public version.</p>
+    <p><a href="sightings.csv">Download the data (CSV)</a> · <a href="https://github.com/Jlevenson/Dominica-Data/tree/main/environment/sea-turtles/sightings-to-add">About this dataset</a> · CC BY 4.0, Oceans Forward</p>
+  </footer>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  dash.calc('kpis', {
+    inputs: ['sightings'],
+    title: 'Headline counts',
+    description: 'Form counts by species, forms with no match in the existing masterdocs, the most common species and the busiest month, across all transcribed sighting forms.',
+    fn: (sightings) => {
+      const n = (sp) => sightings.filter((r) => r.species === sp).length;
+      const bySp = d3.rollups(sightings, (v) => v.length, (r) => r.species).filter((d) => d[0] !== 'Unknown').sort((a, b) => b[1] - a[1]);
+      const byMonth = d3.rollups(sightings.filter((r) => r.month), (v) => v.length, (r) => +r.month).sort((a, b) => b[1] - a[1]);
+      const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      return [{
+        forms: sightings.length,
+        leatherback: n('Leatherback'),
+        green: n('Green'),
+        hawksbill: n('Hawksbill'),
+        no_match: sightings.filter((r) => r.duplicate_check === 'No match').length,
+        lead_species: bySp.length ? bySp[0][0].toLowerCase() : '',
+        peak_month: byMonth.length ? MONTHS[byMonth[0][0] - 1] : ''
+      }];
+    }
+  });
+
+  window.SV = (() => {
+    const SP = ['Leatherback', 'Green', 'Hawksbill', 'Unknown'];
+    const color = (sp) => (sp === 'Unknown' ? 'var(--cds-chart-muted)' : dash.colors[SP.indexOf(sp)]);
+    const state = { species: '', beach: '', dup: '', metric: 'crawl_width_cm' };
+    const num = (v) => (v === null || v === undefined || v === '' ? null : +v);
+    const filtered = () => dash.data('sightings').data.filter((r) =>
+      (!state.species || r.species === state.species) &&
+      (!state.beach || r.beach === state.beach) &&
+      (!state.dup || r.duplicate_check === state.dup));
+    const redraw = () => ['hours', 'months', 'years', 'sizes', 'results', 'count'].forEach((n) => dash.draw(n));
+    const placeholder = (el, st) => {
+      const p = document.createElement('div');
+      p.className = 'sv-empty';
+      p.textContent = st === 'error' ? 'Failed to load' : (st === 'empty' ? 'No forms match these filters' : '—');
+      el.replaceChildren(p);
+    };
+    const makeTip = (el) => { const t = document.createElement('div'); t.className = 'sv-tip'; t.hidden = true; el.appendChild(t); return t; };
+    const showTip = (el, t, ev, lines) => {
+      t.replaceChildren(...lines.map((l, i) => { const d = document.createElement('div'); d.textContent = l; if (i === 0) d.className = 'sv-tip-h'; return d; }));
+      t.hidden = false;
+      const r = el.getBoundingClientRect();
+      let x = ev.clientX - r.left + 12;
+      const y = ev.clientY - r.top + 12;
+      if (x + t.offsetWidth > r.width) x = Math.max(0, ev.clientX - r.left - t.offsetWidth - 12);
+      t.style.left = x + 'px'; t.style.top = y + 'px';
+    };
+    const thin = (sel, n) => sel.selectAll('.tick').each(function (d, i) { if (i % n) this.style.display = 'none'; });
+
+    function stacked(el, o) {
+      const d = dash.data('sightings');
+      if (d.status !== 'ok') return placeholder(el, d.status);
+      const rs = filtered().filter((r) => o.catOf(r) !== null);
+      if (!rs.length) return placeholder(el, 'empty');
+      el.replaceChildren();
+      const W = Math.max(260, el.clientWidth), H = 220;
+      const sps = SP.filter((s) => rs.some((r) => r.species === s));
+      const idx = new Map(o.cats.map((c, i) => [c, i]));
+      const tab = o.cats.map((c) => { const t = { cat: c }; SP.forEach((s) => (t[s] = 0)); return t; });
+      rs.forEach((r) => { const i = idx.get(o.catOf(r)); if (i !== undefined) tab[i][r.species]++; });
+      const ymax = d3.max(tab, (t) => d3.sum(sps, (s) => t[s])) || 1;
+      const y0 = d3.scaleLinear([0, ymax], [H - 26, 8]).nice();
+      const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', o.aria);
+      const probe = svg.append('text').text(d3.format('d')(y0.domain()[1]));
+      const ml = Math.ceil(probe.node().getComputedTextLength()) + 10; probe.remove();
+      const m = { t: 8, r: 6, b: 26, l: ml };
+      const x = d3.scaleBand(o.cats, [m.l, W - m.r]).padding(0.15);
+      const y = y0;
+      svg.append('g').attr('transform', `translate(${m.l},0)`)
+        .call(d3.axisLeft(y).ticks(Math.min(4, ymax)).tickSize(-(W - m.l - m.r)).tickFormat(d3.format('d')))
+        .call((g) => g.select('.domain').remove());
+      const xa = svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickFormat(o.fmt).tickSizeOuter(0));
+      const lw = d3.max(o.cats, (c) => String(o.fmt(c)).length) * 7 + 6;
+      thin(xa, Math.max(1, Math.ceil(lw / x.step())));
+      const series = d3.stack().keys(sps)(tab);
+      svg.append('g').selectAll('g').data(series).join('g').style('fill', (s) => color(s.key))
+        .selectAll('rect').data((s) => s).join('rect')
+        .attr('x', (p) => x(p.data.cat)).attr('width', x.bandwidth())
+        .attr('y', (p) => y(p[1])).attr('height', (p) => Math.max(0, y(p[0]) - y(p[1])));
+      const tip = makeTip(el);
+      svg.append('g').selectAll('rect').data(tab).join('rect')
+        .attr('x', (t) => x(t.cat) - x.step() * x.padding() / 2).attr('width', x.step()).attr('y', m.t).attr('height', H - m.t - m.b)
+        .style('fill', 'transparent')
+        .on('pointermove', (ev, t) => {
+          const tot = d3.sum(sps, (s) => t[s]);
+          showTip(el, tip, ev, [o.tipTitle(t.cat), `${tot} form${tot === 1 ? '' : 's'}`, ...sps.filter((s) => t[s]).map((s) => `${s}: ${t[s]}`)]);
+        })
+        .on('pointerleave', () => (tip.hidden = true));
+    }
+
+    function strip(el) {
+      const d = dash.data('sightings');
+      if (d.status !== 'ok') return placeholder(el, d.status);
+      const key = state.metric;
+      const rs = filtered().filter((r) => num(r[key]) !== null);
+      if (!rs.length) return placeholder(el, 'empty');
+      el.replaceChildren();
+      const sps = SP.filter((s) => rs.some((r) => r.species === s));
+      const rowH = 46, W = Math.max(260, el.clientWidth), H = sps.length * rowH + 30;
+      const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
+        .attr('aria-label', `Dot plot of ${key.replace(/_/g, ' ')} by species`);
+      const probe = svg.append('text').text('Leatherback');
+      const ml = Math.ceil(probe.node().getComputedTextLength()) + 12; probe.remove();
+      const m = { t: 4, r: 70, b: 26, l: ml };
+      const ext = d3.extent(rs, (r) => num(r[key]));
+      const pad = (ext[1] - ext[0]) * 0.05 || 5;
+      const x = d3.scaleLinear([ext[0] - pad, ext[1] + pad], [m.l, W - m.r]).nice();
+      const y = d3.scaleBand(sps, [m.t, H - m.b]).padding(0.2);
+      svg.append('g').attr('transform', `translate(0,${H - m.b})`)
+        .call(d3.axisBottom(x).ticks(Math.max(2, Math.floor((W - m.l - m.r) / 70))).tickSize(-(H - m.t - m.b)))
+        .call((g) => g.select('.domain').remove());
+      svg.append('g').selectAll('text').data(sps).join('text')
+        .attr('x', 0).attr('y', (s) => y(s) + y.bandwidth() / 2).attr('dy', '0.35em').text((s) => s);
+      const jit = (r) => { const h = (+r.row * 9301 + 49297) % 233280; return (h / 233280 - 0.5) * y.bandwidth() * 0.8; };
+      const tip = makeTip(el);
+      svg.append('g').selectAll('circle').data(rs).join('circle')
+        .attr('cx', (r) => x(num(r[key]))).attr('cy', (r) => y(r.species) + y.bandwidth() / 2 + jit(r)).attr('r', 4)
+        .style('fill', (r) => color(r.species)).style('fill-opacity', 0.7)
+        .on('pointermove', (ev, r) => showTip(el, tip, ev, [`${num(r[key])} ${key === 'yolked_eggs' ? 'eggs' : 'cm'}`, `${r.species}, ${r.beach_name}`, r.date ? d3.utcFormat('%-d %b %Y')(new Date(r.date)) : 'No date']))
+        .on('pointerleave', () => (tip.hidden = true));
+      const meds = sps.map((s) => { const v = rs.filter((r) => r.species === s).map((r) => num(r[key])); return { s, med: d3.median(v), n: v.length }; });
+      svg.append('g').selectAll('line').data(meds).join('line')
+        .attr('x1', (m2) => x(m2.med)).attr('x2', (m2) => x(m2.med)).attr('y1', (m2) => y(m2.s)).attr('y2', (m2) => y(m2.s) + y.bandwidth())
+        .style('stroke', 'var(--color-fg)').style('stroke-width', 2);
+      svg.append('g').selectAll('text').data(meds).join('text')
+        .attr('x', W - m.r + 8).attr('y', (m2) => y(m2.s) + y.bandwidth() / 2).attr('dy', '0.35em')
+        .text((m2) => `${d3.format('.0f')(m2.med)} (n=${m2.n})`);
+    }
+
+    function results(el) {
+      const d = dash.data('sightings');
+      if (d.status !== 'ok') return placeholder(el, d.status);
+      const rs = filtered();
+      if (!rs.length) return placeholder(el, 'empty');
+      el.replaceChildren();
+      const RES = ['Nest', 'Suspected Nest', 'False Crawl', 'Not recorded'];
+      const RC = { 'Nest': dash.colors[0], 'Suspected Nest': dash.colors[3] || dash.colors[1], 'False Crawl': 'var(--cds-chart-muted)', 'Not recorded': 'var(--color-border-line)' };
+      const sps = SP.filter((s) => rs.some((r) => r.species === s));
+      const tab = sps.map((s) => { const t = { sp: s }; RES.forEach((k) => (t[k] = rs.filter((r) => r.species === s && r.result === k).length)); return t; });
+      const W = Math.max(260, el.clientWidth), rowH = 30;
+      let H = sps.length * rowH + 52;
+      const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Share of forms by result for each species');
+      const probe = svg.append('text').text('Leatherback');
+      const ml = Math.ceil(probe.node().getComputedTextLength()) + 12; probe.remove();
+      const lg = svg.append('g');
+      let lx = 0, ly = 4;
+      RES.forEach((k) => {
+        const t = lg.append('text').text(k);
+        const w = 14 + t.node().getComputedTextLength() + 14;
+        if (lx > 0 && lx + w > W) { lx = 0; ly += 18; }
+        lg.append('rect').attr('x', lx).attr('y', ly).attr('width', 10).attr('height', 10).style('fill', RC[k]);
+        t.attr('x', lx + 14).attr('y', ly + 9);
+        lx += w;
+      });
+      const m = { t: ly + 26, r: 40, b: 22, l: ml };
+      H += ly - 4;
+      svg.attr('viewBox', `0 0 ${W} ${H}`);
+      const x = d3.scaleLinear([0, 1], [m.l, W - m.r]);
+      const y = d3.scaleBand(sps, [m.t, H - m.b]).padding(0.25);
+      svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(4).tickFormat(d3.format('.0%')).tickSizeOuter(0));
+      svg.append('g').selectAll('text').data(sps).join('text').attr('x', 0).attr('y', (s) => y(s) + y.bandwidth() / 2).attr('dy', '0.35em').text((s) => s);
+      const tip = makeTip(el);
+      tab.forEach((t) => {
+        const tot = d3.sum(RES, (k) => t[k]) || 1;
+        let acc = 0;
+        RES.forEach((k) => {
+          const w = t[k] / tot;
+          svg.append('rect').attr('x', x(acc)).attr('width', Math.max(0, x(acc + w) - x(acc))).attr('y', y(t.sp)).attr('height', y.bandwidth()).style('fill', RC[k])
+            .on('pointermove', (ev) => showTip(el, tip, ev, [`${t.sp}: ${k}`, `${t[k]} of ${tot} forms (${d3.format('.0%')(w)})`]))
+            .on('pointerleave', () => (tip.hidden = true));
+          acc += w;
+        });
+        svg.append('text').attr('x', W - m.r + 6).attr('y', y(t.sp) + y.bandwidth() / 2).attr('dy', '0.35em').text(`n=${tot}`);
+      });
+    }
+
+    return { SP, color, state, redraw, stacked, strip, results, filtered };
+  })();
+
+  document.querySelectorAll('#legend i[data-sp]').forEach((i) => { i.style.background = SV.color(i.dataset.sp); });
+  [['f-species', 'species'], ['f-beach', 'beach'], ['f-dup', 'dup'], ['f-metric', 'metric']].forEach(([id, k]) => {
+    document.querySelectorAll('#' + id).forEach((sel) => { sel.onchange = () => { SV.state[k] = sel.value; SV.redraw(); }; });
+  });
+
+  const kpi = (name, field, fmt) => dash.draw(name, (el) => {
+    const d = dash.data('kpis');
+    el.textContent = d.status === 'ok' && d.data && d.data[0] ? fmt(d.data[0][field]) : '—';
+  });
+  kpi('k-forms', 'forms', d3.format(','));
+  kpi('k-lb', 'leatherback', d3.format(','));
+  kpi('k-gr', 'green', d3.format(','));
+  kpi('k-hb', 'hawksbill', d3.format(','));
+  kpi('k-nm', 'no_match', d3.format(','));
+  kpi('k-lead', 'lead_species', (v) => v);
+  kpi('k-peak', 'peak_month', (v) => v);
+
+  dash.draw('count', (el) => {
+    const d = dash.data('sightings');
+    el.textContent = d.status === 'ok' ? d3.format(',')(SV.filtered().length) : '—';
+  });
+
+  const HOURS = [...d3.range(12, 24), ...d3.range(0, 12)];
+  const hFmt = (h) => (h === 0 ? '12a' : h === 12 ? '12p' : h < 12 ? h + 'a' : (h - 12) + 'p');
+  dash.draw('hours', (el) => SV.stacked(el, {
+    cats: HOURS,
+    catOf: (r) => (r.hour === null || r.hour === '' || r.hour === undefined ? null : Math.floor(+r.hour) % 24),
+    fmt: hFmt,
+    tipTitle: (h) => `${hFmt(h)}–${hFmt((h + 1) % 24)}`,
+    aria: 'Histogram of encounter times by hour, noon to noon, stacked by species'
+  }));
+  dash.draw('months', (el) => SV.stacked(el, {
+    cats: d3.range(1, 13),
+    catOf: (r) => (r.month ? +r.month : null),
+    fmt: (mo) => MONTHS[mo - 1],
+    tipTitle: (mo) => MONTHS[mo - 1],
+    aria: 'Forms by month of year, stacked by species'
+  }));
+  dash.draw('years', (el) => {
+    const d = dash.data('sightings');
+    const yrs = d.status === 'ok' ? [...new Set(d.data.filter((r) => r.year).map((r) => +r.year))].sort() : [];
+    SV.stacked(el, {
+      cats: yrs,
+      catOf: (r) => (r.year ? +r.year : null),
+      fmt: (yv) => String(yv),
+      tipTitle: (yv) => String(yv),
+      aria: 'Forms by year, stacked by species'
+    });
+  });
+  dash.draw('sizes', (el) => SV.strip(el));
+  dash.draw('results', (el) => SV.results(el));
+});
+</script>
+</div>
+</body>
+</html>
