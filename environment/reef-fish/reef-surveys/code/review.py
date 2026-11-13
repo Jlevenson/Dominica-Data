@@ -273,9 +273,10 @@ print(P[P.species.isin(show)][['species', 'dominica_or', 'others_or', 'z', 'p', 
 json.dump(out, open('review_summary.json', 'w'), indent=1, default=float)
 
 # fished vs unfished: are fished species systematically higher in Dominica than the region predicts?
-t = pd.read_csv('traits_species.csv')  # from traits.py
-t['common'] = t.species.str.split(r', \(').str[0]
-P = P.merge(t[['common', 'fished']], left_on='species', right_on='common', how='left')
+g = pd.read_csv('species_groups.csv')  # from extra.py: fished classification for all species, not only those with traits
+g = g[g.group.notna()].assign(fished=lambda d: (d.group == 'Fished').astype(int))
+P = P[~P.species.str.contains('Juvenile|Complex|Unidentified|Sea Turtle|Hybrid')]
+P = P.merge(g[['common', 'fished']], left_on='species', right_on='common', how='left')
 f, o = P[P.fished == 1].z, P[P.fished == 0].z
 out['regional_predictive']['fished'] = dict(n=len(f), mean_z=float(f.mean()), share_pos=float((f > 0).mean()),
                                             wilcoxon_p=float(stats.wilcoxon(f).pvalue))

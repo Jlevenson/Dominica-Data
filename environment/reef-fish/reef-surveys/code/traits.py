@@ -6,19 +6,13 @@ habitat and feeding mode. Species trends (log odds per decade, species_trends.cs
 regressed on traits with a family random intercept (taxonomic non-independence) and
 inverse-variance weights.
 """
-import json, warnings
+import pickle, json, warnings
 import numpy as np, pandas as pd
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 warnings.filterwarnings('ignore')
 
-# FishLife data: git clone https://github.com/James-Thorson-NOAA/FishLife and read
-# data/FishBase_and_Morphometrics.rda with the Python 'rdata' package.
-import rdata
-_fl = rdata.read_rda('FishLife/data/FishBase_and_Morphometrics.rda')['FishBase_and_Morphometrics']
-B = np.asarray(_fl['beta_gv'])
-names = [str(x) for x in _fl['beta_gv'].coords[_fl['beta_gv'].dims[1]].values]
-pc = _fl['ParentChild_gz']
+B, names, pc = pickle.load(open('/tmp/fishlife.pkl', 'rb'))
 tr = pd.DataFrame(B, columns=[f'{n}_{i}' if n == 'base' else n for i, n in enumerate(names)])
 tr['taxon'] = pc.ChildName.values
 tr = tr[tr.taxon.str.count('_') == 4].copy()          # class_order_family_genus_species
@@ -38,7 +32,9 @@ T = T.join(tr[['log(length_max)', 'trophic_level', 'habitatreefassociated', 'fee
                'body_shapeshort_and_or_deep']], on='sci')
 T = T.dropna(subset=['log(length_max)'])
 T['fished'] = (T.family.isin({'Snapper', 'Jack', 'Barracuda', 'Mackerel', 'Triggerfish', 'Porgy', 'Grunt', 'Goatfish'})
-               | T.sci.str.startswith(GROUPER_GENERA)).astype(int)
+               | T.sci.str.startswith(GROUPER_GENERA)
+               | T.common.isin({'Blackbar Soldierfish', 'Longspine Squirrelfish', 'Squirrelfish', 'Reef Squirrelfish',
+                                'Longjaw Squirrelfish', 'Dusky Squirrelfish'})).astype(int)
 T = T.rename(columns={'log(length_max)': 'loglmax'})
 T['lmax_cm'] = np.exp(T.loglmax)
 T['w'] = 1 / T.se ** 2
