@@ -142,7 +142,7 @@
 
   <section id="reserve-sec">
     <h2>Fished species are more common inside the marine reserve</h2>
-    <p class="sub">Share of surveys recording each species at 16 sites inside the Soufrière–Scotts Head Marine Reserve (1,411 surveys) and 12 sites outside (470). Inside sites are mostly walls and pinnacles, outside sites include sandier shore dives, so sand species are more common outside. Filled dots: robust difference. ↑ marks species whose inside share grew relative to outside over time.</p>
+    <p class="sub">Share of surveys recording each species at 16 sites inside the Soufrière–Scotts Head Marine Reserve (1,411 surveys) and 12 sites outside (470). Inside sites are mostly walls and pinnacles, outside sites include sandier shore dives, so sand species are more common outside. Fished species are listed first, then unfished species for comparison. Filled dots: robust difference. ↑ marks species whose inside share grew relative to outside over time.</p>
     <div class="legend"><span><i class="sw" data-draw="sw-in"></i>Inside reserve</span><span><i class="sw" data-draw="sw-out"></i>Outside</span></div>
     <div class="chart tall" id="reserve-chart" data-draw="reserve" data-source="reserve"></div>
   </section>
@@ -458,19 +458,22 @@ dash.draw('sw-dom', (el) => { el.style.background = dash.colors[0]; });
 RF.labW = (svg, labels) => { const tmp = svg.append('g'); const w = d3.max(labels, (s) => { const t = tmp.append('text').text(s); const l = t.node().getComputedTextLength(); t.remove(); return l; }) || 120; tmp.remove(); return w; };
 dash.draw('reserve', (el) => {
   if (!RF.ok('reserve')) return RF.fail(el, ['reserve']);
-  const rows = dash.data('reserve').data.map((r) => ({ sp: r.species, a: RF.num(r.sf_in), b: RF.num(r.sf_out), or: RF.num(r.OR_inside), rob: String(r.robust).toLowerCase() === 'true', wid: String(r.widened).toLowerCase() === 'true', n: RF.num(r.records) }))
-    .sort((p, q) => (q.a - q.b) - (p.a - p.b));
-  const H = rows.length * 24 + 44;
+  const rows = dash.data('reserve').data.map((r) => ({ sp: r.species, a: RF.num(r.sf_in), b: RF.num(r.sf_out), or: RF.num(r.OR_inside), rob: String(r.robust).toLowerCase() === 'true', wid: String(r.widened).toLowerCase() === 'true', n: RF.num(r.records), grp: r.group || 'Fished' }))
+    .sort((p, q) => (p.grp === q.grp ? (q.a - q.b) - (p.a - p.b) : (p.grp === 'Fished' ? -1 : 1)));
+  const grps = [...new Set(rows.map((r) => r.grp))];
+  const keys = grps.flatMap((gname) => ['§' + gname, ...rows.filter((r) => r.grp === gname).map((r) => r.sp)]);
+  const H = keys.length * 24 + 44;
   const { svg, w } = RF.svg(el, H, 'Dot plot of sighting frequency inside versus outside the marine reserve for selected species');
   const lab = rows.map((r) => r.sp + (r.wid ? ' ↑' : ''));
   const m = { t: 10, r: 16, b: 28, l: Math.min(RF.labW(svg, lab) + 10, w * 0.45) };
   const x = d3.scaleLinear().domain([0, 100]).range([m.l, w - m.r]);
-  const y = d3.scaleBand().domain(rows.map((r) => r.sp)).range([m.t, H - m.b]).padding(0.3);
+  const y = d3.scaleBand().domain(keys).range([m.t, H - m.b]).padding(0.3);
   svg.append('g').attr('class', 'grid').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(5).tickSize(-(H - m.t - m.b)).tickFormat(''));
   svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(5).tickFormat((d) => d + '%'));
   const tip = RF.tip(el);
   const g = svg.append('g').selectAll('g').data(rows).join('g');
   const cy = (r) => y(r.sp) + y.bandwidth() / 2;
+  svg.append('g').selectAll('text').data(grps).join('text').attr('x', 0).attr('y', (gname) => y('§' + gname) + y.bandwidth() / 2).attr('dy', '0.35em').style('font-weight', 600).text((gname) => gname);
   g.append('line').attr('x1', (r) => x(r.a)).attr('x2', (r) => x(r.b)).attr('y1', cy).attr('y2', cy).style('stroke', 'var(--cds-chart-reference)');
   [['a', 0], ['b', 1]].forEach(([k, c]) => g.append('circle').attr('cx', (r) => x(r[k])).attr('cy', cy).attr('r', 5)
     .style('fill', (r) => (r.rob ? dash.colors[c] : 'var(--color-panel)')).style('stroke', dash.colors[c]).style('stroke-width', 1.5));
