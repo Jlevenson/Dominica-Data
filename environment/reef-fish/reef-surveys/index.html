@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dominica reef fish over time: REEF surveys 1994–2026 | Oceans Forward Dominica Data Repository</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="d3.v7.min.js"></script>
+<style>
+  :root {
+    --color-fg: #14302D; --color-fg-muted: #5A6E6A; --color-bg: #F6FAF9; --color-panel: #FFFFFF; --color-border-line: #D3E0DC;
+    --color-ok: #2E6B3A; --color-bad: #B03A2E;
+    --cds-text-secondary: #5A6E6A; --cds-chart-muted: #B7C6C2; --cds-chart-grid: #E4ECE9; --cds-chart-axis: #B7C6C2; --cds-chart-reference: #8FA39E;
+    --cds-surface-popover: #FFFFFF; --cds-border: #D3E0DC; --cds-shadow-popover: 0 4px 14px rgba(20,48,45,.12);
+    --font-anthropic-sans: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif; --font-anthropic-serif: var(--font-anthropic-sans);
+    --cds-font-size-caption: 13px; --cds-font-size-body: 16px; --cds-font-size-heading: 18px; --cds-font-size-title: 34px; --cds-font-weight-medium: 600;
+    --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 12px; --cds-gap-lg: 24px; --cds-gap-xl: 36px;
+    --cds-pad-sm: 6px; --cds-pad-md: 10px; --cds-pad-lg: 18px; --cds-radius: 8px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--color-bg); color: var(--color-fg); font-family: var(--font-anthropic-sans); font-size: 16px; line-height: 1.5; }
+  #page { max-width: 1000px; margin: 0 auto; padding: 36px 24px 64px; }
+  a { color: #0A6E86; }
+  .rf-org { margin: 0 0 8px; font-weight: 600; font-size: 15px; }
+  .rf-org a { color: #2E6B3A; text-decoration: none; }
+  .rf h1 { font-weight: 700 !important; letter-spacing: -0.02em; }
+  .dash-select { font: inherit; font-size: 14px; color: var(--color-fg); background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: 6px; padding: 6px 10px; }
+  .rf-foot { color: var(--color-fg-muted); font-size: 14px; border-top: 1px solid var(--color-border-line); padding-top: 16px; margin-top: 36px; }
+  .rf-foot p { margin: 0 0 8px; max-width: 75ch; }
+
+.rf { font-family: var(--font-anthropic-sans); color: var(--color-fg); display: flex; flex-direction: column; gap: var(--cds-gap-xl); }
+.rf h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; }
+.rf h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+.rf .lede { font-size: var(--cds-font-size-body); margin: var(--cds-gap-sm) 0 0; max-width: 62rem; line-height: 1.5; }
+.rf .sub { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0 0 var(--cds-gap-sm); max-width: 62rem; line-height: 1.45; }
+.rf .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--cds-gap-md); }
+.rf .tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
+.rf .tile .lab { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.rf .tile .num { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 2rem; font-variant-numeric: tabular-nums; margin-top: var(--cds-gap-xs); }
+.rf .tile .note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin-top: var(--cds-gap-xs); }
+.rf .chart { position: relative; min-height: 260px; width: 100%; }
+.rf .chart.tall { min-height: 520px; }
+.rf .chart svg text { fill: var(--cds-text-secondary); font-size: var(--cds-font-size-caption); font-family: var(--font-anthropic-sans); }
+.rf .chart .axis path, .rf .chart .axis line { stroke: var(--cds-chart-axis); }
+.rf .chart .grid line { stroke: var(--cds-chart-grid); }
+.rf .chart .grid path { display: none; }
+.rf .tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); box-shadow: var(--cds-shadow-popover); border-radius: var(--cds-radius); padding: 6px 9px; font-size: var(--cds-font-size-caption); color: var(--color-fg); white-space: nowrap; z-index: 5; }
+.rf .legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: var(--cds-gap-xs); }
+.rf .legend span { display: inline-flex; align-items: center; gap: 6px; }
+.rf .sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.rf .controls { display: flex; gap: var(--cds-gap-md); align-items: center; flex-wrap: wrap; margin-bottom: var(--cds-gap-sm); }
+.rf .controls label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.rf .tablewrap { overflow: auto; max-height: 460px; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); }
+.rf table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.rf th, .rf td { padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.rf th { position: sticky; top: 0; background: var(--color-panel); font-weight: var(--cds-font-weight-medium); }
+.rf td.n, .rf th.n { text-align: right; }
+.rf .up { color: var(--color-ok); } .rf .down { color: var(--color-bad); }
+.rf details { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.55; }
+.rf details summary { cursor: pointer; color: var(--color-fg); font-size: var(--cds-font-size-body); }
+.rf details li { margin-bottom: 6px; }
+[data-dash-source-state=refreshing] { opacity: .5; }
+</style>
+<script>
+  // Minimal stand-in for the Claude dashboard runtime: loads the data files next to this page and redraws on resize.
+  window.dash = (() => {
+    const FILES = { effort: ['effort.csv', 'csv'], lionfish: ['lionfish.csv', 'csv'], trends: ['trends.json', 'json'], periods: ['periods.json', 'json'], groups: ['groups.json', 'json'] };
+    const sources = {}, calcs = {}, draws = {}, params = {};
+    const run = (name) => document.querySelectorAll(`[data-draw="${name}"]`).forEach((el) => { try { draws[name](el); } catch (e) { console.error(name, e); } });
+    const api = {
+      colors: ['#0A6E86', '#B7791F', '#2E6B3A', '#7A5195', '#C0504D'],
+      data: (id) => sources[id] || calcs[id] || { status: 'loading', data: [] },
+      calc: (id, def) => { calcs[id] = { status: 'loading', data: null, def }; },
+      draw: (name, fn) => { if (fn) draws[name] = fn; if (draws[name]) run(name); },
+      params: () => ({ ...params }),
+      setParams: (p) => { Object.assign(params, p); api.redrawAll(); },
+      redrawAll: () => Object.keys(draws).forEach(run)
+    };
+    window.addEventListener('DOMContentLoaded', async () => {
+      await Promise.all(Object.entries(FILES).map(async ([id, [file, kind]]) => {
+        try {
+          const text = await (await fetch(file)).text();
+          const rows = kind === 'csv' ? d3.csvParse(text) : JSON.parse(text).rows;
+          sources[id] = { status: 'ok', data: rows };
+        } catch (e) { sources[id] = { status: 'error', data: [] }; }
+      }));
+      for (const c of Object.values(calcs)) {
+        const ins = c.def.inputs.map((i) => api.data(i));
+        if (ins.every((d) => d.status === 'ok')) { c.data = c.def.fn(...ins.map((d) => d.data)); c.status = 'ok'; } else c.status = 'error';
+      }
+      api.redrawAll();
+      let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(api.redrawAll, 150); });
+    });
+    return api;
+  })();
+</script>
+</head>
+<body>
+<div id="page">
+<p class="rf-org"><a href="../../../">Oceans Forward Dominica Data Repository</a> · Reef fish</p>
+<div class="rf">
+  <header id="top">
+    <h1>Dominica reef fish over time</h1>
+    <p class="sub">REEF Volunteer Fish Survey Project, geographic zone 7112 (Dominica), roving diver surveys 1994–2026, collected over the years by Oceans Forward staff and REEF volunteers, together with participatory science divers, using REEF methods. Downloaded from reef.org on 13 November 2026.</p>
+    <p class="lede" id="takeaway">Across <b data-draw="k-surveys" data-source="kpis" data-field="surveys" data-row="0">—</b> surveys, <b data-draw="k-up" data-source="kpis" data-field="up" data-row="0">—</b> species were recorded more often over time and <b data-draw="k-down" data-source="kpis" data-field="down" data-row="0">—</b> less often, with the same direction among expert and novice surveyors. Red lionfish, first recorded in <b data-draw="k-lffirst" data-source="kpis" data-field="lf_first" data-row="0">—</b>, now turns up on <b data-draw="k-lfrecent" data-source="kpis" data-field="lf_recent" data-row="0">—</b>% of surveys.</p>
+  </header>
+
+  <section class="tiles" id="tiles">
+    <div class="tile" id="tile-surveys"><div class="lab">Surveys</div><div class="num" data-draw="t-surveys" data-source="kpis" data-field="surveys" data-row="0">—</div><div class="note">1994–2026, all sites</div></div>
+    <div class="tile" id="tile-up"><div class="lab">Species recorded more often</div><div class="num up" data-draw="t-up" data-source="kpis" data-field="up" data-row="0">—</div><div class="note">Robust trend, per decade</div></div>
+    <div class="tile" id="tile-down"><div class="lab">Species recorded less often</div><div class="num down" data-draw="t-down" data-source="kpis" data-field="down" data-row="0">—</div><div class="note">Robust trend, per decade</div></div>
+    <div class="tile" id="tile-lf"><div class="lab">Red lionfish sighting frequency</div><div class="num" data-draw="t-lf" data-source="kpis" data-field="lf_recent" data-row="0">—</div><div class="note">% of surveys, 2021–2026 pooled</div></div>
+  </section>
+
+  <section id="effort-sec">
+    <h2>Survey effort is uneven from year to year</h2>
+    <p class="sub">Surveys per year, split by surveyor experience. Busy years usually reflect REEF group trips. Years with fewer than 10 surveys are left out of the trend models.</p>
+    <div class="legend"><span><i class="sw" data-draw="sw0"></i>Expert</span><span><i class="sw" data-draw="sw1"></i>Novice</span></div>
+    <div class="chart" id="effort-chart" data-draw="effort" data-source="effort"></div>
+  </section>
+
+  <section id="lionfish-sec">
+    <h2>The lionfish invasion</h2>
+    <p class="sub">Percentage of surveys each year that recorded red lionfish. Larger dots mean more surveys that year; years with few surveys swing widely.</p>
+    <div class="chart" id="lionfish-chart" data-draw="lionfish" data-source="lionfish"></div>
+  </section>
+
+  <section id="groups-sec">
+    <h2>Fish groups by period</h2>
+    <p class="sub">Average sighting frequency of the member species in each group, using years pooled into periods. Groups: parrotfish (7 species), groupers and hinds (8), snappers (8), grunts (6), large predators (barracuda, cero, nurse shark, southern stingray, spotted eagle ray).</p>
+    <div class="legend" data-draw="groups-legend" data-source="groups"></div>
+    <div class="chart" id="groups-chart" data-draw="groups" data-source="groups"></div>
+  </section>
+
+  <section id="trends-sec">
+    <h2>Biggest consistent changes</h2>
+    <p class="sub">Change in the odds of a species being recorded on a survey, per decade, from a model that adjusts for the share of expert surveyors each year. Shows the 12 largest rises and falls among species recorded on at least 100 surveys whose trend was significant and pointed the same way among experts and novices.</p>
+    <div class="chart tall" id="trends-chart" data-draw="trends" data-source="trends"></div>
+  </section>
+
+  <section id="explorer-sec">
+    <h2>Look up any species</h2>
+    <div class="controls">
+      <label for="sp-select">Species</label>
+      <select class="dash-select" id="sp-select" data-draw="sp-select" aria-label="Species" data-source="periods"></select>
+    </div>
+    <p class="sub" data-draw="sp-trend" data-source="trends">—</p>
+    <div class="chart" id="sp-chart" data-draw="sp-chart" data-source="periods"></div>
+    <p class="sub">Bars show the percentage of surveys in each period that recorded the species; whiskers are 95% Wilson intervals. Periods with few surveys (2005–08, 2017–20, 2025–26) have wide intervals.</p>
+  </section>
+
+  <section id="table-sec">
+    <h2>All species trends</h2>
+    <p class="sub">Every species with at least 30 records across years with 10 or more surveys. Odds ratio per decade: above 1 means recorded more often over time. The call is robust only when the trend is significant and points the same way among experts and novices.</p>
+    <div class="tablewrap">
+      <table id="trend-table" data-source="trends" data-row-key="species">
+        <thead><tr><th data-field="species">Species</th><th data-field="family">Family</th><th class="n" data-field="odds_ratio_decade">Odds ratio / decade</th><th class="n" data-field="q">q (FDR)</th><th data-field="direction">Call</th><th class="n" data-field="sightings">Records</th></tr></thead>
+        <tbody data-draw="trend-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <details id="methods">
+    <summary>Methods and caveats</summary>
+    <ul>
+      <li><b>Data.</b> Surveys were made over the years by Oceans Forward staff and REEF volunteers, together with participatory science divers trained in REEF methods. REEF Comparison Report exports for zone 7112, one per calendar year, for all surveyors and separately for experts and novices. Sighting frequency (SF) is the share of all surveys that recorded a species. REEF's published %SF divides sightings on all surveys by species-and-abundance surveys only, so it can exceed 100%; here sightings were back-calculated and divided by all surveys. REEF's density index (DEN, 1–4 log abundance categories) is in the source files but not modelled here.</li>
+      <li><b>Trend model.</b> For each species, a quasi-binomial GLM of surveys-with-sighting out of surveys, against year (scaled per decade) plus the share of expert surveys that year. Years with fewer than 10 surveys are dropped. P-values are corrected for testing many species (Benjamini–Hochberg). A trend is called robust only if q &lt; 0.05 and expert-only and novice-only fits agree in sign.</li>
+      <li><b>Excluded.</b> Reporting categories that REEF added or merged over time (juvenile hamlet, juvenile grunt, goby and blenny complexes, unidentified species), because their changes reflect the species list rather than the reef.</li>
+      <li><b>What this cannot tell you.</b> These are presence records from volunteer roving dives, not density counts. Which sites were visited, the season, depth and individual surveyors all shift between years and are not controlled. In particular, declines in small cryptic fish (gobies, flounders, scorpionfish, eels) can come from changes in who surveys and how carefully, not just from the fish. Hurricane Maria (2017) and the 2005, 2010 and 2023 bleaching years fall inside the record but are not modelled.</li>
+      <li><b>For a stronger analysis.</b> Survey-level raw data (date, site, depth, surveyor ID, abundance codes) from REEF would allow site and surveyor effects and density-weighted indices. REEF asks researchers to request raw data from its Director of Science.</li>
+      <li><b>Citation.</b> REEF. 2026. Reef Environmental Education Foundation Volunteer Fish Survey Project Database. www.REEF.org, date of download 13 November 2026.</li>
+    </ul>
+  </details>
+</div>
+
+<script>
+window.RF = window.RF || {};
+RF.num = (v) => (v === null || v === undefined || v === '' ? NaN : +v);
+RF.ok = (...ids) => ids.every((id) => dash.data(id).status === 'ok');
+RF.fail = (el, ids) => {
+  el.replaceChildren();
+  const bad = ids.some((id) => dash.data(id).status === 'error');
+  const p = document.createElement('p'); p.className = 'sub'; p.textContent = bad ? 'Failed to load' : '—';
+  el.append(p);
+};
+RF.tip = (el) => {
+  let t = el.querySelector(':scope > .tip');
+  if (!t) { t = document.createElement('div'); t.className = 'tip'; t.hidden = true; el.append(t); }
+  return {
+    show(ev, lines) {
+      t.replaceChildren(...lines.map((l, i) => { const d = document.createElement('div'); if (i === 0) d.style.fontWeight = '500'; d.textContent = l; return d; }));
+      t.hidden = false;
+      const r = el.getBoundingClientRect();
+      let x = ev.clientX - r.left + 12, y = ev.clientY - r.top + 12;
+      const w = t.offsetWidth, h = t.offsetHeight;
+      if (x + w > r.width) x = Math.max(0, ev.clientX - r.left - w - 12);
+      if (y + h > r.height) y = Math.max(0, ev.clientY - r.top - h - 12);
+      t.style.left = x + 'px'; t.style.top = y + 'px';
+    },
+    hide() { t.hidden = true; },
+  };
+};
+RF.svg = (el, h, label) => {
+  el.querySelectorAll(':scope > svg, :scope > p').forEach((n) => n.remove());
+  const w = Math.max(280, el.clientWidth);
+  const svg = d3.select(el).insert('svg', ':first-child').attr('width', '100%').attr('height', h).attr('viewBox', `0 0 ${w} ${h}`).attr('role', 'img').attr('aria-label', label);
+  return { svg, w };
+};
+RF.fmt1 = d3.format('.1f');
+RF.fmtInt = d3.format(',');
+</script>
+
+<script>
+dash.calc('kpis', {
+  title: 'Headline figures',
+  description: 'Total surveys, counts of robust increasing and decreasing species, first lionfish year and pooled 2021–2026 lionfish sighting frequency.',
+  inputs: ['effort', 'trends', 'lionfish'],
+  fn: (effort, trends, lionfish) => {
+    const n = (v) => (v === null || v === '' ? 0 : +v);
+    const surveys = d3.sum(effort, (r) => n(r.surveys));
+    const up = trends.filter((r) => r.direction === 'Increasing').length;
+    const down = trends.filter((r) => r.direction === 'Decreasing').length;
+    const seen = lionfish.filter((r) => n(r.sf) > 0).map((r) => +r.year);
+    const lf_first = seen.length ? d3.min(seen) : null;
+    const recent = lionfish.filter((r) => +r.year >= 2021);
+    const k = d3.sum(recent, (r) => n(r.sf) / 100 * n(r.surveys));
+    const tot = d3.sum(recent, (r) => n(r.surveys));
+    const lf_recent = tot ? Math.round(1000 * k / tot) / 10 : null;
+    return [{ surveys, up, down, lf_first, lf_recent }];
+  },
+});
+const kpiDraw = (field, fmt) => (el) => {
+  const k = dash.data('kpis');
+  if (!k.data || !k.data.length) { el.textContent = '—'; return; }
+  const v = k.data[0][field];
+  el.textContent = v === null ? '—' : fmt(v);
+};
+const asInt = (v) => RF.fmtInt(v), asYear = (v) => String(v), asPct = (v) => RF.fmt1(v);
+[['k-surveys', 'surveys', asInt], ['t-surveys', 'surveys', asInt], ['k-up', 'up', asInt], ['t-up', 'up', asInt], ['k-down', 'down', asInt], ['t-down', 'down', asInt], ['k-lffirst', 'lf_first', asYear], ['k-lfrecent', 'lf_recent', asPct], ['t-lf', 'lf_recent', asPct]]
+  .forEach(([name, f, fmt]) => dash.draw(name, kpiDraw(f, fmt)));
+dash.draw('sw1', (el) => { el.style.background = dash.colors[1]; });
+dash.draw('sw0', (el) => { el.style.background = dash.colors[0]; });
+</script>
+
+<script>
+dash.draw('effort', (el) => {
+  if (!RF.ok('effort')) return RF.fail(el, ['effort']);
+  const rows = dash.data('effort').data.map((r) => ({ year: +r.year, expert: RF.num(r.expert) || 0, novice: RF.num(r.novice) || 0 }));
+  const H = 260, m = { t: 10, r: 10, b: 28, l: 40 };
+  const { svg, w } = RF.svg(el, H, 'Stacked bar chart of REEF surveys per year in Dominica, expert and novice');
+  const x = d3.scaleBand().domain(rows.map((r) => r.year)).range([m.l, w - m.r]).padding(0.15);
+  const y = d3.scaleLinear().domain([0, d3.max(rows, (r) => r.expert + r.novice)]).nice().range([H - m.b, m.t]);
+  svg.append('g').attr('class', 'grid').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(w - m.l - m.r)).tickFormat(''));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5));
+  const every = Math.ceil(rows.length / Math.max(2, Math.floor((w - m.l) / 42)));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues(rows.map((r) => r.year).filter((_, i) => i % every === 0)));
+  const tip = RF.tip(el);
+  const g = svg.append('g');
+  rows.forEach((r) => {
+    const gx = g.append('g');
+    gx.append('rect').attr('x', x(r.year)).attr('width', x.bandwidth()).attr('y', y(r.expert)).attr('height', y(0) - y(r.expert)).style('fill', dash.colors[0]);
+    gx.append('rect').attr('x', x(r.year)).attr('width', x.bandwidth()).attr('y', y(r.expert + r.novice)).attr('height', y(r.expert) - y(r.expert + r.novice)).style('fill', dash.colors[1]);
+    gx.append('rect').attr('x', x(r.year)).attr('width', x.bandwidth()).attr('y', m.t).attr('height', H - m.b - m.t).style('fill', 'transparent')
+      .on('mousemove', (ev) => tip.show(ev, [String(r.year), `${r.expert + r.novice} surveys`, `Expert ${r.expert} · Novice ${r.novice}`]))
+      .on('mouseleave', () => tip.hide());
+  });
+});
+</script>
+
+<script>
+dash.draw('lionfish', (el) => {
+  if (!RF.ok('lionfish')) return RF.fail(el, ['lionfish']);
+  const rows = dash.data('lionfish').data.map((r) => ({ year: +r.year, sf: RF.num(r.sf) || 0, n: RF.num(r.surveys) || 0 })).filter((r) => r.n >= 5);
+  const H = 260, m = { t: 12, r: 24, b: 28, l: 46 };
+  const { svg, w } = RF.svg(el, H, 'Line chart of the percentage of Dominica surveys recording red lionfish each year');
+  const x = d3.scaleLinear().domain(d3.extent(rows, (r) => r.year)).range([m.l, w - m.r]);
+  const y = d3.scaleLinear().domain([0, 100]).range([H - m.b, m.t]);
+  const rr = d3.scaleSqrt().domain([0, d3.max(rows, (r) => r.n)]).range([2, 9]);
+  svg.append('g').attr('class', 'grid').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(w - m.l - m.r)).tickFormat(''));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat((d) => d + '%'));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(Math.max(3, Math.floor(w / 80))).tickFormat(d3.format('d')));
+  svg.append('path').datum(rows).attr('fill', 'none').attr('stroke-width', 1.5).style('stroke', dash.colors[0]).attr('d', d3.line().x((r) => x(r.year)).y((r) => y(r.sf)));
+  const tip = RF.tip(el);
+  svg.append('g').selectAll('circle').data(rows).join('circle').attr('cx', (r) => x(r.year)).attr('cy', (r) => y(r.sf)).attr('r', (r) => rr(r.n))
+    .style('fill', dash.colors[0]).style('fill-opacity', 0.75)
+    .on('mousemove', (ev, r) => tip.show(ev, [String(r.year), r.sf > 0 ? `${RF.fmt1(r.sf)}% of surveys` : 'Not recorded', `${r.n} surveys`]))
+    .on('mouseleave', () => tip.hide());
+});
+</script>
+
+<script>
+window.RF.groupOrder = (rows) => [...new Set(rows.map((r) => r.group))];
+dash.draw('groups-legend', (el) => {
+  el.replaceChildren();
+  if (!RF.ok('groups')) return;
+  RF.groupOrder(dash.data('groups').data).forEach((g, i) => {
+    const s = document.createElement('span'); const sw = document.createElement('i'); sw.className = 'sw'; sw.style.background = dash.colors[i % dash.colors.length];
+    s.append(sw, document.createTextNode(g)); el.append(s);
+  });
+});
+dash.draw('groups', (el) => {
+  if (!RF.ok('groups')) return RF.fail(el, ['groups']);
+  const rows = dash.data('groups').data.map((r) => ({ group: r.group, period: r.period, sf: +r.sf }));
+  const groups = RF.groupOrder(rows);
+  const periods = [...new Set(rows.map((r) => r.period))].sort();
+  const H = 280, m = { t: 12, r: 34, b: 30, l: 40 };
+  const { svg, w } = RF.svg(el, H, 'Line chart of average sighting frequency by fish group and period');
+  const x = d3.scalePoint().domain(periods).range([m.l + 10, w - m.r - 10]);
+  const y = d3.scaleLinear().domain([0, d3.max(rows, (r) => r.sf)]).nice().range([H - m.b, m.t]);
+  svg.append('g').attr('class', 'grid').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(w - m.l - m.r)).tickFormat(''));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat((d) => d + '%'));
+  const step = w < 520 ? 2 : 1;
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues(periods.filter((_, i) => i % step === 0)));
+  const tip = RF.tip(el);
+  groups.forEach((g, i) => {
+    const d = periods.map((p) => rows.find((r) => r.group === g && r.period === p)).filter(Boolean);
+    const c = dash.colors[i % dash.colors.length];
+    svg.append('path').datum(d).attr('fill', 'none').attr('stroke-width', 2).style('stroke', c).attr('d', d3.line().x((r) => x(r.period)).y((r) => y(r.sf)));
+    svg.append('g').selectAll('circle').data(d).join('circle').attr('cx', (r) => x(r.period)).attr('cy', (r) => y(r.sf)).attr('r', 4).style('fill', c)
+      .on('mousemove', (ev, r) => tip.show(ev, [r.group, r.period, `${RF.fmt1(r.sf)}% average sighting frequency`]))
+      .on('mouseleave', () => tip.hide());
+  });
+});
+</script>
+
+<script>
+dash.draw('trends', (el) => {
+  if (!RF.ok('trends')) return RF.fail(el, ['trends']);
+  const all = dash.data('trends').data.filter((r) => r.robust === true && +r.sightings >= 100).map((r) => ({ ...r, or: +r.odds_ratio_decade }));
+  const ups = all.filter((r) => r.or > 1).sort((a, b) => b.or - a.or).slice(0, 12);
+  const downs = all.filter((r) => r.or < 1).sort((a, b) => a.or - b.or).slice(0, 12);
+  const rows = [...ups, ...downs.reverse()];
+  const H = Math.max(420, rows.length * 20 + 40);
+  const { svg, w } = RF.svg(el, H, 'Bar chart of the species with the largest consistent increases and decreases in sighting odds per decade');
+  const tmp = svg.append('g');
+  const labW = d3.max(rows, (r) => { const t = tmp.append('text').text(r.species); const l = t.node().getComputedTextLength(); t.remove(); return l; }) || 120;
+  tmp.remove();
+  const m = { t: 10, r: 44, b: 28, l: Math.min(labW + 10, w * 0.45) };
+  const ext = d3.extent(rows, (r) => r.or);
+  const x = d3.scaleLog().domain([Math.min(0.9, ext[0] * 0.9), Math.max(1.1, ext[1] * 1.1)]).range([m.l, w - m.r]);
+  const y = d3.scaleBand().domain(rows.map((r) => r.species)).range([m.t, H - m.b]).padding(0.2);
+  svg.append('g').attr('class', 'grid').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues([0.25, 0.5, 1, 2, 4]).tickSize(-(H - m.t - m.b)).tickFormat(''));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues([0.25, 0.5, 1, 2, 4]).tickFormat((d) => '×' + d));
+  svg.append('line').attr('x1', x(1)).attr('x2', x(1)).attr('y1', m.t).attr('y2', H - m.b).style('stroke', 'var(--cds-chart-reference)');
+  const tip = RF.tip(el);
+  const g = svg.append('g').selectAll('g').data(rows).join('g');
+  g.append('rect').attr('y', (r) => y(r.species)).attr('height', y.bandwidth())
+    .attr('x', (r) => Math.min(x(1), x(r.or))).attr('width', (r) => Math.abs(x(r.or) - x(1)))
+    .style('fill', (r) => (r.or > 1 ? dash.colors[0] : dash.colors[1]))
+    .on('mousemove', (ev, r) => tip.show(ev, [r.species, `Odds ×${d3.format('.2f')(r.or)} per decade`, `${r.family} · ${RF.fmtInt(+r.sightings)} records`, `q = ${d3.format('.1e')(+r.q)}`]))
+    .on('mouseleave', () => tip.hide());
+  g.append('text').attr('x', m.l - 6).attr('y', (r) => y(r.species) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text((r) => r.species);
+  g.append('text').attr('x', (r) => (r.or > 1 ? x(r.or) + 4 : x(1) + 4)).attr('y', (r) => y(r.species) + y.bandwidth() / 2).attr('dy', '0.35em')
+    .attr('text-anchor', 'start').text((r) => '×' + d3.format('.2f')(r.or));
+});
+</script>
+
+<script>
+dash.draw('sp-select', (sel) => {
+  const p = dash.data('periods');
+  const names = p.status === 'ok' ? [...new Set(p.data.map((r) => r.species))].sort() : [];
+  sel.replaceChildren(...names.map((n) => new Option(n, n)));
+  const cur = dash.params().species;
+  sel.value = names.includes(cur) ? cur : (names.includes('Red Lionfish (exotic)') ? 'Red Lionfish (exotic)' : names[0] || '');
+  sel.onchange = () => dash.setParams({ species: sel.value });
+});
+RF.curSpecies = () => {
+  const p = dash.data('periods');
+  const names = p.status === 'ok' ? new Set(p.data.map((r) => r.species)) : new Set();
+  const cur = dash.params().species;
+  return names.has(cur) ? cur : (names.has('Red Lionfish (exotic)') ? 'Red Lionfish (exotic)' : [...names].sort()[0]);
+};
+dash.draw('sp-trend', (el) => {
+  if (!RF.ok('trends', 'periods')) { el.textContent = '—'; return; }
+  const sp = RF.curSpecies();
+  const t = dash.data('trends').data.find((r) => r.species === sp);
+  if (!t) { el.textContent = `${sp}: too few records for a trend model.`; return; }
+  const or = +t.odds_ratio_decade;
+  const call = t.direction === 'Increasing' ? 'recorded more often over time' : t.direction === 'Decreasing' ? 'recorded less often over time' : 'no robust trend';
+  el.textContent = `${sp}: ${call} (odds ×${d3.format('.2f')(or)} per decade, q = ${d3.format('.1e')(+t.q)}, ${RF.fmtInt(+t.sightings)} records).`;
+});
+dash.draw('sp-chart', (el) => {
+  if (!RF.ok('periods')) return RF.fail(el, ['periods']);
+  const sp = RF.curSpecies();
+  const rows = dash.data('periods').data.filter((r) => r.species === sp).map((r) => ({ period: r.period, sf: +r.sf, lo: +r.lo, hi: +r.hi, k: +r.surveys_seen, n: +r.surveys })).sort((a, b) => d3.ascending(a.period, b.period));
+  const H = 260, m = { t: 12, r: 10, b: 30, l: 40 };
+  const { svg, w } = RF.svg(el, H, `Bar chart of sighting frequency by period for ${sp}`);
+  const x = d3.scaleBand().domain(rows.map((r) => r.period)).range([m.l, w - m.r]).padding(0.25);
+  const y = d3.scaleLinear().domain([0, Math.max(5, d3.max(rows, (r) => r.hi) || 0)]).nice().range([H - m.b, m.t]);
+  svg.append('g').attr('class', 'grid').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(w - m.l - m.r)).tickFormat(''));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat((d) => d + '%'));
+  const step = w < 520 ? 2 : 1;
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues(rows.map((r) => r.period).filter((_, i) => i % step === 0)));
+  const tip = RF.tip(el);
+  const g = svg.append('g').selectAll('g').data(rows).join('g');
+  g.append('rect').attr('x', (r) => x(r.period)).attr('width', x.bandwidth()).attr('y', (r) => y(r.sf)).attr('height', (r) => y(0) - y(r.sf)).style('fill', dash.colors[0]);
+  g.append('line').attr('x1', (r) => x(r.period) + x.bandwidth() / 2).attr('x2', (r) => x(r.period) + x.bandwidth() / 2).attr('y1', (r) => y(r.lo)).attr('y2', (r) => y(r.hi)).style('stroke', 'var(--color-fg-muted)');
+  g.append('rect').attr('x', (r) => x(r.period)).attr('width', x.bandwidth()).attr('y', m.t).attr('height', H - m.b - m.t).style('fill', 'transparent')
+    .on('mousemove', (ev, r) => tip.show(ev, [r.period, `${RF.fmt1(r.sf)}% of surveys (${RF.fmt1(r.lo)}–${RF.fmt1(r.hi)}%)`, `Seen on ${r.k} of ${r.n} surveys`]))
+    .on('mouseleave', () => tip.hide());
+});
+</script>
+
+<script>
+dash.draw('trend-rows', (tb) => {
+  tb.replaceChildren();
+  if (!RF.ok('trends')) return;
+  const rows = dash.data('trends').data.slice().sort((a, b) => d3.descending(+a.odds_ratio_decade, +b.odds_ratio_decade));
+  rows.forEach((r) => {
+    const tr = document.createElement('tr');
+    tr.dataset.key = encodeURIComponent(r.species);
+    const cells = [r.species, r.family, String(r.odds_ratio_decade), String(r.q), r.direction, String(r.sightings)];
+    cells.forEach((v, i) => {
+      const td = document.createElement('td'); td.textContent = v;
+      if ([2, 3, 5].includes(i)) td.className = 'n';
+      if (i === 4) td.className = r.direction === 'Increasing' ? 'up' : r.direction === 'Decreasing' ? 'down' : '';
+      tr.append(td);
+    });
+    tb.append(tr);
+  });
+});
+</script>
+<footer class="rf-foot">
+  <p><b>Data and code.</b> <a href="effort.csv">effort.csv</a> · <a href="lionfish.csv">lionfish.csv</a> · <a href="trends.json">trends.json</a> · <a href="periods.json">periods.json</a> · <a href="groups.json">groups.json</a> · <a href="species_by_year.csv">species_by_year.csv</a> (REEF yearly summaries) · <a href="https://github.com/Jlevenson/Dominica-Data/tree/main/environment/reef-fish/reef-surveys/code">analysis code</a> · <a href="https://github.com/Jlevenson/Dominica-Data/tree/main/environment/reef-fish/reef-surveys">README</a></p>
+  <p><b>Cite the data as</b> REEF. 2026. Reef Environmental Education Foundation Volunteer Fish Survey Project Database. www.REEF.org, date of download 13 November 2026. <b>Cite this analysis as</b> Oceans Forward (2026). Dominica reef fish trends from REEF volunteer surveys, 1994–2026. Oceans Forward Dominica Data Repository. https://github.com/Jlevenson/Dominica-Data</p>
+  <p>Catalog ID ENV-REF-001. Preliminary analysis of REEF summary data; see Methods and caveats above.</p>
+</footer>
+</div>
+</body>
+</html>

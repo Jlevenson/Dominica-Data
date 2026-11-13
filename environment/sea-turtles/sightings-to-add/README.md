@@ -49,7 +49,7 @@ Patrol teams filled in the standard DomSeTCO sighting form on the beach. The sca
 Scans and the full transcription (including excavation forms) are in the Oceans Forward "Sightings to Add" Drive folder. On request.
 
 ## How to cite
-Oceans Forward (2026). Sightings to Add: scanned DomSeTCO sighting forms. Dominica Data Hub. https://github.com/Jlevenson/Dominica-Data
+Oceans Forward (2026). Sightings to Add: scanned DomSeTCO sighting forms. Oceans Forward Dominica Data Repository. https://github.com/Jlevenson/Dominica-Data
 
 ## Change log
 - 2026-11-12 First version.

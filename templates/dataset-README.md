@@ -31,7 +31,7 @@ What was checked, cleaned or removed, and known problems.
 Link to Drive, Movebank, Zenodo, etc. for files too large for GitHub.
 
 ## How to cite
-Oceans Forward ([year]). [Dataset title]. Dominica Data Hub. [URL or DOI]
+Oceans Forward ([year]). [Dataset title]. Oceans Forward Dominica Data Repository. [URL or DOI]
 
 ## Change log
 - [YYYY-MM-DD] First version.
