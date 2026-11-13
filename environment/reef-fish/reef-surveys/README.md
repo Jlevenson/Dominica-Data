@@ -9,7 +9,7 @@
 ## What this is
 An analysis of 33 years of Reef Environmental Education Foundation (REEF) Volunteer Fish Survey Project data for Dominica (REEF geographic zone 7112). The dashboard shows survey effort, the lionfish invasion, fish groups over time, the species with the largest consistent changes, and a lookup for any species.
 
-Over the years, Oceans Forward staff and participatory science divers have collected data on Dominica's reef fish populations using REEF methods, alongside visiting REEF volunteers.
+Oceans Forward staff and REEF volunteers, together with participatory science divers, have collected data on Dominica's reef fish populations over the years using REEF methods.
 
 ## Coverage
 - **When:** 1994 to 2026 (download of 13 November 2026)
