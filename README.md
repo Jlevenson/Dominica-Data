@@ -1,5 +1,9 @@
 # Oceans Forward Dominica Data Repository DRAFT
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24202525.svg)](https://doi.org/10.5281/zenodo.24202525)
+
+**Cite as:** Levenson JJ (2026) Oceans Forward Dominica Data Repository, v1.0. Zenodo. https://doi.org/10.5281/zenodo.24202525
+
 One directory for every dataset Oceans Forward collects or manages in Dominica: sea turtles, telemetry, coral, BRUV, reef fish and agriculture.
 
 **Browse it:** https://jlevenson.github.io/Dominica-Data/
