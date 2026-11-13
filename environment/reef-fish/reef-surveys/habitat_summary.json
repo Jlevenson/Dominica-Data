@@ -1,0 +1,32 @@
+{
+ "effort": [
+  {
+   "inside": 0,
+   "habitat": "slope",
+   "sites": 12,
+   "surveys": 470
+  },
+  {
+   "inside": 1,
+   "habitat": "slope",
+   "sites": 4,
+   "surveys": 264
+  },
+  {
+   "inside": 1,
+   "habitat": "wall",
+   "sites": 12,
+   "surveys": 1147
+  }
+ ],
+ "n_species": 163,
+ "matched_higher_inside": 61,
+ "matched_higher_outside": 33,
+ "wall_higher": 67,
+ "slope_higher": 56,
+ "same_direction_as_unmatched": 125,
+ "n_compared": 163,
+ "trend_gap_widening_q05": 24,
+ "trend_gap_narrowing_q05": 39,
+ "rho_matched_vs_all": 0.43505337173080166
+}

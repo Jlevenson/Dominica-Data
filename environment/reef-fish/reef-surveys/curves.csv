@@ -1,0 +1,301 @@
+species,year,fit,lo,hi
+Bar Jack,1997,44.88,26.1,65.25
+Bar Jack,1998,47.14,30.92,63.99
+Bar Jack,1999,49.36,35.83,62.98
+Bar Jack,2000,51.46,40.36,62.42
+Bar Jack,2001,53.4,43.99,62.57
+Bar Jack,2002,55.1,46.28,63.61
+Bar Jack,2003,56.51,47.28,65.32
+Bar Jack,2004,57.59,47.44,67.14
+Bar Jack,2005,58.28,47.19,68.6
+Bar Jack,2006,58.53,46.78,69.39
+Bar Jack,2007,58.3,46.33,69.36
+Bar Jack,2008,57.55,45.89,68.43
+Bar Jack,2009,56.43,45.44,66.81
+Bar Jack,2010,55.09,44.91,64.85
+Bar Jack,2011,53.71,44.22,62.93
+Bar Jack,2012,52.46,43.31,61.45
+Bar Jack,2013,51.53,42.27,60.69
+Bar Jack,2014,51.1,41.39,60.73
+Bar Jack,2015,51.33,41.05,61.5
+Bar Jack,2016,52.41,41.69,62.92
+Bar Jack,2017,54.45,43.58,64.92
+Bar Jack,2018,57.38,46.65,67.46
+Bar Jack,2019,61.04,50.61,70.55
+Bar Jack,2020,65.23,55.06,74.18
+Bar Jack,2021,69.71,59.5,78.3
+Bar Jack,2022,74.25,63.58,82.64
+Bar Jack,2023,78.59,67.19,86.8
+Bar Jack,2024,82.55,70.35,90.41
+Bar Jack,2025,86.0,73.14,93.27
+Bar Jack,2026,88.91,75.62,95.4
+Cleaning Goby,1997,46.62,18.87,76.62
+Cleaning Goby,1998,43.57,20.8,69.42
+Cleaning Goby,1999,40.61,22.49,61.7
+Cleaning Goby,2000,37.78,23.56,54.46
+Cleaning Goby,2001,35.13,23.51,48.82
+Cleaning Goby,2002,32.69,22.05,45.47
+Cleaning Goby,2003,30.49,19.64,44.06
+Cleaning Goby,2004,28.56,17.13,43.6
+Cleaning Goby,2005,26.9,15.05,43.31
+Cleaning Goby,2006,25.51,13.57,42.76
+Cleaning Goby,2007,24.42,12.71,41.75
+Cleaning Goby,2008,23.58,12.36,40.29
+Cleaning Goby,2009,22.89,12.29,38.59
+Cleaning Goby,2010,22.19,12.2,36.93
+Cleaning Goby,2011,21.38,11.85,35.49
+Cleaning Goby,2012,20.33,11.09,34.3
+Cleaning Goby,2013,18.97,9.97,33.09
+Cleaning Goby,2014,17.23,8.63,31.46
+Cleaning Goby,2015,15.13,7.19,29.07
+Cleaning Goby,2016,12.72,5.76,25.8
+Cleaning Goby,2017,10.18,4.36,21.98
+Cleaning Goby,2018,7.74,3.03,18.38
+Cleaning Goby,2019,5.63,1.89,15.54
+Cleaning Goby,2020,3.92,1.05,13.54
+Cleaning Goby,2021,2.63,0.52,12.21
+Cleaning Goby,2022,1.71,0.24,11.34
+Cleaning Goby,2023,1.09,0.1,10.8
+Cleaning Goby,2024,0.68,0.04,10.47
+Cleaning Goby,2025,0.42,0.02,10.28
+Cleaning Goby,2026,0.26,0.01,10.19
+Eyed Flounder,1997,14.03,6.06,29.21
+Eyed Flounder,1998,13.49,6.85,24.83
+Eyed Flounder,1999,12.94,7.61,21.15
+Eyed Flounder,2000,12.37,8.18,18.29
+Eyed Flounder,2001,11.77,8.35,16.34
+Eyed Flounder,2002,11.12,7.98,15.31
+Eyed Flounder,2003,10.43,7.2,14.86
+Eyed Flounder,2004,9.67,6.31,14.54
+Eyed Flounder,2005,8.86,5.48,14.04
+Eyed Flounder,2006,8.01,4.75,13.21
+Eyed Flounder,2007,7.13,4.14,12.02
+Eyed Flounder,2008,6.24,3.61,10.58
+Eyed Flounder,2009,5.38,3.12,9.14
+Eyed Flounder,2010,4.6,2.65,7.88
+Eyed Flounder,2011,3.92,2.2,6.88
+Eyed Flounder,2012,3.33,1.79,6.13
+Eyed Flounder,2013,2.85,1.44,5.56
+Eyed Flounder,2014,2.46,1.17,5.11
+Eyed Flounder,2015,2.15,0.97,4.72
+Eyed Flounder,2016,1.92,0.84,4.36
+Eyed Flounder,2017,1.75,0.76,4.01
+Eyed Flounder,2018,1.63,0.71,3.7
+Eyed Flounder,2019,1.55,0.69,3.45
+Eyed Flounder,2020,1.5,0.68,3.29
+Eyed Flounder,2021,1.47,0.66,3.25
+Eyed Flounder,2022,1.46,0.63,3.37
+Eyed Flounder,2023,1.47,0.57,3.69
+Eyed Flounder,2024,1.48,0.51,4.25
+Eyed Flounder,2025,1.5,0.44,5.06
+Eyed Flounder,2026,1.53,0.37,6.16
+Queen Parrotfish,1997,20.43,8.18,42.5
+Queen Parrotfish,1998,19.12,9.0,36.08
+Queen Parrotfish,1999,17.89,9.75,30.54
+Queen Parrotfish,2000,16.77,10.28,26.16
+Queen Parrotfish,2001,15.76,10.41,23.15
+Queen Parrotfish,2002,14.87,10.01,21.52
+Queen Parrotfish,2003,14.11,9.24,20.95
+Queen Parrotfish,2004,13.48,8.39,20.95
+Queen Parrotfish,2005,12.98,7.67,21.12
+Queen Parrotfish,2006,12.62,7.19,21.23
+Queen Parrotfish,2007,12.41,6.97,21.13
+Queen Parrotfish,2008,12.35,7.03,20.8
+Queen Parrotfish,2009,12.43,7.32,20.34
+Queen Parrotfish,2010,12.66,7.79,19.91
+Queen Parrotfish,2011,13.03,8.37,19.71
+Queen Parrotfish,2012,13.54,8.98,19.9
+Queen Parrotfish,2013,14.2,9.54,20.63
+Queen Parrotfish,2014,15.02,10.03,21.9
+Queen Parrotfish,2015,16.02,10.54,23.59
+Queen Parrotfish,2016,17.19,11.19,25.5
+Queen Parrotfish,2017,18.57,12.1,27.42
+Queen Parrotfish,2018,20.15,13.33,29.28
+Queen Parrotfish,2019,21.95,14.89,31.12
+Queen Parrotfish,2020,23.97,16.73,33.1
+Queen Parrotfish,2021,26.22,18.67,35.48
+Queen Parrotfish,2022,28.68,20.48,38.57
+Queen Parrotfish,2023,31.35,21.91,42.64
+Queen Parrotfish,2024,34.21,22.88,47.69
+Queen Parrotfish,2025,37.23,23.43,53.49
+Queen Parrotfish,2026,40.38,23.69,59.63
+Red Lionfish (exotic),1997,0.0,0.0,0.0
+Red Lionfish (exotic),1998,0.0,0.0,0.0
+Red Lionfish (exotic),1999,0.0,0.0,0.0
+Red Lionfish (exotic),2000,0.0,0.0,0.0
+Red Lionfish (exotic),2001,0.0,0.0,0.0
+Red Lionfish (exotic),2002,0.0,0.0,0.0
+Red Lionfish (exotic),2003,0.0,0.0,0.0
+Red Lionfish (exotic),2004,0.0,0.0,0.0
+Red Lionfish (exotic),2005,0.0,0.0,0.02
+Red Lionfish (exotic),2006,0.0,0.0,0.1
+Red Lionfish (exotic),2007,0.0,0.0,0.42
+Red Lionfish (exotic),2008,0.01,0.0,1.53
+Red Lionfish (exotic),2009,0.16,0.01,4.49
+Red Lionfish (exotic),2010,1.65,0.23,10.75
+Red Lionfish (exotic),2011,8.66,3.24,21.15
+Red Lionfish (exotic),2012,23.96,15.5,35.12
+Red Lionfish (exotic),2013,40.61,32.1,49.72
+Red Lionfish (exotic),2014,51.76,44.11,59.33
+Red Lionfish (exotic),2015,57.4,51.06,63.5
+Red Lionfish (exotic),2016,59.99,53.57,66.09
+Red Lionfish (exotic),2017,61.69,54.07,68.78
+Red Lionfish (exotic),2018,62.97,54.37,70.82
+Red Lionfish (exotic),2019,63.88,54.89,71.99
+Red Lionfish (exotic),2020,64.47,55.64,72.42
+Red Lionfish (exotic),2021,64.8,56.48,72.32
+Red Lionfish (exotic),2022,64.92,57.12,72.0
+Red Lionfish (exotic),2023,64.86,57.14,71.87
+Red Lionfish (exotic),2024,64.67,56.19,72.31
+Red Lionfish (exotic),2025,64.39,54.23,73.4
+Red Lionfish (exotic),2026,64.07,51.54,74.94
+Schoolmaster,1997,15.06,4.61,39.41
+Schoolmaster,1998,12.27,4.64,28.68
+Schoolmaster,1999,9.98,4.52,20.63
+Schoolmaster,2000,8.16,4.17,15.37
+Schoolmaster,2001,6.74,3.56,12.39
+Schoolmaster,2002,5.67,2.86,10.92
+Schoolmaster,2003,4.87,2.24,10.29
+Schoolmaster,2004,4.31,1.79,10.05
+Schoolmaster,2005,3.95,1.5,9.99
+Schoolmaster,2006,3.76,1.35,10.03
+Schoolmaster,2007,3.75,1.33,10.1
+Schoolmaster,2008,3.92,1.44,10.21
+Schoolmaster,2009,4.28,1.69,10.4
+Schoolmaster,2010,4.83,2.1,10.73
+Schoolmaster,2011,5.61,2.7,11.3
+Schoolmaster,2012,6.65,3.49,12.29
+Schoolmaster,2013,7.96,4.44,13.86
+Schoolmaster,2014,9.56,5.47,16.21
+Schoolmaster,2015,11.45,6.54,19.28
+Schoolmaster,2016,13.57,7.71,22.78
+Schoolmaster,2017,15.81,9.05,26.17
+Schoolmaster,2018,18.15,10.66,29.18
+Schoolmaster,2019,20.55,12.58,31.75
+Schoolmaster,2020,22.99,14.74,34.01
+Schoolmaster,2021,25.45,16.95,36.35
+Schoolmaster,2022,27.92,18.82,39.29
+Schoolmaster,2023,30.41,19.98,43.33
+Schoolmaster,2024,32.91,20.3,48.58
+Schoolmaster,2025,35.45,19.95,54.75
+Schoolmaster,2026,38.03,19.19,61.32
+Sharknose Goby,1997,23.96,9.46,48.73
+Sharknose Goby,1998,21.11,9.76,39.83
+Sharknose Goby,1999,18.58,9.9,32.13
+Sharknose Goby,2000,16.38,9.76,26.21
+Sharknose Goby,2001,14.55,9.19,22.25
+Sharknose Goby,2002,13.05,8.24,20.05
+Sharknose Goby,2003,11.88,7.16,19.08
+Sharknose Goby,2004,11.02,6.23,18.78
+Sharknose Goby,2005,10.46,5.57,18.81
+Sharknose Goby,2006,10.2,5.22,18.99
+Sharknose Goby,2007,10.25,5.19,19.24
+Sharknose Goby,2008,10.63,5.5,19.54
+Sharknose Goby,2009,11.33,6.16,19.93
+Sharknose Goby,2010,12.34,7.13,20.5
+Sharknose Goby,2011,13.63,8.39,21.38
+Sharknose Goby,2012,15.19,9.82,22.74
+Sharknose Goby,2013,16.95,11.26,24.72
+Sharknose Goby,2014,18.86,12.58,27.3
+Sharknose Goby,2015,20.79,13.74,30.2
+Sharknose Goby,2016,22.62,14.81,32.96
+Sharknose Goby,2017,24.2,15.86,35.1
+Sharknose Goby,2018,25.5,16.93,36.5
+Sharknose Goby,2019,26.52,17.97,37.28
+Sharknose Goby,2020,27.27,18.85,37.71
+Sharknose Goby,2021,27.79,19.36,38.14
+Sharknose Goby,2022,28.1,19.29,38.98
+Sharknose Goby,2023,28.24,18.54,40.5
+Sharknose Goby,2024,28.26,17.22,42.73
+Sharknose Goby,2025,28.19,15.56,45.55
+Sharknose Goby,2026,28.08,13.8,48.78
+Spotted Goatfish,1997,86.45,66.71,95.3
+Spotted Goatfish,1998,83.71,66.26,93.08
+Spotted Goatfish,1999,80.59,65.51,90.08
+Spotted Goatfish,2000,77.14,64.26,86.37
+Spotted Goatfish,2001,73.44,62.17,82.31
+Spotted Goatfish,2002,69.62,58.94,78.52
+Spotted Goatfish,2003,65.81,54.6,75.5
+Spotted Goatfish,2004,62.19,49.76,73.2
+Spotted Goatfish,2005,58.9,45.23,71.33
+Spotted Goatfish,2006,56.08,41.59,69.61
+Spotted Goatfish,2007,53.85,39.16,67.9
+Spotted Goatfish,2008,52.25,38.0,66.14
+Spotted Goatfish,2009,51.12,37.73,64.35
+Spotted Goatfish,2010,50.24,37.84,62.61
+Spotted Goatfish,2011,49.4,37.8,61.06
+Spotted Goatfish,2012,48.37,37.15,59.75
+Spotted Goatfish,2013,46.94,35.62,58.58
+Spotted Goatfish,2014,44.88,33.19,57.18
+Spotted Goatfish,2015,42.02,30.02,55.04
+Spotted Goatfish,2016,38.19,26.31,51.66
+Spotted Goatfish,2017,33.39,22.22,46.79
+Spotted Goatfish,2018,27.96,17.93,40.82
+Spotted Goatfish,2019,22.39,13.64,34.5
+Spotted Goatfish,2020,17.13,9.66,28.55
+Spotted Goatfish,2021,12.56,6.32,23.42
+Spotted Goatfish,2022,8.86,3.83,19.18
+Spotted Goatfish,2023,6.06,2.18,15.72
+Spotted Goatfish,2024,4.04,1.18,12.91
+Spotted Goatfish,2025,2.65,0.62,10.62
+Spotted Goatfish,2026,1.72,0.32,8.74
+Trumpetfish,1997,92.39,83.14,96.76
+Trumpetfish,1998,92.36,85.12,96.24
+Trumpetfish,1999,92.33,86.72,95.69
+Trumpetfish,2000,92.29,87.91,95.17
+Trumpetfish,2001,92.22,88.6,94.76
+Trumpetfish,2002,92.13,88.78,94.54
+Trumpetfish,2003,92.01,88.49,94.52
+Trumpetfish,2004,91.85,87.91,94.58
+Trumpetfish,2005,91.63,87.19,94.63
+Trumpetfish,2006,91.36,86.48,94.59
+Trumpetfish,2007,91.01,85.87,94.41
+Trumpetfish,2008,90.58,85.41,94.05
+Trumpetfish,2009,90.07,85.08,93.51
+Trumpetfish,2010,89.46,84.77,92.82
+Trumpetfish,2011,88.76,84.39,92.02
+Trumpetfish,2012,87.97,83.8,91.18
+Trumpetfish,2013,87.09,82.89,90.37
+Trumpetfish,2014,86.11,81.6,89.65
+Trumpetfish,2015,85.04,80.03,88.97
+Trumpetfish,2016,83.9,78.35,88.24
+Trumpetfish,2017,82.67,76.73,87.35
+Trumpetfish,2018,81.37,75.25,86.26
+Trumpetfish,2019,80.0,73.88,84.97
+Trumpetfish,2020,78.54,72.51,83.55
+Trumpetfish,2021,77.01,70.96,82.12
+Trumpetfish,2022,75.4,68.96,80.87
+Trumpetfish,2023,73.71,66.31,79.97
+Trumpetfish,2024,71.94,62.94,79.47
+Trumpetfish,2025,70.11,58.95,79.3
+Trumpetfish,2026,68.21,54.51,79.35
+Yellowtail Snapper,1997,51.95,33.63,69.75
+Yellowtail Snapper,1998,52.62,37.32,67.44
+Yellowtail Snapper,1999,53.31,40.88,65.36
+Yellowtail Snapper,2000,54.07,44.03,63.79
+Yellowtail Snapper,2001,54.9,46.44,63.09
+Yellowtail Snapper,2002,55.84,47.87,63.52
+Yellowtail Snapper,2003,56.91,48.51,64.93
+Yellowtail Snapper,2004,58.14,48.88,66.87
+Yellowtail Snapper,2005,59.55,49.43,68.92
+Yellowtail Snapper,2006,61.16,50.49,70.86
+Yellowtail Snapper,2007,62.98,52.23,72.58
+Yellowtail Snapper,2008,65.0,54.68,74.09
+Yellowtail Snapper,2009,67.15,57.6,75.47
+Yellowtail Snapper,2010,69.35,60.62,76.88
+Yellowtail Snapper,2011,71.5,63.41,78.41
+Yellowtail Snapper,2012,73.55,65.74,80.11
+Yellowtail Snapper,2013,75.43,67.55,81.9
+Yellowtail Snapper,2014,77.1,68.95,83.61
+Yellowtail Snapper,2015,78.52,70.11,85.07
+Yellowtail Snapper,2016,79.68,71.17,86.16
+Yellowtail Snapper,2017,80.55,72.2,86.85
+Yellowtail Snapper,2018,81.18,73.18,87.21
+Yellowtail Snapper,2019,81.61,74.02,87.36
+Yellowtail Snapper,2020,81.87,74.56,87.43
+Yellowtail Snapper,2021,81.98,74.61,87.57
+Yellowtail Snapper,2022,81.98,74.0,87.91
+Yellowtail Snapper,2023,81.89,72.66,88.5
+Yellowtail Snapper,2024,81.73,70.61,89.28
+Yellowtail Snapper,2025,81.52,67.96,90.17
+Yellowtail Snapper,2026,81.28,64.85,91.09

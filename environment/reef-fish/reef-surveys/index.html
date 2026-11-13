@@ -66,7 +66,7 @@
 <script>
   // Minimal stand-in for the Claude dashboard runtime: loads the data files next to this page and redraws on resize.
   window.dash = (() => {
-    const FILES = { effort: ['effort.csv', 'csv'], lionfish: ['lionfish.csv', 'csv'], trends: ['trends.json', 'json'], periods: ['periods.json', 'json'], groups: ['groups.json', 'json'], reserve: ['reserve.csv', 'csv'], regional: ['regional.csv', 'csv'], fgroups: ['fgroups.csv', 'csv'] };
+    const FILES = { effort: ['effort.csv', 'csv'], lionfish: ['lionfish.csv', 'csv'], trends: ['trends.json', 'json'], periods: ['periods.json', 'json'], groups: ['groups.json', 'json'], reserve: ['reserve.csv', 'csv'], regional: ['regional.csv', 'csv'], fgroups: ['fgroups.csv', 'csv'], habitat: ['habitat.csv', 'csv'], regional_z: ['regional_z.csv', 'csv'], curves: ['curves.csv', 'csv'], robustness: ['robustness.csv', 'csv'] };
     const sources = {}, calcs = {}, draws = {}, params = {};
     const run = (name) => document.querySelectorAll(`[data-draw="${name}"]`).forEach((el) => { try { draws[name](el); } catch (e) { console.error(name, e); } });
     const api = {
@@ -141,8 +141,8 @@
   </section>
 
   <section id="reserve-sec">
-    <h2>Fished species are more common inside the marine reserve</h2>
-    <p class="sub">Share of surveys recording each species at 16 sites inside the Soufrière–Scotts Head Marine Reserve (1,411 surveys) and 12 sites outside (470). Inside sites are mostly walls and pinnacles, outside sites include sandier shore dives, so sand species are more common outside. Fished species are listed first, then unfished species for comparison. Filled dots: robust difference. ↑ marks species whose inside share grew relative to outside over time.</p>
+    <h2>Inside vs outside the marine reserve</h2>
+    <p class="sub">Share of surveys recording each species at 16 sites inside the Soufrière–Scotts Head Marine Reserve (1,411 surveys) and 12 sites outside (470). Inside sites are mostly walls and pinnacles, outside sites include sandier shore dives, so sand species are more common outside. Fished species are listed first, then unfished species for comparison. Much of this difference is habitat (next chart). Filled dots: robust difference. ↑ marks species whose inside share grew relative to outside over time.</p>
     <div class="legend"><span><i class="sw" data-draw="sw-in"></i>Inside reserve</span><span><i class="sw" data-draw="sw-out"></i>Outside</span></div>
     <div class="chart tall" id="reserve-chart" data-draw="reserve" data-source="reserve"></div>
   </section>
@@ -158,6 +158,36 @@
     <h2>Trends by functional group</h2>
     <p class="sub">Average trend per decade of species in each group, with 95% interval. Herbivores and fished species tend up; small cryptic and bottom-dwelling species tend down.</p>
     <div class="chart" id="fgroups-chart" data-draw="fgroups" data-source="fgroups"></div>
+  </section>
+
+  <section id="habitat-sec">
+    <h2>Most of the reserve difference is habitat</h2>
+    <p class="sub">Inside the reserve, steep crater walls and pinnacles hold more jacks, schoolmaster and black margate than sloping reef. Comparing reserve slope sites (Champagne Reef and Tous Sable) with outside sites, which are all slopes, only bar jack and graysby among fished species stay more common inside. Unfished parrotfish stay more common inside too. Habitat classes are provisional.</p>
+    <div class="legend"><span><i class="sw" data-draw="sw-wall"></i>Inside, walls and pinnacles</span><span><i class="sw" data-draw="sw-slope"></i>Inside, slopes</span><span><i class="sw" data-draw="sw-outh"></i>Outside (slopes)</span></div>
+    <div class="chart tall" id="habitat-chart" data-draw="habitat" data-source="habitat"></div>
+  </section>
+
+  <section id="regz-sec">
+    <h2>Fished species did better in Dominica than the region predicts</h2>
+    <p class="sub">Each dot is a species: Dominica's trend compared with the spread of trends on six neighboring islands (z). Positive means the species did better in Dominica than expected. Black bars are medians. Fished species lean positive; unfished species do not.</p>
+    <div class="chart" id="regz-chart" data-draw="regz" data-source="regional_z"></div>
+  </section>
+
+  <section id="curves-sec">
+    <h2>How key species changed</h2>
+    <p class="sub">Smoothed trend (spline model adjusted for the share of expert surveys) with 95% interval. Dashed line: first lionfish (2011). Dotted line: Hurricane Maria (2017).</p>
+    <div class="chart" id="curves-chart" data-draw="curves" data-source="curves"></div>
+  </section>
+
+  <section id="robust-sec">
+    <h2>How robust are the 98 consistent trends?</h2>
+    <p class="sub">Number of the 98 robust trends that stay significant, in the same direction, under each check.</p>
+    <div class="tablewrap" style="max-height:none">
+      <table id="robust-table" data-source="robustness" data-row-key="check">
+        <thead><tr><th data-field="check">Check</th><th class="n" data-field="kept">Still significant</th><th data-field="note">Note</th></tr></thead>
+        <tbody data-draw="robust-rows"></tbody>
+      </table>
+    </div>
   </section>
 
   <section id="explorer-sec">
@@ -526,6 +556,95 @@ dash.draw('fgroups', (el) => {
     .on('mousemove', (ev, r) => tip.show(ev, [r.g, `×${d3.format('.2f')(r.or)} per decade (${d3.format('.2f')(r.lo)}–${d3.format('.2f')(r.hi)})`, `${r.n} species: ${r.up} up, ${r.dn} down`])).on('mouseleave', () => tip.hide());
   g.append('text').attr('x', m.l - 6).attr('y', cy).attr('dy', '0.35em').attr('text-anchor', 'end').text((r) => r.g);
   g.append('text').attr('x', (r) => x(r.hi) + 6).attr('y', cy).attr('dy', '0.35em').text((r) => '×' + d3.format('.2f')(r.or));
+});
+</script>
+<script>
+dash.draw('sw-wall', (el) => { el.style.background = dash.colors[0]; });
+dash.draw('sw-slope', (el) => { el.style.background = dash.colors[2]; });
+dash.draw('sw-outh', (el) => { el.style.background = dash.colors[1]; });
+dash.draw('habitat', (el) => {
+  if (!RF.ok('habitat')) return RF.fail(el, ['habitat']);
+  const rows = dash.data('habitat').data.map((r) => ({ sp: r.species, grp: r.group, w: RF.num(r.sf_in_wall), s: RF.num(r.sf_in_slope), o: RF.num(r.sf_out), or: RF.num(r.OR_inside_matched), q: RF.num(r.q_matched) }))
+    .sort((a, b) => (a.grp === b.grp ? (b.s - b.o) - (a.s - a.o) : (a.grp === 'Fished' ? -1 : 1)));
+  const grps = [...new Set(rows.map((r) => r.grp))];
+  const keys = grps.flatMap((g) => ['§' + g, ...rows.filter((r) => r.grp === g).map((r) => r.sp)]);
+  const H = keys.length * 24 + 44;
+  const { svg, w } = RF.svg(el, H, 'Dot plot of sighting frequency at reserve wall sites, reserve slope sites and outside sites for fished species and parrotfish');
+  const m = { t: 10, r: 16, b: 28, l: Math.min(RF.labW(svg, rows.map((r) => r.sp)) + 10, w * 0.45) };
+  const x = d3.scaleLinear().domain([0, 100]).range([m.l, w - m.r]);
+  const y = d3.scaleBand().domain(keys).range([m.t, H - m.b]).padding(0.3);
+  svg.append('g').attr('class', 'grid').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(5).tickSize(-(H - m.t - m.b)).tickFormat(''));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(5).tickFormat((d) => d + '%'));
+  const cy = (r) => y(r.sp) + y.bandwidth() / 2;
+  svg.append('g').selectAll('text').data(grps).join('text').attr('x', 0).attr('y', (g) => y('§' + g) + y.bandwidth() / 2).attr('dy', '0.35em').style('font-weight', 600).text((g) => g);
+  const tip = RF.tip(el);
+  const g = svg.append('g').selectAll('g').data(rows).join('g');
+  g.append('line').attr('x1', (r) => x(Math.min(r.w, r.s, r.o))).attr('x2', (r) => x(Math.max(r.w, r.s, r.o))).attr('y1', cy).attr('y2', cy).style('stroke', 'var(--cds-chart-reference)');
+  [['w', 0], ['s', 2], ['o', 1]].forEach(([k, c]) => g.append('circle').attr('cx', (r) => x(r[k])).attr('cy', cy).attr('r', 5).style('fill', dash.colors[c]));
+  g.append('text').attr('x', m.l - 6).attr('y', cy).attr('dy', '0.35em').attr('text-anchor', 'end').text((r) => r.sp);
+  g.append('rect').attr('x', m.l).attr('width', w - m.l - m.r).attr('y', (r) => y(r.sp)).attr('height', y.bandwidth()).style('fill', 'transparent')
+    .on('mousemove', (ev, r) => tip.show(ev, [r.sp, `Walls ${RF.fmt1(r.w)}% · reserve slopes ${RF.fmt1(r.s)}% · outside ${RF.fmt1(r.o)}%`, `Reserve slopes vs outside: odds ×${d3.format('.2f')(r.or)}${r.q < 0.05 ? '' : ' (not significant)'}`]))
+    .on('mouseleave', () => tip.hide());
+});
+dash.draw('regz', (el) => {
+  if (!RF.ok('regional_z')) return RF.fail(el, ['regional_z']);
+  const rows = dash.data('regional_z').data.map((r, i) => ({ sp: r.species, f: +r.fished, z: Math.max(-5, Math.min(5, RF.num(r.z))), zr: RF.num(r.z), d: RF.num(r.dominica_or), o: RF.num(r.others_or), j: (((Math.sin((i + 1) * 12.9898) * 43758.5453) % 1) + 1) % 1 - 0.5 }));
+  const H = 240, m = { t: 14, r: 50, b: 34, l: 80 };
+  const { svg, w } = RF.svg(el, H, 'Strip plot of Dominica trend relative to neighboring islands for fished and unfished species');
+  const x = d3.scaleLinear().domain([-5, 5]).range([m.l, w - m.r]);
+  const y = d3.scaleBand().domain(['Fished', 'Unfished']).range([m.t, H - m.b]).padding(0.2);
+  svg.append('g').attr('class', 'grid').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(5).tickSize(-(H - m.t - m.b)).tickFormat(''));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(5));
+  svg.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', m.t).attr('y2', H - m.b).style('stroke', 'var(--cds-chart-reference)');
+  const lab = (r) => (r.f ? 'Fished' : 'Unfished');
+  const tip = RF.tip(el);
+  svg.append('g').selectAll('circle').data(rows).join('circle').attr('cx', (r) => x(r.z)).attr('cy', (r) => y(lab(r)) + y.bandwidth() / 2 + r.j * y.bandwidth() * 0.6).attr('r', 4)
+    .style('fill', (r) => dash.colors[r.f ? 0 : 1]).style('fill-opacity', 0.7)
+    .on('mousemove', (ev, r) => tip.show(ev, [r.sp, `Dominica ×${d3.format('.2f')(r.d)} per decade, other islands ×${d3.format('.2f')(r.o)}`, `z = ${d3.format('.2f')(r.zr)}`])).on('mouseleave', () => tip.hide());
+  ['Fished', 'Unfished'].forEach((g) => {
+    const v = rows.filter((r) => lab(r) === g).map((r) => r.zr);
+    const md = d3.median(v);
+    svg.append('line').attr('x1', x(md)).attr('x2', x(md)).attr('y1', y(g) + 4).attr('y2', y(g) + y.bandwidth() - 4).style('stroke', 'var(--color-fg)').style('stroke-width', 3);
+    svg.append('text').attr('x', m.l - 8).attr('y', y(g) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text(g);
+    svg.append('text').attr('x', w - m.r + 6).attr('y', y(g) + y.bandwidth() / 2).attr('dy', '0.35em').text(`n = ${v.length}`);
+  });
+  svg.append('text').attr('x', (m.l + w - m.r) / 2).attr('y', H - 2).attr('text-anchor', 'middle').text('Dominica relative to the region (z)');
+});
+dash.draw('curves', (el) => {
+  if (!RF.ok('curves')) return RF.fail(el, ['curves']);
+  const d = dash.data('curves').data.map((r) => ({ sp: String(r.species).replace(' (exotic)', ''), yr: +r.year, f: RF.num(r.fit), lo: RF.num(r.lo), hi: RF.num(r.hi) }));
+  const sps = [...new Set(d.map((r) => r.sp))];
+  const W = Math.max(280, el.clientWidth);
+  const cols = W < 560 ? 2 : 3, rowsN = Math.ceil(sps.length / cols), ph = 150, H = rowsN * (ph + 26) + 30;
+  const { svg, w } = RF.svg(el, H, 'Small multiples of smoothed sighting frequency over time for nine species');
+  const pw = (w - 10) / cols, m = { l: 44, r: 8, t: 18, b: 22 };
+  const x = d3.scaleLinear().domain(d3.extent(d, (r) => r.yr));
+  const tip = RF.tip(el);
+  sps.forEach((sp, i) => {
+    const gx = (i % cols) * pw, gy = Math.floor(i / cols) * (ph + 26);
+    const g = svg.append('g').attr('transform', `translate(${gx},${gy})`);
+    const xs = x.copy().range([m.l, pw - m.r]);
+    const ys = d3.scaleLinear().domain([0, 100]).range([ph, m.t]);
+    const s = d.filter((r) => r.sp === sp);
+    g.append('g').attr('class', 'axis').attr('transform', `translate(0,${ph})`).call(d3.axisBottom(xs).ticks(3).tickFormat(d3.format('d')));
+    g.append('g').attr('class', 'axis').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(ys).ticks(3).tickFormat((v) => v + '%'));
+    g.append('path').datum(s).style('fill', dash.colors[0]).style('fill-opacity', 0.18).attr('d', d3.area().x((r) => xs(r.yr)).y0((r) => ys(r.lo)).y1((r) => ys(r.hi)));
+    g.append('path').datum(s).attr('fill', 'none').style('stroke', dash.colors[0]).attr('stroke-width', 2).attr('d', d3.line().x((r) => xs(r.yr)).y((r) => ys(r.f)));
+    [[2011, '4 3'], [2017.7, '1 3']].forEach(([v, da]) => g.append('line').attr('x1', xs(v)).attr('x2', xs(v)).attr('y1', m.t).attr('y2', ph).style('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', da));
+    g.append('text').attr('x', m.l).attr('y', 10).style('font-weight', 600).text(sp);
+    g.append('rect').attr('x', m.l).attr('y', m.t).attr('width', pw - m.l - m.r).attr('height', ph - m.t).style('fill', 'transparent')
+      .on('mousemove', (ev) => { const yr = Math.round(xs.invert(d3.pointer(ev)[0])); const r = s.find((q) => q.yr === yr); if (r) tip.show(ev, [sp, String(yr), `${RF.fmt1(r.f)}% of surveys (${RF.fmt1(r.lo)}–${RF.fmt1(r.hi)}%)`]); })
+      .on('mouseleave', () => tip.hide());
+  });
+});
+dash.draw('robust-rows', (tb) => {
+  tb.replaceChildren();
+  if (!RF.ok('robustness')) return;
+  dash.data('robustness').data.forEach((r) => {
+    const tr = document.createElement('tr'); tr.dataset.key = encodeURIComponent(r.check);
+    [r.check, `${r.kept} of ${r.of}`, r.note || ''].forEach((v, i) => { const td = document.createElement('td'); td.textContent = v; if (i === 1) td.className = 'n'; tr.append(td); });
+    tb.append(tr);
+  });
 });
 </script>
 </body>

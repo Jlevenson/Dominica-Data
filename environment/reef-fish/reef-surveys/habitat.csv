@@ -1,0 +1,15 @@
+species,group,sf_in_wall,sf_in_slope,sf_out,OR_inside_matched,q_matched
+Bar Jack,Fished,66.696,57.576,43.617,1.526,0.001
+Black Margate,Fished,15.17,9.091,3.617,1.203,0.66
+Blackfin Snapper,Fished,0.349,9.848,11.277,0.586,0.0
+Coney,Fished,74.194,76.894,77.021,1.344,0.056
+Graysby,Fished,79.163,74.621,62.34,1.8,0.0
+Great Barracuda,Fished,12.642,4.545,7.234,0.461,0.102
+Horse-eye Jack,Fished,13.514,5.303,4.043,0.995,0.985
+Mutton Snapper,Fished,16.303,12.879,11.915,0.93,0.709
+Princess Parrotfish,Not fished,80.645,71.591,54.255,2.768,0.0
+Queen Parrotfish,Not fished,24.673,33.712,9.149,4.783,0.0
+Red Hind,Fished,13.339,10.227,22.979,0.368,0.0
+Schoolmaster,Fished,15.519,5.303,3.617,1.171,0.71
+Stoplight Parrotfish,Not fished,81.779,79.924,70.0,1.912,0.0
+Yellowtail Snapper,Fished,75.937,64.015,57.447,0.754,0.026
