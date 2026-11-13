@@ -38,6 +38,13 @@ Divers use REEF's Roving Diver Technique: they swim freely around a site, record
 | `abundance_den_trends.csv` | Change in REEF density index (abundance when seen) per decade for 138 species |
 | `code/analyze.py`, `code/export.py` | Trend analysis and dashboard export scripts |
 | `code/mpa.py`, `code/regional.py`, `code/extra.py` | Reserve comparison, regional comparison, and abundance, functional group, lionfish–prey, Hurricane Maria and community analyses |
+| `code/review.py`, `code/traits.py` | Autocorrelation and non-linearity, Dominica vs between-island variation, effort-corrected richness, sensitivity and species-trait analyses |
+| `review_autocorr_gam.csv`, `review_gam_curves.csv`, `fig4_trajectories.png` | Autocorrelation and spline tests for 201 taxa; smoothed trajectories for nine species |
+| `review_regional_predictive.csv` | Dominica's trend against the spread of six other islands, 152 species |
+| `review_richness_period.csv`, `review_richness_year.csv` | Rarefied and Chao2 species richness by period and year |
+| `review_sensitivity.csv` | Robust trends refitted under six alternative analysis choices |
+| `traits_species.csv` | Species traits (FishLife/FishBase) with trends |
+| `review_summary.json`, `traits_summary.json` | Summary statistics from the above |
 | `d3.v7.min.js` | Charting library used by the dashboard (d3 v7, ISC license) |
 
 ## Columns
@@ -85,3 +92,4 @@ The REEF summary data in this folder belong to REEF and are shared here with att
 ## Change log
 - 2026-11-13 First version.
 - 2026-11-13 Added reserve, regional and functional group comparisons, with their data and code.
+- 2026-11-13 Added robustness analyses (autocorrelation, between-island comparison, richness, sensitivity, traits).

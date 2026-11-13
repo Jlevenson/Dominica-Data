@@ -1,0 +1,179 @@
+{
+ "autocorr": {
+  "n_species": 201,
+  "median_ac1": 0.041921145782122166,
+  "median_ac1_robust": 0.04942457239202246,
+  "share_ac1_gt_0_3": 0.11442786069651742,
+  "robust_n": 98,
+  "robust_still_q05_hac": 35,
+  "median_se_ratio_hac_vs_quasi": 6.3369146296676675,
+  "nonlinear_q05": 4,
+  "nonlinear_q05_robust": 1,
+  "robust_still_q05_ar1": 97,
+  "robust_gam_change_same_dir": 14
+ },
+ "regional_hier": {
+  "n_species": 180,
+  "dom_more_positive": 86,
+  "dom_more_negative": 76
+ },
+ "richness": {
+  "periods": [
+   {
+    "period": "1994\u201300",
+    "surveys": 435,
+    "observed": 284,
+    "rarefied_30": 169.7,
+    "rarefied_60": 198.4,
+    "chao2": 329.9,
+    "exp_share": 0.1
+   },
+   {
+    "period": "2001\u201304",
+    "surveys": 322,
+    "observed": 233,
+    "rarefied_30": 159.8,
+    "rarefied_60": 183.0,
+    "chao2": 246.9,
+    "exp_share": 0.3
+   },
+   {
+    "period": "2005\u201308",
+    "surveys": 186,
+    "observed": 238,
+    "rarefied_30": 162.8,
+    "rarefied_60": 190.3,
+    "chao2": 272.8,
+    "exp_share": 0.0
+   },
+   {
+    "period": "2009\u201312",
+    "surveys": 222,
+    "observed": 236,
+    "rarefied_30": 168.9,
+    "rarefied_60": 193.4,
+    "chao2": 312.2,
+    "exp_share": 0.6
+   },
+   {
+    "period": "2013\u201316",
+    "surveys": 477,
+    "observed": 270,
+    "rarefied_30": 167.4,
+    "rarefied_60": 193.0,
+    "chao2": 319.9,
+    "exp_share": 0.3
+   },
+   {
+    "period": "2017\u201320",
+    "surveys": 183,
+    "observed": 234,
+    "rarefied_30": 173.4,
+    "rarefied_60": 200.6,
+    "chao2": 246.7,
+    "exp_share": 0.4
+   },
+   {
+    "period": "2021\u201324",
+    "surveys": 366,
+    "observed": 244,
+    "rarefied_30": 163.6,
+    "rarefied_60": 187.3,
+    "chao2": 256.7,
+    "exp_share": 0.5
+   },
+   {
+    "period": "2025\u201326",
+    "surveys": 144,
+    "observed": 241,
+    "rarefied_30": 178.6,
+    "rarefied_60": 206.2,
+    "chao2": 277.1,
+    "exp_share": 0.8
+   }
+  ],
+  "slope_per_decade_r10": 0.28315721279684425,
+  "ci": [
+   -6.514083507795429,
+   7.080397933389118
+  ],
+  "p": 0.9349270012273552,
+  "exp_coef": 16.689677735995858,
+  "p_exp": 0.005484493769529344,
+  "mean_r10": 119.08456988315686
+ },
+ "sensitivity": {
+  "busiest_years": [
+   2000,
+   2014,
+   2004,
+   2024,
+   2016
+  ],
+  "table": [
+   {
+    "scenario": "Min 5 surveys/year",
+    "species": 98,
+    "same_sign": 98,
+    "same_sign_q05": 98,
+    "rho": 1.0
+   },
+   {
+    "scenario": "Min 20 surveys/year",
+    "species": 98,
+    "same_sign": 98,
+    "same_sign_q05": 98,
+    "rho": 1.0
+   },
+   {
+    "scenario": "Drop 5 busiest years",
+    "species": 98,
+    "same_sign": 86,
+    "same_sign_q05": 79,
+    "rho": 0.878
+   },
+   {
+    "scenario": "From 2000 only",
+    "species": 98,
+    "same_sign": 95,
+    "same_sign_q05": 91,
+    "rho": 0.99
+   },
+   {
+    "scenario": "Drop 2025\u201326",
+    "species": 98,
+    "same_sign": 98,
+    "same_sign_q05": 95,
+    "rho": 0.992
+   },
+   {
+    "scenario": "Drop 2017\u201318 (Maria)",
+    "species": 98,
+    "same_sign": 98,
+    "same_sign_q05": 97,
+    "rho": 0.999
+   }
+  ]
+ },
+ "regional_predictive": {
+  "n_species": 152,
+  "dom_higher_q05": 3,
+  "dom_lower_q05": 0,
+  "dom_higher_p05": 10,
+  "dom_lower_p05": 6,
+  "outside_range": 46,
+  "fished": {
+   "n": 31,
+   "mean_z": 0.8488144146094697,
+   "share_pos": 0.7096774193548387,
+   "wilcoxon_p": 0.0020003607496619225
+  },
+  "unfished": {
+   "n": 96,
+   "mean_z": -0.08964531766336566,
+   "share_pos": 0.4583333333333333,
+   "wilcoxon_p": 0.28429846529653
+  },
+  "fished_vs_unfished_mw_p": 0.0003461349644749395
+ }
+}
