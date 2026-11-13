@@ -1,0 +1,9 @@
+{
+ "n_species": 168,
+ "robust_compared": 98,
+ "robust_same_sign": 87,
+ "robust_same_sign_q05": 80,
+ "rho": 0.7827178521720249,
+ "fished_median_within_OR": 1.2087683835826268,
+ "unfished_median_within_OR": 1.0272677628026843
+}
