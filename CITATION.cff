@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use these data, please cite them as below."
+title: "Oceans Forward Dominica Data Repository"
+type: dataset
+authors:
+  - family-names: Levenson
+    given-names: J. Jacob
+    affiliation: Oceans Forward
+license: CC-BY-4.0
+repository-code: "https://github.com/Jlevenson/Dominica-Data"
+url: "https://jlevenson.github.io/Dominica-Data/"
+keywords:
+  - Dominica
+  - coral reefs
+  - reef fish
+  - sea turtles
