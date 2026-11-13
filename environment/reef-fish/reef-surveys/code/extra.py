@@ -69,7 +69,7 @@ CRYPTIC_SP = {'Green Razorfish', 'Rosy Razorfish', 'Pearly Razorfish', 'Sand Div
 def group(r):
     if r.common.startswith('Red Lionfish'):
         return None
-    if r.common in GROUPERS or r.family in FISHED_FAM or (r.family == 'Parrotfish'):
+    if r.common in GROUPERS or r.family in FISHED_FAM:
         return 'Fished'
     if r.family in CRYPTIC_FAM or r.common in CRYPTIC_SP:
         return 'Small cryptic / benthic'

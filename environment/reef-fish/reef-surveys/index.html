@@ -149,7 +149,7 @@
 
   <section id="regional-sec">
     <h2>Which changes are Dominica's own?</h2>
-    <p class="sub">Trend in sighting odds per decade on seven islands (Dominica plus St Lucia, St Vincent, Grenada, Saba, St Kitts and St Eustatius). Cleaning goby falls and sharknose goby rises everywhere, an identification shift. Spotted goatfish falls across the southern islands. Snapper and parrotfish gains are stronger in Dominica than elsewhere.</p>
+    <p class="sub">Trend in sighting odds per decade on seven islands (Dominica plus St Lucia, St Vincent, Grenada, Saba, St Kitts and St Eustatius). Cleaning goby falls and sharknose goby rises everywhere, an identification shift. Spotted goatfish falls across the southern islands. Snapper gains are stronger in Dominica than elsewhere.</p>
     <div class="legend"><span><i class="sw" data-draw="sw-dom"></i>Dominica</span><span><i class="sw" style="background:var(--cds-chart-reference)"></i>Other islands</span></div>
     <div class="chart tall" id="regional-chart" data-draw="regional" data-source="regional"></div>
   </section>
@@ -189,7 +189,7 @@
       <li><b>Trend model.</b> For each species, a quasi-binomial GLM of surveys-with-sighting out of surveys, against year (scaled per decade) plus the share of expert surveys that year. Years with fewer than 10 surveys are dropped. P-values are corrected for testing many species (Benjamini–Hochberg). A trend is called robust only if q &lt; 0.05 and expert-only and novice-only fits agree in sign.</li>
       <li><b>Reserve comparison.</b> 28 sites with at least 10 surveys classed as inside (16) or outside (12) the Soufrière–Scotts Head Marine Reserve; 7 sites of uncertain location left out. Quasi-binomial GLM of sightings per site and period with reserve status, year, their interaction and expert share. Robust means q &lt; 0.05 and the same direction when Castle Comfort, the largest outside site, is dropped.</li>
       <li><b>Regional comparison.</b> The same trend model fitted to REEF yearly exports for St Lucia, St Vincent, Grenada, Saba, St Kitts and St Eustatius (years with at least 10 surveys).</li>
-      <li><b>Functional groups.</b> Species grouped by family; the group trend is a random-effects mean of the species trends. Parrotfish count in both fished and herbivores.</li>
+      <li><b>Functional groups.</b> Species grouped by family; the group trend is a random-effects mean of the species trends. Parrotfish are not fished in Dominica, so they count as herbivores, not fished species.</li>
       <li><b>Excluded.</b> Reporting categories that REEF added or merged over time (juvenile hamlet, juvenile grunt, goby and blenny complexes, unidentified species), because their changes reflect the species list rather than the reef.</li>
       <li><b>What this cannot tell you.</b> These are presence records from volunteer roving dives, not density counts. Which sites were visited, the season, depth and individual surveyors all shift between years and are not controlled. In particular, declines in small cryptic fish (gobies, flounders, scorpionfish, eels) can come from changes in who surveys and how carefully, not just from the fish. Hurricane Maria (2017) and the 2005, 2010 and 2023 bleaching years fall inside the record but are not modelled.</li>
       <li><b>For a stronger analysis.</b> Survey-level raw data (date, site, depth, surveyor ID, abundance codes) from REEF would allow site and surveyor effects and density-weighted indices. REEF asks researchers to request raw data from its Director of Science.</li>
