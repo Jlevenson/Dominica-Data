@@ -1,0 +1,11 @@
+{
+  "title": "Oceans Forward Dominica Data Repository",
+  "upload_type": "dataset",
+  "description": "Datasets collected or managed by Oceans Forward in Dominica (sea turtles, telemetry, coral, baited remote underwater video, reef fish and agriculture), with analysis code. Includes the derived data and code for the analysis of REEF volunteer fish surveys in Dominica, 1994–2026. Browse at https://jlevenson.github.io/Dominica-Data/.",
+  "creators": [
+    {"name": "Levenson, J. Jacob", "affiliation": "Oceans Forward"}
+  ],
+  "license": "cc-by-4.0",
+  "keywords": ["Dominica", "coral reefs", "reef fish", "REEF", "sea turtles", "Caribbean", "citizen science", "Oceans Forward"],
+  "access_right": "open"
+}
