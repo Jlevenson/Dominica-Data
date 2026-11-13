@@ -61,6 +61,7 @@ pd.concat(ai).to_csv('abundance_index_by_period.csv', index=False)
 # ---------------------------------------------------------------- 3. functional groups
 FISHED_FAM = {'Snapper', 'Jack', 'Barracuda', 'Mackerel', 'Triggerfish', 'Porgy', 'Grunt', 'Goatfish'}
 GROUPERS = {'Coney', 'Graysby', 'Red Hind', 'Rock Hind', 'Yellowmouth Grouper', 'Nassau Grouper', 'Tiger Grouper', 'Black Grouper', 'Yellowfin Grouper', 'Red Grouper', 'Gag'}
+FISHED_SP = {'Blackbar Soldierfish', 'Longspine Squirrelfish', 'Squirrelfish', 'Reef Squirrelfish', 'Longjaw Squirrelfish', 'Dusky Squirrelfish'}  # fished in Dominica (pots, spear)
 HERB_FAM = {'Parrotfish', 'Surgeonfish', 'Chub'}
 CRYPTIC_FAM = {'Goby', 'Blenny - Combtooth', 'Blenny - Pike', 'Blenny - Labrisomids', 'Blenny - Triplefin', 'Flounder', 'Scorpionfish',
                'Snake Eel', 'Frogfish', 'Jawfish', 'Cardinalfish', 'Flying Gurnard', 'Lizardfish', 'Batfish', 'Pipefish and Seahorse',
@@ -69,7 +70,7 @@ CRYPTIC_SP = {'Green Razorfish', 'Rosy Razorfish', 'Pearly Razorfish', 'Sand Div
 def group(r):
     if r.common.startswith('Red Lionfish'):
         return None
-    if r.common in GROUPERS or r.family in FISHED_FAM:
+    if r.common in GROUPERS or r.family in FISHED_FAM or r.common in FISHED_SP:
         return 'Fished'
     if r.family in CRYPTIC_FAM or r.common in CRYPTIC_SP:
         return 'Small cryptic / benthic'

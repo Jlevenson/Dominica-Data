@@ -156,20 +156,20 @@
 
   <section id="fgroups-sec">
     <h2>Trends by functional group</h2>
-    <p class="sub">Average trend per decade of species in each group, with 95% interval. Herbivores and fished species tend up; small cryptic and bottom-dwelling species tend down.</p>
+    <p class="sub">Average trend per decade of species in each group, with 95% interval. Herbivores tend up. Fished species are mixed: snappers and jacks rose, squirrelfishes fell. Small cryptic and bottom-dwelling species tend down.</p>
     <div class="chart" id="fgroups-chart" data-draw="fgroups" data-source="fgroups"></div>
   </section>
 
   <section id="habitat-sec">
     <h2>Most of the reserve difference is habitat</h2>
-    <p class="sub">Inside the reserve, steep crater walls and pinnacles hold more jacks, schoolmaster and black margate than sloping reef. Comparing reserve slope sites (Champagne Reef and Tous Sable) with outside sites, which are all slopes, only bar jack and graysby among fished species stay more common inside. Unfished parrotfish stay more common inside too. Habitat classes are provisional.</p>
+    <p class="sub">Inside the reserve, steep crater walls and pinnacles hold more jacks, schoolmaster and black margate than sloping reef. Comparing reserve slope sites (Champagne Reef and Tous Sable) with outside sites, which are all slopes, only bar jack, graysby, blackbar soldierfish and longspine and longjaw squirrelfish among fished species stay more common inside. Unfished parrotfish stay more common inside too. Habitat classes are provisional.</p>
     <div class="legend"><span><i class="sw" data-draw="sw-wall"></i>Inside, walls and pinnacles</span><span><i class="sw" data-draw="sw-slope"></i>Inside, slopes</span><span><i class="sw" data-draw="sw-outh"></i>Outside (slopes)</span></div>
     <div class="chart tall" id="habitat-chart" data-draw="habitat" data-source="habitat"></div>
   </section>
 
   <section id="regz-sec">
     <h2>Fished species did better in Dominica than the region predicts</h2>
-    <p class="sub">Each dot is a species: Dominica's trend compared with the spread of trends on six neighboring islands (z). Positive means the species did better in Dominica than expected. Black bars are medians. Fished species lean positive; unfished species do not.</p>
+    <p class="sub">Each dot is a species: Dominica's trend compared with the spread of trends on six neighboring islands (z). Positive means the species did better in Dominica than expected. Black bars are medians. Fished species lean positive, though blackbar soldierfish and longspine squirrelfish did worse; unfished species do not.</p>
     <div class="chart" id="regz-chart" data-draw="regz" data-source="regional_z"></div>
   </section>
 
@@ -219,7 +219,7 @@
       <li><b>Trend model.</b> For each species, a quasi-binomial GLM of surveys-with-sighting out of surveys, against year (scaled per decade) plus the share of expert surveys that year. Years with fewer than 10 surveys are dropped. P-values are corrected for testing many species (Benjamini–Hochberg). A trend is called robust only if q &lt; 0.05 and expert-only and novice-only fits agree in sign.</li>
       <li><b>Reserve comparison.</b> 28 sites with at least 10 surveys classed as inside (16) or outside (12) the Soufrière–Scotts Head Marine Reserve; 7 sites of uncertain location left out. Quasi-binomial GLM of sightings per site and period with reserve status, year, their interaction and expert share. Robust means q &lt; 0.05 and the same direction when Castle Comfort, the largest outside site, is dropped.</li>
       <li><b>Regional comparison.</b> The same trend model fitted to REEF yearly exports for St Lucia, St Vincent, Grenada, Saba, St Kitts and St Eustatius (years with at least 10 surveys).</li>
-      <li><b>Functional groups.</b> Species grouped by family; the group trend is a random-effects mean of the species trends. Parrotfish are not fished in Dominica, so they count as herbivores, not fished species.</li>
+      <li><b>Functional groups.</b> Species grouped by family; the group trend is a random-effects mean of the species trends. Parrotfish are not fished in Dominica, so they count as herbivores, not fished species. Squirrelfishes and soldierfishes (except cardinal soldierfish) are fished in Dominica and count as fished.</li>
       <li><b>Excluded.</b> Reporting categories that REEF added or merged over time (juvenile hamlet, juvenile grunt, goby and blenny complexes, unidentified species), because their changes reflect the species list rather than the reef.</li>
       <li><b>What this cannot tell you.</b> These are presence records from volunteer roving dives, not density counts. Which sites were visited, the season, depth and individual surveyors all shift between years and are not controlled. In particular, declines in small cryptic fish (gobies, flounders, scorpionfish, eels) can come from changes in who surveys and how carefully, not just from the fish. Hurricane Maria (2017) and the 2005, 2010 and 2023 bleaching years fall inside the record but are not modelled.</li>
       <li><b>For a stronger analysis.</b> Survey-level raw data (date, site, depth, surveyor ID, abundance codes) from REEF would allow site and surveyor effects and density-weighted indices. REEF asks researchers to request raw data from its Director of Science.</li>
