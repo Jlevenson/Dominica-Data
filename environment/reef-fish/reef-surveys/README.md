@@ -30,7 +30,14 @@ Divers use REEF's Roving Diver Technique: they swim freely around a site, record
 | `groups.json` | Mean sighting frequency for five fish groups per period |
 | `species_by_year.csv` | REEF yearly summaries as downloaded: %SF and density index for every taxon, year and experience level |
 | `effort_by_year_detail.csv` | Survey counts per year by type (species-and-abundance `SA`, species-only `SO`) and experience level |
-| `code/analyze.py`, `code/export.py` | Analysis and export scripts |
+| `reserve.csv` | Sighting frequency inside vs outside the Soufrière–Scotts Head Marine Reserve for 19 key species (dashboard) |
+| `mpa_species.csv` | Inside vs outside reserve model results for 168 species: odds ratio, change over time, q values, robustness |
+| `regional.csv` | Trend per decade for 24 focal species on seven islands (Dominica, St Lucia, St Vincent, Grenada, Saba, St Kitts, St Eustatius) |
+| `regional_trends_all.csv` | Trend per decade on each island for 170 species with at least 200 records across islands |
+| `fgroups.csv` | Mean trend per decade for four functional groups (fished, herbivores, small cryptic/benthic, other) |
+| `abundance_den_trends.csv` | Change in REEF density index (abundance when seen) per decade for 138 species |
+| `code/analyze.py`, `code/export.py` | Trend analysis and dashboard export scripts |
+| `code/mpa.py`, `code/regional.py`, `code/extra.py` | Reserve comparison, regional comparison, and abundance, functional group, lionfish–prey, Hurricane Maria and community analyses |
 | `d3.v7.min.js` | Charting library used by the dashboard (d3 v7, ISC license) |
 
 ## Columns
@@ -77,3 +84,4 @@ The REEF summary data in this folder belong to REEF and are shared here with att
 
 ## Change log
 - 2026-11-13 First version.
+- 2026-11-13 Added reserve, regional and functional group comparisons, with their data and code.

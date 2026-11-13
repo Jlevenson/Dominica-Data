@@ -66,7 +66,7 @@
 <script>
   // Minimal stand-in for the Claude dashboard runtime: loads the data files next to this page and redraws on resize.
   window.dash = (() => {
-    const FILES = { effort: ['effort.csv', 'csv'], lionfish: ['lionfish.csv', 'csv'], trends: ['trends.json', 'json'], periods: ['periods.json', 'json'], groups: ['groups.json', 'json'] };
+    const FILES = { effort: ['effort.csv', 'csv'], lionfish: ['lionfish.csv', 'csv'], trends: ['trends.json', 'json'], periods: ['periods.json', 'json'], groups: ['groups.json', 'json'], reserve: ['reserve.csv', 'csv'], regional: ['regional.csv', 'csv'], fgroups: ['fgroups.csv', 'csv'] };
     const sources = {}, calcs = {}, draws = {}, params = {};
     const run = (name) => document.querySelectorAll(`[data-draw="${name}"]`).forEach((el) => { try { draws[name](el); } catch (e) { console.error(name, e); } });
     const api = {
@@ -140,6 +140,26 @@
     <div class="chart tall" id="trends-chart" data-draw="trends" data-source="trends"></div>
   </section>
 
+  <section id="reserve-sec">
+    <h2>Fished species are more common inside the marine reserve</h2>
+    <p class="sub">Share of surveys recording each species at 16 sites inside the Soufrière–Scotts Head Marine Reserve (1,411 surveys) and 12 sites outside (470). Inside sites are mostly walls and pinnacles, outside sites include sandier shore dives, so sand species are more common outside. Filled dots: robust difference. ↑ marks species whose inside share grew relative to outside over time.</p>
+    <div class="legend"><span><i class="sw" data-draw="sw-in"></i>Inside reserve</span><span><i class="sw" data-draw="sw-out"></i>Outside</span></div>
+    <div class="chart tall" id="reserve-chart" data-draw="reserve" data-source="reserve"></div>
+  </section>
+
+  <section id="regional-sec">
+    <h2>Which changes are Dominica's own?</h2>
+    <p class="sub">Trend in sighting odds per decade on seven islands (Dominica plus St Lucia, St Vincent, Grenada, Saba, St Kitts and St Eustatius). Cleaning goby falls and sharknose goby rises everywhere, an identification shift. Spotted goatfish falls across the southern islands. Snapper and parrotfish gains are stronger in Dominica than elsewhere.</p>
+    <div class="legend"><span><i class="sw" data-draw="sw-dom"></i>Dominica</span><span><i class="sw" style="background:var(--cds-chart-reference)"></i>Other islands</span></div>
+    <div class="chart tall" id="regional-chart" data-draw="regional" data-source="regional"></div>
+  </section>
+
+  <section id="fgroups-sec">
+    <h2>Trends by functional group</h2>
+    <p class="sub">Average trend per decade of species in each group, with 95% interval. Herbivores and fished species tend up; small cryptic and bottom-dwelling species tend down.</p>
+    <div class="chart" id="fgroups-chart" data-draw="fgroups" data-source="fgroups"></div>
+  </section>
+
   <section id="explorer-sec">
     <h2>Look up any species</h2>
     <div class="controls">
@@ -167,6 +187,9 @@
     <ul>
       <li><b>Data.</b> Surveys were made over the years by Oceans Forward staff and REEF volunteers, together with participatory science divers trained in REEF methods. REEF Comparison Report exports for zone 7112, one per calendar year, for all surveyors and separately for experts and novices. Sighting frequency (SF) is the share of all surveys that recorded a species. REEF's published %SF divides sightings on all surveys by species-and-abundance surveys only, so it can exceed 100%; here sightings were back-calculated and divided by all surveys. REEF's density index (DEN, 1–4 log abundance categories) is in the source files but not modelled here.</li>
       <li><b>Trend model.</b> For each species, a quasi-binomial GLM of surveys-with-sighting out of surveys, against year (scaled per decade) plus the share of expert surveys that year. Years with fewer than 10 surveys are dropped. P-values are corrected for testing many species (Benjamini–Hochberg). A trend is called robust only if q &lt; 0.05 and expert-only and novice-only fits agree in sign.</li>
+      <li><b>Reserve comparison.</b> 28 sites with at least 10 surveys classed as inside (16) or outside (12) the Soufrière–Scotts Head Marine Reserve; 7 sites of uncertain location left out. Quasi-binomial GLM of sightings per site and period with reserve status, year, their interaction and expert share. Robust means q &lt; 0.05 and the same direction when Castle Comfort, the largest outside site, is dropped.</li>
+      <li><b>Regional comparison.</b> The same trend model fitted to REEF yearly exports for St Lucia, St Vincent, Grenada, Saba, St Kitts and St Eustatius (years with at least 10 surveys).</li>
+      <li><b>Functional groups.</b> Species grouped by family; the group trend is a random-effects mean of the species trends. Parrotfish count in both fished and herbivores.</li>
       <li><b>Excluded.</b> Reporting categories that REEF added or merged over time (juvenile hamlet, juvenile grunt, goby and blenny complexes, unidentified species), because their changes reflect the species list rather than the reef.</li>
       <li><b>What this cannot tell you.</b> These are presence records from volunteer roving dives, not density counts. Which sites were visited, the season, depth and individual surveyors all shift between years and are not controlled. In particular, declines in small cryptic fish (gobies, flounders, scorpionfish, eels) can come from changes in who surveys and how carefully, not just from the fish. Hurricane Maria (2017) and the 2005, 2010 and 2023 bleaching years fall inside the record but are not modelled.</li>
       <li><b>For a stronger analysis.</b> Survey-level raw data (date, site, depth, surveyor ID, abundance codes) from REEF would allow site and surveyor effects and density-weighted indices. REEF asks researchers to request raw data from its Director of Science.</li>
@@ -428,5 +451,79 @@ dash.draw('trend-rows', (tb) => {
   <p>Catalog ID ENV-REF-001. Preliminary analysis of REEF summary data; see Methods and caveats above.</p>
 </footer>
 </div>
+<script>
+dash.draw('sw-in', (el) => { el.style.background = dash.colors[0]; });
+dash.draw('sw-out', (el) => { el.style.background = dash.colors[1]; });
+dash.draw('sw-dom', (el) => { el.style.background = dash.colors[0]; });
+RF.labW = (svg, labels) => { const tmp = svg.append('g'); const w = d3.max(labels, (s) => { const t = tmp.append('text').text(s); const l = t.node().getComputedTextLength(); t.remove(); return l; }) || 120; tmp.remove(); return w; };
+dash.draw('reserve', (el) => {
+  if (!RF.ok('reserve')) return RF.fail(el, ['reserve']);
+  const rows = dash.data('reserve').data.map((r) => ({ sp: r.species, a: RF.num(r.sf_in), b: RF.num(r.sf_out), or: RF.num(r.OR_inside), rob: String(r.robust).toLowerCase() === 'true', wid: String(r.widened).toLowerCase() === 'true', n: RF.num(r.records) }))
+    .sort((p, q) => (q.a - q.b) - (p.a - p.b));
+  const H = rows.length * 24 + 44;
+  const { svg, w } = RF.svg(el, H, 'Dot plot of sighting frequency inside versus outside the marine reserve for selected species');
+  const lab = rows.map((r) => r.sp + (r.wid ? ' ↑' : ''));
+  const m = { t: 10, r: 16, b: 28, l: Math.min(RF.labW(svg, lab) + 10, w * 0.45) };
+  const x = d3.scaleLinear().domain([0, 100]).range([m.l, w - m.r]);
+  const y = d3.scaleBand().domain(rows.map((r) => r.sp)).range([m.t, H - m.b]).padding(0.3);
+  svg.append('g').attr('class', 'grid').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(5).tickSize(-(H - m.t - m.b)).tickFormat(''));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(5).tickFormat((d) => d + '%'));
+  const tip = RF.tip(el);
+  const g = svg.append('g').selectAll('g').data(rows).join('g');
+  const cy = (r) => y(r.sp) + y.bandwidth() / 2;
+  g.append('line').attr('x1', (r) => x(r.a)).attr('x2', (r) => x(r.b)).attr('y1', cy).attr('y2', cy).style('stroke', 'var(--cds-chart-reference)');
+  [['a', 0], ['b', 1]].forEach(([k, c]) => g.append('circle').attr('cx', (r) => x(r[k])).attr('cy', cy).attr('r', 5)
+    .style('fill', (r) => (r.rob ? dash.colors[c] : 'var(--color-panel)')).style('stroke', dash.colors[c]).style('stroke-width', 1.5));
+  g.append('text').attr('x', m.l - 6).attr('y', cy).attr('dy', '0.35em').attr('text-anchor', 'end').text((r) => r.sp + (r.wid ? ' ↑' : ''));
+  g.append('rect').attr('x', m.l).attr('width', w - m.l - m.r).attr('y', (r) => y(r.sp)).attr('height', y.bandwidth()).style('fill', 'transparent')
+    .on('mousemove', (ev, r) => tip.show(ev, [r.sp, `Inside ${RF.fmt1(r.a)}% · outside ${RF.fmt1(r.b)}%`, `Odds inside ×${d3.format('.2f')(r.or)}${r.rob ? ' (robust)' : ' (not robust)'}`, r.wid ? 'Inside share grew relative to outside' : `${RF.fmtInt(r.n)} records`]))
+    .on('mouseleave', () => tip.hide());
+});
+dash.draw('regional', (el) => {
+  if (!RF.ok('regional')) return RF.fail(el, ['regional']);
+  const d = dash.data('regional').data.map((r) => ({ sp: r.species, isl: r.island, or: RF.num(r.OR) })).filter((r) => r.or > 0);
+  const dom = new Map(d.filter((r) => r.isl === 'Dominica').map((r) => [r.sp, r.or]));
+  const sps = [...new Set(d.map((r) => r.sp))].filter((s) => dom.has(s)).sort((a, b) => dom.get(a) - dom.get(b));
+  const H = sps.length * 22 + 44;
+  const { svg, w } = RF.svg(el, H, 'Dot plot of sighting trends per decade for focal species in Dominica and six neighbouring islands');
+  const m = { t: 10, r: 16, b: 28, l: Math.min(RF.labW(svg, sps) + 10, w * 0.45) };
+  const x = d3.scaleLog().domain([0.15, 5]).range([m.l, w - m.r]).clamp(true);
+  const y = d3.scaleBand().domain(sps).range([m.t, H - m.b]).padding(0.3);
+  const tv = [0.25, 0.5, 1, 2, 4];
+  svg.append('g').attr('class', 'grid').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues(tv).tickSize(-(H - m.t - m.b)).tickFormat(''));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues(tv).tickFormat((v) => '×' + v));
+  svg.append('line').attr('x1', x(1)).attr('x2', x(1)).attr('y1', m.t).attr('y2', H - m.b).style('stroke', 'var(--cds-chart-reference)');
+  const cy = (s) => y(s) + y.bandwidth() / 2;
+  const tip = RF.tip(el);
+  svg.append('g').selectAll('circle').data(d.filter((r) => r.isl !== 'Dominica' && dom.has(r.sp))).join('circle')
+    .attr('cx', (r) => x(r.or)).attr('cy', (r) => cy(r.sp)).attr('r', 4).style('fill', 'var(--cds-chart-reference)').style('opacity', 0.8)
+    .on('mousemove', (ev, r) => tip.show(ev, [r.sp, r.isl, `Odds ×${d3.format('.2f')(r.or)} per decade`])).on('mouseleave', () => tip.hide());
+  svg.append('g').selectAll('circle').data(sps).join('circle')
+    .attr('cx', (s) => x(dom.get(s))).attr('cy', cy).attr('r', 6).style('fill', dash.colors[0])
+    .on('mousemove', (ev, s) => tip.show(ev, [s, 'Dominica', `Odds ×${d3.format('.2f')(dom.get(s))} per decade`])).on('mouseleave', () => tip.hide());
+  svg.append('g').selectAll('text').data(sps).join('text').attr('x', m.l - 6).attr('y', cy).attr('dy', '0.35em').attr('text-anchor', 'end').text((s) => s);
+});
+dash.draw('fgroups', (el) => {
+  if (!RF.ok('fgroups')) return RF.fail(el, ['fgroups']);
+  const rows = dash.data('fgroups').data.map((r) => ({ g: String(r.group).replace(/\s*\(.*\)/, ''), or: RF.num(r.OR_decade), lo: RF.num(r.lo), hi: RF.num(r.hi), n: RF.num(r.n_species), up: RF.num(r.n_up), dn: RF.num(r.n_down) })).sort((a, b) => b.or - a.or);
+  const H = rows.length * 44 + 44;
+  const { svg, w } = RF.svg(el, H, 'Mean trend per decade with 95% interval for four functional groups');
+  const m = { t: 10, r: 60, b: 28, l: Math.min(RF.labW(svg, rows.map((r) => r.g)) + 10, w * 0.45) };
+  const x = d3.scaleLog().domain([0.75, 1.4]).range([m.l, w - m.r]);
+  const y = d3.scaleBand().domain(rows.map((r) => r.g)).range([m.t, H - m.b]).padding(0.4);
+  const tv = [0.8, 0.9, 1, 1.1, 1.2, 1.3];
+  svg.append('g').attr('class', 'grid').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues(tv).tickSize(-(H - m.t - m.b)).tickFormat(''));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues(tv).tickFormat((v) => '×' + v));
+  svg.append('line').attr('x1', x(1)).attr('x2', x(1)).attr('y1', m.t).attr('y2', H - m.b).style('stroke', 'var(--cds-chart-reference)');
+  const cy = (r) => y(r.g) + y.bandwidth() / 2;
+  const tip = RF.tip(el);
+  const g = svg.append('g').selectAll('g').data(rows).join('g');
+  g.append('line').attr('x1', (r) => x(r.lo)).attr('x2', (r) => x(r.hi)).attr('y1', cy).attr('y2', cy).style('stroke', (r) => (r.or >= 1 ? dash.colors[0] : dash.colors[1])).style('stroke-width', 2);
+  g.append('circle').attr('cx', (r) => x(r.or)).attr('cy', cy).attr('r', 6).style('fill', (r) => (r.or >= 1 ? dash.colors[0] : dash.colors[1]))
+    .on('mousemove', (ev, r) => tip.show(ev, [r.g, `×${d3.format('.2f')(r.or)} per decade (${d3.format('.2f')(r.lo)}–${d3.format('.2f')(r.hi)})`, `${r.n} species: ${r.up} up, ${r.dn} down`])).on('mouseleave', () => tip.hide());
+  g.append('text').attr('x', m.l - 6).attr('y', cy).attr('dy', '0.35em').attr('text-anchor', 'end').text((r) => r.g);
+  g.append('text').attr('x', (r) => x(r.hi) + 6).attr('y', cy).attr('dy', '0.35em').text((r) => '×' + d3.format('.2f')(r.or));
+});
+</script>
 </body>
 </html>

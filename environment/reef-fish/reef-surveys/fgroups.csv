@@ -1,0 +1,5 @@
+group,n_species,OR_decade,lo,hi,n_up,n_down
+Fished,52,1.104,0.984,1.239,18,7
+Small cryptic / benthic,51,0.9,0.806,1.004,11,12
+Other reef fish,92,1.062,0.987,1.143,22,27
+"Herbivores (parrotfish, surgeonfish, chubs)",16,1.16,1.007,1.337,6,3
