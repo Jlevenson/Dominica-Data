@@ -1,8 +1,9 @@
 """Analysis 3: habitat-matched comparison inside vs outside the SSMR.
 
-Provisional habitat classes (to be checked by Oceans Forward staff), based on the site
-descriptions in Madisetti (2018, OAS ReefFix) and site names:
-  wall      - steep walls, pinnacles and drop-offs around the rim of the submerged crater
+Habitat classes, based on the site descriptions in Madisetti (2018, OAS ReefFix) and checked
+by authors who dive these sites:
+  wall      - high relief: steep walls and drop-offs, and fields of coral pinnacles (Danglebens
+              Pinnacles, Soufriere Pinnacles), around the rim of the submerged crater
   slope     - gently sloping reef, reef flat or shelf with sand and rubble patches
 Every outside site is classed 'slope' (central-coast shelf, northern slopes, Roseau shore dives),
 so the habitat-matched test compares inside 'slope' sites with outside sites.

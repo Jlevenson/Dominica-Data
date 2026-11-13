@@ -39,7 +39,7 @@ Divers use REEF's Roving Diver Technique: they swim freely around a site, record
 | `code/analyze.py`, `code/export.py` | Trend analysis and dashboard export scripts |
 | `code/mpa.py`, `code/regional.py`, `code/extra.py` | Reserve comparison, regional comparison, and abundance, functional group, lionfish–prey, Hurricane Maria and community analyses |
 | `code/habitat.py`, `code/within_site_all.py`, `code/fig_regional_z.py` | Habitat-matched reserve comparison, within-site trends for all species, regional figure |
-| `habitat_matched.csv`, `habitat.csv` | Inside vs outside the reserve within the same (slope) habitat, with provisional site habitat classes in `code/habitat.py` |
+| `habitat_matched.csv`, `habitat.csv` | Inside vs outside the reserve within the same (slope) habitat, with site habitat classes in `code/habitat.py` |
 | `within_site_all.csv` | Trend per decade at the same sites (site fixed effects) for 168 species |
 | `regional_z.csv`, `curves.csv`, `robustness.csv` | Dashboard data: Dominica vs region, smoothed trajectories, robustness summary |
 | `code/review.py`, `code/traits.py` | Autocorrelation and non-linearity, Dominica vs between-island variation, effort-corrected richness, sensitivity and species-trait analyses |
