@@ -4,3 +4,4 @@ Datasets in this folder. Each dataset gets its own README made from `templates/d
 
 - **ENV-TUR-001** Beach patrol nesting records (Public, planned)
 - **ENV-TUR-002** Nest locations (GPS) (On request, planned)
+- **ENV-TUR-004** DomSeTCO sea turtle sightings explorer, with [interactive dashboard](sightings-explorer/) (Public, available)
