@@ -176,13 +176,13 @@ def chao2(k, n):
     return float(len(k) + (a * q1 * q1 / (2 * q2) if q2 > 0 else a * q1 * (q1 - 1) / 2))
 
 ex = d[~d.species.str.contains(r'Juvenile|Complex|unidentified|sp\.|spp', case=False)]
-bins = [(1994, 2000), (2001, 2004), (2005, 2008), (2009, 2012), (2013, 2016), (2017, 2020), (2021, 2024), (2025, 2026)]
+bins = [(1994, 2000), (2001, 2004), (2005, 2008), (2009, 2012), (2013, 2016), (2017, 2020), (2021, 2024), (2025, 2025)]
 rich = []
 for a, b in bins:
     s = ex[(ex.year >= a) & (ex.year <= b)].groupby('species').k.sum().values
     n = int(eff[(eff.year >= a) & (eff.year <= b)].n_all.sum())
     ne = eff[(eff.year >= a) & (eff.year <= b)]
-    rich.append(dict(period=f'{a}–{str(b)[2:]}', surveys=n, observed=int((s > 0).sum()), rarefied_30=rare(s, n, 30),
+    rich.append(dict(period=(str(a) if a == b else f'{a}–{str(b)[2:]}'), surveys=n, observed=int((s > 0).sum()), rarefied_30=rare(s, n, 30),
                      rarefied_60=rare(s, n, 60), chao2=chao2(s, n), exp_share=float(ne.n_exp.sum() / n)))
 Rp = pd.DataFrame(rich)
 Rp.to_csv('review_richness_period.csv', index=False)
@@ -220,7 +220,7 @@ scen = {
     'Min 20 surveys/year': grid(20),
     'Drop 5 busiest years': grid(years=[y for y in eff.loc[eff.n_all >= 10, 'year'] if y not in busy]),
     'From 2000 only': grid(years=[y for y in eff.loc[eff.n_all >= 10, 'year'] if y >= 2000]),
-    'Drop 2025–26': grid(years=[y for y in eff.loc[eff.n_all >= 10, 'year'] if y <= 2024]),
+    'Drop 2025': grid(years=[y for y in eff.loc[eff.n_all >= 10, 'year'] if y <= 2024]),
     'Drop 2017–18 (Maria)': grid(years=[y for y in eff.loc[eff.n_all >= 10, 'year'] if y not in (2017, 2018)]),
 }
 base = robust.set_index('species').beta_decade

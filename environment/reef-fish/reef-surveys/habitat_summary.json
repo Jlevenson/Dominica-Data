@@ -10,23 +10,23 @@
    "inside": 1,
    "habitat": "slope",
    "sites": 4,
-   "surveys": 264
+   "surveys": 260
   },
   {
    "inside": 1,
    "habitat": "wall",
    "sites": 12,
-   "surveys": 1147
+   "surveys": 1135
   }
  ],
- "n_species": 163,
- "matched_higher_inside": 61,
- "matched_higher_outside": 33,
- "wall_higher": 67,
- "slope_higher": 56,
- "same_direction_as_unmatched": 125,
- "n_compared": 163,
- "trend_gap_widening_q05": 24,
- "trend_gap_narrowing_q05": 39,
- "rho_matched_vs_all": 0.43505337173080166
+ "n_species": 161,
+ "matched_higher_inside": 59,
+ "matched_higher_outside": 31,
+ "wall_higher": 70,
+ "slope_higher": 55,
+ "same_direction_as_unmatched": 122,
+ "n_compared": 161,
+ "trend_gap_widening_q05": 23,
+ "trend_gap_narrowing_q05": 45,
+ "rho_matched_vs_all": 0.4238856589804933
 }

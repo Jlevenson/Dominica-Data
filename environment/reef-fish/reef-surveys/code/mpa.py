@@ -5,7 +5,9 @@ raw=json.load(open('/tmp/claude-tool-results/d4e88a66-dff1-588b-bbcb-ed217c0a46e
 t=raw[0]['text']; t=t[:t.rfind('"')+1]; d=json.loads(json.loads(t))
 INSIDE={'71120005','71120004','71120001','71120009','71120081','71120015','71120043','71120003','71120013','71120048','71120008','71120090','71120047','71120088','71120046','71120092'}
 names=pd.read_csv('site_counts_by_year.csv').drop_duplicates('code').assign(code=lambda x:x.code.astype(str)).set_index('code').site
-mid={1994:1997,2001:2002.5,2005:2006.5,2009:2010.5,2013:2014.5,2017:2018.5,2021:2022.5,2025:2025.5}
+mid={1994:1997,2001:2002.5,2005:2006.5,2009:2010.5,2013:2014.5,2017:2018.5,2021:2022.5,2025:2025}
+# analysis period 1994-2025: the last period (originally 2025-26) is replaced by 2025-only site reports
+d['out']=[l for l in d['out'] if l.split('|')[1]!='2025']+json.load(open('raw/site_2025_only.json'))['out']
 sp_rows=[]; sv=[]
 for l in d['out']:
     parts=l.split('|')

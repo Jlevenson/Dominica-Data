@@ -1,4 +1,4 @@
-# Dominica reef fish trends from REEF volunteer surveys, 1994–2026
+# Dominica reef fish trends from REEF volunteer surveys, 1994–2025
 
 **Catalog ID:** ENV-REF-001
 **Access:** Public
@@ -12,9 +12,9 @@ An analysis of 33 years of Reef Environmental Education Foundation (REEF) Volunt
 Oceans Forward staff and REEF volunteers, together with participatory science divers, have collected data on Dominica's reef fish populations over the years using REEF methods.
 
 ## Coverage
-- **When:** 1994 to 2026 (download of 13 November 2026)
+- **When:** 1994 to 2025 (downloads of 13 and 15 November 2026). 2026 is left out because the year is incomplete; the last site-level period is 2025 only.
 - **Where:** All REEF survey sites in Dominica (zone 7112)
-- **Size:** 2,335 surveys (821 expert, 1,514 novice), 412 taxa
+- **Size:** 2,314 surveys (820 expert, 1,494 novice), 412 taxa
 
 ## How it was collected
 Divers use REEF's Roving Diver Technique: they swim freely around a site, record every fish species they can identify and give each a log-scale abundance category. Surveyors are classed as novice or expert by REEF from survey experience and ID exam scores. These files are built from REEF's public yearly Comparison Report summaries, not from survey-level raw data.
@@ -31,7 +31,7 @@ Divers use REEF's Roving Diver Technique: they swim freely around a site, record
 | `species_by_year.csv` | REEF yearly summaries as downloaded: %SF and density index for every taxon, year and experience level |
 | `effort_by_year_detail.csv` | Survey counts per year by type (species-and-abundance `SA`, species-only `SO`) and experience level |
 | `reserve.csv` | Sighting frequency inside vs outside the Soufrière–Scotts Head Marine Reserve for 19 key species (dashboard) |
-| `mpa_species.csv` | Inside vs outside reserve model results for 168 species: odds ratio, change over time, q values, robustness |
+| `mpa_species.csv` | Inside vs outside reserve model results for 166 species: odds ratio, change over time, q values, robustness |
 | `regional.csv` | Trend per decade for 24 focal species on seven islands (Dominica, St Lucia, St Vincent, Grenada, Saba, St Kitts, St Eustatius) |
 | `regional_trends_all.csv` | Trend per decade on each island for 170 species with at least 200 records across islands |
 | `fgroups.csv` | Mean trend per decade for four functional groups (fished, herbivores, small cryptic/benthic, other) |
@@ -40,11 +40,12 @@ Divers use REEF's Roving Diver Technique: they swim freely around a site, record
 | `code/mpa.py`, `code/regional.py`, `code/extra.py` | Reserve comparison, regional comparison, and abundance, functional group, lionfish–prey, Hurricane Maria and community analyses |
 | `code/habitat.py`, `code/within_site_all.py`, `code/fig_regional_z.py` | Habitat-matched reserve comparison, within-site trends for all species, regional figure |
 | `habitat_matched.csv`, `habitat.csv` | Inside vs outside the reserve within the same (slope) habitat, with site habitat classes in `code/habitat.py` |
-| `within_site_all.csv` | Trend per decade at the same sites (site fixed effects) for 168 species |
+| `within_site_all.csv` | Trend per decade at the same sites (site fixed effects) for 166 species |
 | `regional_z.csv`, `curves.csv`, `robustness.csv` | Dashboard data: Dominica vs region, smoothed trajectories, robustness summary |
+| `code/breakpoint.py`, `code/figs.py`, `code/dashboard_data.py`, `code/raw/site_2025_only.json` | Lionfish before/after analysis, paper figures, dashboard data build, and the 2025-only site reports that replace the 2025–26 site period |
 | `code/review.py`, `code/traits.py` | Autocorrelation and non-linearity, Dominica vs between-island variation, effort-corrected richness, sensitivity and species-trait analyses |
 | `review_autocorr_gam.csv`, `review_gam_curves.csv`, `fig4_trajectories.png` | Autocorrelation and spline tests for 201 taxa; smoothed trajectories for nine species |
-| `review_regional_predictive.csv` | Dominica's trend against the spread of six other islands, 152 species |
+| `review_regional_predictive.csv` | Dominica's trend against the spread of six other islands, 150 species |
 | `review_richness_period.csv`, `review_richness_year.csv` | Rarefied and Chao2 species richness by period and year |
 | `review_sensitivity.csv` | Robust trends refitted under six alternative analysis choices |
 | `traits_species.csv` | Species traits (FishLife/FishBase) with trends |
@@ -87,9 +88,9 @@ Divers use REEF's Roving Diver Technique: they swim freely around a site, record
 Survey-level REEF data (date, site, depth, surveyor ID) is held by REEF and available to researchers on request from REEF's Director of Science. An older REEF download (May 2014) is in Oceans Forward's Dropbox (`Lionfish/REEF Dominica DATA.xlsx`).
 
 ## How to cite
-Data: REEF. 2026. Reef Environmental Education Foundation Volunteer Fish Survey Project Database. World Wide Web electronic publication. www.REEF.org, date of download 13 November 2026.
+Data: REEF. 2026. Reef Environmental Education Foundation Volunteer Fish Survey Project Database. World Wide Web electronic publication. www.REEF.org, dates of download 13 and 15 November 2026.
 
-Analysis: Oceans Forward (2026). Dominica reef fish trends from REEF volunteer surveys, 1994–2026. Oceans Forward Dominica Data Repository. https://github.com/Jlevenson/Dominica-Data
+Analysis: Oceans Forward (2026). Dominica reef fish trends from REEF volunteer surveys, 1994–2025. Oceans Forward Dominica Data Repository. https://github.com/Jlevenson/Dominica-Data
 
 The REEF summary data in this folder belong to REEF and are shared here with attribution; the CC BY 4.0 license of this repository covers Oceans Forward's analysis and derived files.
 
@@ -98,3 +99,4 @@ The REEF summary data in this folder belong to REEF and are shared here with att
 - 2026-11-13 Added reserve, regional and functional group comparisons, with their data and code.
 - 2026-11-13 Added robustness analyses (autocorrelation, between-island comparison, richness, sensitivity, traits).
 - 2026-11-13 Added habitat-matched reserve comparison, within-site trends for all species and four dashboard sections.
+- 2026-11-15 Analysis period ends in 2025 (partial year 2026 removed); site-level data for 2025 re-downloaded without 2026; all results, figures and dashboard data rerun.
