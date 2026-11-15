@@ -1,20 +1,20 @@
 species,sf_in,sf_out,OR_inside,robust,widened,records,group
-Bandtail Puffer,4.252,27.872,0.134,True,False,191,Not fished
-Bar Jack,64.989,43.617,2.234,True,False,1122,Fished
-Black Margate,14.033,3.617,2.333,True,False,215,Fished
-Brown Garden Eel,15.45,36.809,0.26,True,False,391,Not fished
-Coney,74.699,77.021,0.952,False,True,1416,Fished
-Fairy Basslet,65.84,18.298,12.445,True,True,1015,Not fished
-French Grunt,86.322,86.17,0.982,False,False,1623,Fished
-Graysby,78.313,62.34,2.274,True,True,1398,Fished
-Great Barracuda,11.127,7.234,1.115,False,False,191,Fished
-Horse-eye Jack,11.977,4.043,2.889,True,True,188,Fished
-Mutton Snapper,15.663,11.915,0.901,False,False,277,Fished
-Princess Parrotfish,78.951,54.255,3.888,True,True,1369,Not fished
-Queen Parrotfish,26.364,9.149,2.976,True,False,415,Not fished
-Red Hind,12.757,22.979,0.503,True,True,288,Fished
-Sand Diver,39.476,63.83,0.441,True,False,857,Not fished
-Schoolmaster,13.607,3.617,2.901,True,True,209,Fished
-Spotted Goatfish,35.507,73.191,0.262,True,False,845,Fished
-Stoplight Parrotfish,81.432,70.0,1.947,True,True,1478,Not fished
-Yellowtail Snapper,73.707,57.447,1.334,True,False,1310,Fished
+Bandtail Puffer,4.158,27.872,0.129,True,False,189,Not fished
+Bar Jack,64.659,43.617,2.232,True,False,1107,Fished
+Black Margate,13.405,3.617,2.42,True,False,204,Fished
+Brown Garden Eel,15.341,36.809,0.257,True,False,387,Not fished
+Coney,74.695,77.021,0.938,False,True,1404,Fished
+Fairy Basslet,65.52,18.298,12.276,True,True,1000,Not fished
+French Grunt,86.237,86.17,0.986,False,False,1608,Fished
+Graysby,78.065,62.34,2.243,True,True,1382,Fished
+Great Barracuda,10.896,7.234,1.137,False,False,186,Fished
+Horse-eye Jack,11.9,4.043,2.953,True,True,185,Fished
+Mutton Snapper,15.484,11.915,0.889,False,False,272,Fished
+Princess Parrotfish,78.781,54.255,3.873,True,True,1354,Not fished
+Queen Parrotfish,26.165,9.149,2.997,True,False,408,Not fished
+Red Hind,12.616,22.979,0.506,True,True,284,Fished
+Sand Diver,39.785,63.83,0.44,True,False,855,Not fished
+Schoolmaster,13.333,3.617,2.879,True,True,203,Fished
+Spotted Goatfish,35.771,73.191,0.258,True,False,843,Fished
+Stoplight Parrotfish,81.219,70.0,1.941,True,True,1462,Not fished
+Yellowtail Snapper,73.548,57.447,1.345,True,False,1296,Fished

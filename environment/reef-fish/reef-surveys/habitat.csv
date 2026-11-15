@@ -1,21 +1,21 @@
 species,group,sf_in_wall,sf_in_slope,sf_out,OR_inside_matched,q_matched
-Bar Jack,Fished,66.696,57.576,43.617,1.526,0.001
-Black Margate,Fished,15.17,9.091,3.617,1.203,0.66
-Blackfin Snapper,Fished,0.349,9.848,11.277,0.586,0.0
-Coney,Fished,74.194,76.894,77.021,1.344,0.056
-Graysby,Fished,79.163,74.621,62.34,1.8,0.0
-Great Barracuda,Fished,12.642,4.545,7.234,0.461,0.102
-Horse-eye Jack,Fished,13.514,5.303,4.043,0.995,0.985
-Mutton Snapper,Fished,16.303,12.879,11.915,0.93,0.709
-Princess Parrotfish,Not fished,80.645,71.591,54.255,2.768,0.0
-Queen Parrotfish,Not fished,24.673,33.712,9.149,4.783,0.0
-Red Hind,Fished,13.339,10.227,22.979,0.368,0.0
-Schoolmaster,Fished,15.519,5.303,3.617,1.171,0.71
-Stoplight Parrotfish,Not fished,81.779,79.924,70.0,1.912,0.0
-Yellowtail Snapper,Fished,75.937,64.015,57.447,0.754,0.026
-Blackbar Soldierfish,Fished,92.764,83.333,77.447,2.581,0.0
-Dusky Squirrelfish,Fished,18.309,14.394,16.809,0.7,0.04
-Longjaw Squirrelfish,Fished,57.803,48.106,25.106,3.71,0.0
-Longspine Squirrelfish,Fished,52.833,41.288,40.426,1.868,0.0
-Reef Squirrelfish,Fished,2.354,1.894,4.468,0.386,0.034
-Squirrelfish,Fished,23.365,20.455,28.723,0.784,0.104
+Bar Jack,Fished,66.344,57.308,43.617,1.538,0.001
+Black Margate,Fished,14.626,8.077,3.617,1.208,0.661
+Blackfin Snapper,Fished,0.352,10.0,11.277,0.581,0.0
+Coney,Fished,74.273,76.538,77.021,1.319,0.073
+Graysby,Fished,78.943,74.231,62.34,1.776,0.0
+Great Barracuda,Fished,12.511,3.846,7.234,0.441,0.176
+Horse-eye Jack,Fished,13.48,5.0,4.043,0.965,0.894
+Mutton Snapper,Fished,16.211,12.308,11.915,0.899,0.566
+Princess Parrotfish,Not fished,80.529,71.154,54.255,2.755,0.0
+Queen Parrotfish,Not fished,24.493,33.462,9.149,4.782,0.0
+Red Hind,Fished,13.304,9.615,22.979,0.356,0.0
+Schoolmaster,Fished,15.242,5.0,3.617,1.125,0.784
+Stoplight Parrotfish,Not fished,81.586,79.615,70.0,1.908,0.0
+Yellowtail Snapper,Fished,75.771,63.846,57.447,0.76,0.032
+Blackbar Soldierfish,Fished,92.863,83.077,77.447,2.54,0.0
+Dusky Squirrelfish,Fished,18.062,13.462,16.809,0.668,0.022
+Longjaw Squirrelfish,Fished,57.797,48.077,25.106,3.731,0.0
+Longspine Squirrelfish,Fished,52.863,41.154,40.426,1.879,0.0
+Reef Squirrelfish,Fished,2.379,1.923,4.468,0.388,0.033
+Squirrelfish,Fished,23.524,19.615,28.723,0.768,0.073

@@ -1,7 +1,7 @@
 import pandas as pd, json, numpy as np
 code = open('analyze.py').read()
 meta = [{'label': 'analyze.py', 'value': code, 'type': 'code', 'lang': 'python'},
-        {'label': 'Input', 'value': 'REEF Comparison Report CSV exports, zone 7112 (Dominica), one per year 1994–2026, levels All/Expert/Novice, downloaded 13 Nov 2026 from reef.org'}]
+        {'label': 'Input', 'value': 'REEF Comparison Report CSV exports, zone 7112 (Dominica), one per year 1994–2026 (analysis uses 1994–2025), levels All/Expert/Novice, downloaded 13 Nov 2026 from reef.org'}]
 
 def clean(df):
     return json.loads(df.replace({np.nan: None}).to_json(orient='records'))

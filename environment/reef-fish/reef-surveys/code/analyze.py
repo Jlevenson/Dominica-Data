@@ -74,8 +74,8 @@ T['robust'] = ((T.q < 0.05) & T.beta_exp.notna() & T.beta_nov.notna()
 T.sort_values('beta_decade').to_csv('species_trends.csv', index=False)
 
 # Periods (pooled)
-bins = [(1994, 2000), (2001, 2004), (2005, 2008), (2009, 2012), (2013, 2016), (2017, 2020), (2021, 2024), (2025, 2026)]
-lab = {y: f'{a}–{str(b)[2:]}' for a, b in bins for y in range(a, b + 1)}
+bins = [(1994, 2000), (2001, 2004), (2005, 2008), (2009, 2012), (2013, 2016), (2017, 2020), (2021, 2024), (2025, 2025)]
+lab = {y: (str(a) if a == b else f'{a}–{str(b)[2:]}') for a, b in bins for y in range(a, b + 1)}
 allfull = grid(allc, 'n_all', eff.year.tolist())
 allfull['period'] = allfull.year.map(lab)
 P = allfull.groupby(['species', 'period']).agg(k=('k', 'sum'), n=('n', 'sum')).reset_index()

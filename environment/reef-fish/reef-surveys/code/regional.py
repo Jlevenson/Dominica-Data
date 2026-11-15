@@ -21,6 +21,7 @@ e2=pd.read_csv('effort_by_year.csv'); e2['exp']=e2.n_exp/e2.n_all
 E=pd.concat([E,e2.rename(columns={'n_all':'n','n_sa':'SA'})[['year','n','SA','exp']].assign(island='Dominica')])
 dd=dom.merge(e2[['year','n_sa','n_all']],on='year'); dd['k']=(dd.sf/100*dd.n_sa).round().clip(upper=dd.n_all)
 S=pd.concat([S,dd[['year','species','k']].assign(island='Dominica')])
+E=E[E.year<=2025]; S=S[S.year<=2025]  # analysis period 1994-2025
 E.to_csv('regional_effort.csv',index=False); S.to_csv('regional_species.csv',index=False)
 print(E.groupby('island').n.sum().sort_values(ascending=False).to_string())
 print(E[E.n>=10].groupby('island').year.agg(['min','max','count']).to_string())

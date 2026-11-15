@@ -41,8 +41,8 @@ out['abundance'] = dict(n_species=len(D), den_up=int(((D.q < 0.05) & (D.den_chan
                         den_down=int(((D.q < 0.05) & (D.den_change_decade < 0)).sum()),
                         rho_sf_vs_den=round(rho, 3), p=round(prho, 4))
 # abundance index by period for focal species
-bins = [(1994, 2000), (2001, 2004), (2005, 2008), (2009, 2012), (2013, 2016), (2017, 2020), (2021, 2024), (2025, 2026)]
-lab = {y: f'{a}–{str(b)[2:]}' for a, b in bins for y in range(a, b + 1)}
+bins = [(1994, 2000), (2001, 2004), (2005, 2008), (2009, 2012), (2013, 2016), (2017, 2020), (2021, 2024), (2025, 2025)]
+lab = {y: (str(a) if a == b else f'{a}–{str(b)[2:]}') for a, b in bins for y in range(a, b + 1)}
 foc = ['Red Lionfish (exotic)', 'Spotted Goatfish', 'Yellowtail Snapper', 'Stoplight Parrotfish', 'Queen Parrotfish',
        'Graysby', 'Coney', 'Bar Jack', 'Brown Chromis', 'Blue Tang', 'Creole Wrasse', 'Sergeant Major']
 ai = []
