@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"name": "sro1998_boundary_points",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"xy_coordinate_resolution": 1e-06,
+"features": [
+{ "type": "Feature", "properties": { "point": "C", "lon": -61.379, "lat": 15.215833333333332 }, "geometry": { "type": "Point", "coordinates": [ -61.379, 15.215833 ] } },
+{ "type": "Feature", "properties": { "point": "D", "lon": -61.3755, "lat": 15.231833333333334 }, "geometry": { "type": "Point", "coordinates": [ -61.3755, 15.231833 ] } },
+{ "type": "Feature", "properties": { "point": "E", "lon": -61.376, "lat": 15.245666666666667 }, "geometry": { "type": "Point", "coordinates": [ -61.376, 15.245667 ] } },
+{ "type": "Feature", "properties": { "point": "F", "lon": -61.3745, "lat": 15.246 }, "geometry": { "type": "Point", "coordinates": [ -61.3745, 15.246 ] } },
+{ "type": "Feature", "properties": { "point": "G", "lon": -61.361666666666665, "lat": 15.232333333333333 }, "geometry": { "type": "Point", "coordinates": [ -61.361667, 15.232333 ] } },
+{ "type": "Feature", "properties": { "point": "K", "lon": -61.374333333333333, "lat": 15.2105 }, "geometry": { "type": "Point", "coordinates": [ -61.374333, 15.2105 ] } }
+]
+}

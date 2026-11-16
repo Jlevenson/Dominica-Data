@@ -1,0 +1,13 @@
+{
+"type": "FeatureCollection",
+"name": "plan_lines",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"xy_coordinate_resolution": 1e-06,
+"features": [
+{ "type": "Feature", "properties": { "zone_id": "9", "name": "Yachts Moorings", "category": "moorings", "source": "REZDM Coastal Plan (Fondation Daniel Langlois 2018-19), georeferenced", "note": "Arc as drawn; replace with buoy GPS positions" }, "geometry": { "type": "LineString", "coordinates": [ [ -61.365098, 15.218994 ], [ -61.365622, 15.218528 ], [ -61.365977, 15.217917 ], [ -61.366168, 15.217239 ], [ -61.366193, 15.216454 ] ] } },
+{ "type": "Feature", "properties": { "zone_id": "11", "name": "Scotts Head Restaurants and Marine Services", "category": "shore_facility", "source": "REZDM Coastal Plan (Fondation Daniel Langlois 2018-19), georeferenced", "note": "" }, "geometry": { "type": "LineString", "coordinates": [ [ -61.367282, 15.213543 ], [ -61.366624, 15.214078 ], [ -61.365683, 15.214827 ] ] } },
+{ "type": "Feature", "properties": { "zone_id": "12", "name": "Scotts Head Fishermen Ramps and Lockers", "category": "shore_facility", "source": "REZDM Coastal Plan (Fondation Daniel Langlois 2018-19), georeferenced", "note": "" }, "geometry": { "type": "LineString", "coordinates": [ [ -61.368611, 15.21267 ], [ -61.367264, 15.21329 ] ] } },
+{ "type": "Feature", "properties": { "zone_id": "15", "name": "Scotts Head Vendors-Fishermen Complex", "category": "shore_facility", "source": "REZDM Coastal Plan (Fondation Daniel Langlois 2018-19), georeferenced", "note": "" }, "geometry": { "type": "LineString", "coordinates": [ [ -61.368898, 15.212514 ], [ -61.368193, 15.212366 ] ] } },
+{ "type": "Feature", "properties": { "zone_id": "B_SH", "name": "Scotts Head Beach", "category": "beach", "source": "REZDM Coastal Plan (Fondation Daniel Langlois 2018-19), georeferenced", "note": "" }, "geometry": { "type": "LineString", "coordinates": [ [ -61.365683, 15.214827 ], [ -61.365344, 15.215652 ], [ -61.365205, 15.216522 ] ] } }
+]
+}
