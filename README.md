@@ -4,7 +4,7 @@
 
 **Cite as:** Levenson JJ (2026) Oceans Forward Dominica Data Repository, v1.0. Zenodo. https://doi.org/10.5281/zenodo.24202525
 
-One directory for every dataset Oceans Forward collects or manages in Dominica: sea turtles, telemetry, coral, BRUV, reef fish and agriculture.
+One directory for every dataset Oceans Forward collects or manages in Dominica: sea turtles, telemetry, coral, BRUV, reef fish, GIS and agriculture.
 
 **Browse it:** https://jlevenson.github.io/Dominica-Data/
 
@@ -26,6 +26,7 @@ The repository is a catalog, not a warehouse.
 | `environment/coral-thermal/` | Restoration site temperature loggers, DHW, SST comparison |
 | `environment/bruv/` | Baited remote underwater video deployments |
 | `environment/reef-fish/` | Reef fish surveys (REEF volunteer survey analysis) |
+| `environment/gis/` | GIS layers: Soufrière–Scotts Head Marine Reserve boundary and coastal plan zones |
 | `agriculture/cane-farming/` | Cane farming program |
 | `templates/` | README template for new datasets |
 
