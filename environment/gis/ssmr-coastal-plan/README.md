@@ -18,6 +18,8 @@ GIS layers for the Soufrière–Scotts Head Marine Reserve (SSMR) in southwest D
 - **Where:** Soufrière and Scotts Head Bay north to Anse Bateau and Champagne, Parish of St. Mark
 
 ## How it was made
+The full step-by-step write-up, with fit statistics, zone areas and licensing decisions, is in [METHODS.md](METHODS.md).
+
 1. **Legal boundary.** Points C, D, E and F come from the Fisheries (Soufriere/Scotts Head Marine Reserve) Order 1998, S.R.O. 19, Schedule. The gazette prints points A and B at 61°21.57'W, which is on land, so it is a misprint. The southern edge (A–B) therefore follows the WDPA interpretation of that edge. The landward edge here is the OpenStreetMap coastline. The legal landward limit is the Soufrière–Scotts Head main road and ridge top, so the reserve also includes a coastal fringe of land that is not in this polygon. Area: 552.7 ha, against 534.5 ha reported.
 2. **Georeferencing the plan.** The land/sea edge was extracted automatically from the plan image. It was then fitted to the OpenStreetMap coastline with an affine transform (trimmed iterative closest point over about 3,200 edge points). Residuals: median 9 m, 75th percentile 19 m.
 3. **Digitizing.** Zone vertices were traced on the georeferenced image in UTM 20N. Every zone is clipped to the sea using the OSM coastline. The two jetties use OSM pier geometry, and the beaches are snapped to the coastline.
@@ -28,6 +30,7 @@ GIS layers for the Soufrière–Scotts Head Marine Reserve (SSMR) in southwest D
 | `ssmr_coastal_plan.gpkg` | All layers in one GeoPackage, EPSG:32620 (WGS 84 / UTM 20N) |
 | `geojson/*.geojson` | The same layers as GeoJSON, EPSG:4326 |
 | `preview.png` | Quick-look map |
+| `METHODS.md` | Full methods note |
 
 | Layer | Geometry | Contents |
 |-------|----------|----------|
@@ -68,3 +71,4 @@ Oceans Forward (2026). Soufrière–Scotts Head Marine Reserve: boundary and coa
 
 ## Change log
 - 2026-11-16 First version.
+- 2026-11-17 Added METHODS.md.
