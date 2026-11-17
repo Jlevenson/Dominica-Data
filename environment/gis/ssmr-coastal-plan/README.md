@@ -30,6 +30,7 @@ The full step-by-step write-up, with fit statistics, zone areas and licensing de
 | `ssmr_coastal_plan.gpkg` | All layers in one GeoPackage, EPSG:32620 (WGS 84 / UTM 20N) |
 | `geojson/*.geojson` | The same layers as GeoJSON, EPSG:4326 |
 | `preview.png` | Quick-look map |
+| `ssmr_coastal_plan_GoogleEarth.kmz` | All layers styled for Google Earth (desktop: double-click; web: Projects → New project → Import KML file) |
 | `METHODS.md` | Full methods note |
 
 | Layer | Geometry | Contents |
@@ -71,4 +72,4 @@ Oceans Forward (2026). Soufrière–Scotts Head Marine Reserve: boundary and coa
 
 ## Change log
 - 2026-11-16 First version.
-- 2026-11-17 Added METHODS.md.
+- 2026-11-17 Added METHODS.md and a Google Earth KMZ.
